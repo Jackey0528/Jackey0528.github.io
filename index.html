@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jackey Motion Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Syne:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F5F0E8;
+  --cream-dark: #EDE7D9;
+  --ink: #1C1916;
+  --ink-light: #6B6560;
+  --teal: #2D7A6E;
+  --teal-light: rgba(45,122,110,0.1);
+  --rust: #C4522A;
+  --sand: #D4B896;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Cursor */
+.cursor { width: 10px; height: 10px; background: var(--teal); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.1s; }
+.cursor-ring { width: 40px; height: 40px; border: 1.5px solid rgba(45,122,110,0.4); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; }
+
+/* Floating shapes canvas */
+.shapes-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.shape { position: absolute; border-radius: 50%; opacity: 0.18; }
+.shape-1 { width: 320px; height: 320px; background: var(--teal); top: -80px; right: 10%; animation: float1 12s ease-in-out infinite; }
+.shape-2 { width: 200px; height: 200px; background: var(--rust); bottom: 20%; left: -60px; animation: float2 16s ease-in-out infinite; border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+.shape-3 { width: 140px; height: 140px; background: var(--sand); top: 40%; right: 5%; animation: float3 10s ease-in-out infinite; border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%; }
+.shape-4 { width: 80px; height: 80px; background: var(--teal); top: 65%; left: 15%; animation: float1 14s ease-in-out infinite reverse; }
+.shape-5 { width: 180px; height: 180px; background: var(--sand); top: 20%; left: 25%; animation: float2 18s ease-in-out infinite reverse; opacity: 0.10; border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%; }
+
+@keyframes float1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-28px) rotate(8deg); }
+  66% { transform: translateY(16px) rotate(-5deg); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+  40% { transform: translateY(-20px) scale(1.06) rotate(12deg); }
+  70% { transform: translateY(12px) scale(0.96) rotate(-8deg); }
+}
+@keyframes float3 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-36px) rotate(20deg); }
+}
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.8rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: padding 0.4s, background 0.4s;
+}
+nav.scrolled { background: rgba(245,240,232,0.92); backdrop-filter: blur(12px); padding: 1.2rem 3rem; }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--teal);
+  transition: width 0.4s cubic-bezier(0.23,1,0.32,1);
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 3rem 5rem;
+  position: relative;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.2s forwards;
+}
+.hero-tag-dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; display: inline-block; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.4;transform:scale(0.7);} }
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4.5rem, 10vw, 10rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  max-width: 900px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.4s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 3.5rem;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.7s forwards;
+}
+.hero-desc {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--ink-light);
+  max-width: 300px;
+}
+.hero-scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--teal), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top;} 50%{transform:scaleY(1);transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0);transform-origin:bottom;} }
+
+/* Marquee */
+.marquee-wrap {
+  border-top: 1px solid rgba(28,25,22,0.1);
+  border-bottom: 1px solid rgba(28,25,22,0.1);
+  padding: 1rem 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: var(--cream);
+}
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+.marquee-track span {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  letter-spacing: 0.06em;
+}
+.marquee-dot { color: var(--teal) !important; font-style: normal !important; }
+@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* Work */
+.section { padding: 7rem 3rem; position: relative; z-index: 1; }
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.5rem;
+}
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1.5px;
+  background: var(--teal);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 3.5rem;
+}
+.section-title em { font-style: italic; color: var(--teal); }
+
+/* Work grid */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.work-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 16/10;
+  background: var(--cream-dark);
+  cursor: none;
+}
+.work-item:first-child { grid-column: 1 / -1; aspect-ratio: 21/9; }
+
+.work-item-inner {
+  position: absolute; inset: 0;
+  transition: transform 0.7s cubic-bezier(0.23,1,0.32,1);
+}
+.work-item:hover .work-item-inner { transform: scale(1.03); }
+
+.w1 { background: linear-gradient(135deg, #d4c4b0 0%, #c8b49a 100%); }
+.w2 { background: linear-gradient(135deg, #b0c4c0 0%, #8aada8 100%); }
+.w3 { background: linear-gradient(135deg, #c4b0bc 0%, #a896a4 100%); }
+
+.work-placeholder {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.work-placeholder p {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(28,25,22,0.3);
+}
+
+.work-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(28,25,22,0.55) 0%, transparent 100%);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s, transform 0.4s;
+}
+.work-item:hover .work-info { opacity: 1; transform: translateY(0); }
+.work-info-cat { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,232,0.7); margin-bottom: 0.3rem; }
+.work-info-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--cream); }
+
+/* About */
+.about-section {
+  padding: 7rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
+  align-items: center;
+  background: var(--cream-dark);
+  position: relative;
+  z-index: 1;
+}
+.about-photo-placeholder {
+  aspect-ratio: 3/4;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #c8b49a, #b0a088);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.about-photo-placeholder::after {
+  content: 'Your Photo';
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.about-body { font-size: 0.9rem; line-height: 1.9; color: var(--ink-light); margin-bottom: 2rem; }
+.tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+.tool {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 1px solid rgba(45,122,110,0.3);
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  transition: background 0.3s, color 0.3s;
+}
+.tool:hover { background: var(--teal); color: white; }
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--teal);
+  padding-bottom: 3px;
+  transition: color 0.3s, gap 0.3s;
+}
+.cta-link:hover { color: var(--teal); gap: 1.2rem; }
+
+/* Journal */
+.journal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.journal-card {
+  background: var(--cream-dark);
+  border-radius: 12px;
+  padding: 1.8rem;
+  transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s;
+}
+.journal-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(28,25,22,0.08); }
+.journal-date { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.8rem; }
+.journal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+.journal-excerpt { font-size: 0.78rem; line-height: 1.7; color: var(--ink-light); }
+
+/* Learn */
+.learn-section {
+  padding: 7rem 3rem;
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.learn-section .section-eyebrow { color: var(--sand); }
+.learn-section .section-eyebrow::before { background: var(--sand); }
+.learn-section .section-title { color: var(--cream); }
+.learn-section .section-title em { color: var(--sand); }
+
+.learn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(245,240,232,0.08); border-radius: 12px; overflow: hidden; }
+.lesson-card {
+  background: rgba(245,240,232,0.04);
+  padding: 2rem;
+  transition: background 0.3s;
+}
+.lesson-card:hover { background: rgba(245,240,232,0.08); }
+.lesson-num { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sand); margin-bottom: 0.6rem; }
+.lesson-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); line-height: 1.4; }
+.lesson-card .cta-link { color: rgba(245,240,232,0.4); border-color: rgba(245,240,232,0.2); margin-top: 1rem; font-size: 0.65rem; }
+.lesson-card:hover .cta-link { color: var(--sand); border-color: var(--sand); }
+
+/* Contact */
+.contact-section {
+  padding: 10rem 3rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.contact-big {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 8vw, 8rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 2.5rem;
+}
+.contact-big em { font-style: italic; color: var(--teal); }
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--teal);
+  text-decoration: none;
+  padding: 1rem 2.2rem;
+  border-radius: 100px;
+  transition: background 0.3s, gap 0.3s, transform 0.3s;
+}
+.contact-btn:hover { background: var(--ink); gap: 1.5rem; transform: translateY(-2px); }
+
+/* Footer */
+footer {
+  padding: 1.8rem 3rem;
+  border-top: 1px solid rgba(28,25,22,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; z-index: 1;
+  background: var(--cream);
+}
+footer p { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--teal); }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.23,1,0.32,1), transform 0.9s cubic-bezier(0.23,1,0.32,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Floating shapes -->
+<div class="shapes-canvas">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  <div class="shape shape-4"></div>
+  <div class="shape shape-5"></div>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Jackey Motion Design</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#journal">Journal</a></li>
+    <li><a href="#learn">Learn</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-tag">
+    <span class="hero-tag-dot"></span>
+    Video Editor · Motion Designer · Taipei
+  </div>
+  <h1 class="hero-title">
+    Crafting<br>
+    <em>Motion</em><br>
+    &amp; Stories
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">用動態影像說故事。<br>影片剪輯、動態設計、生活觀察，<br>這裡是 Jackey 的創作基地。</p>
+    <div class="hero-scroll-hint">
+      <div class="hero-scroll-line"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Video Editing</span><span class="marquee-dot">·</span>
+    <span>Motion Design</span><span class="marquee-dot">·</span>
+    <span>After Effects</span><span class="marquee-dot">·</span>
+    <span>Color Grading</span><span class="marquee-dot">·</span>
+    <span>Storytelling</span><span class="marquee-dot">·</span>
+    <span>Typography in Motion</span><span class="marquee-dot">·</span>
+    <span>Creative Direction</span><span class="marquee-dot">·</span>
+    <span>Visual Identity</span><span class="marquee-dot">·</span>
+    <span>Video Editing</span><span class="marquee-dot">·</span>
+    <span>Motion Design</span><span class="marquee-dot">·</span>
+    <span>After Effects</span><span class="marquee-dot">·</span>
+    <span>Color Grading</span><span class="marquee-dot">·</span>
+    <span>Storytelling</span><span class="marquee-dot">·</span>
+    <span>Typography in Motion</span><span class="marquee-dot">·</span>
+    <span>Creative Direction</span><span class="marquee-dot">·</span>
+    <span>Visual Identity</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- Work -->
+<section class="section" id="work">
+  <div class="reveal">
+    <div class="section-eyebrow">Selected Work</div>
+    <h2 class="section-title">Recent<br><em>Projects</em></h2>
+  </div>
+  <div class="work-grid reveal reveal-delay-1">
+    <div class="work-item">
+      <div class="work-item-inner w1"></div>
+      <div class="work-placeholder"><p>作品一 · 主打影片</p></div>
+      <div class="work-info">
+        <p class="work-info-cat">Motion Design</p>
+        <p class="work-info-title">Brand Identity Reel 2024</p>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-item-inner w2"></div>
+      <div class="work-placeholder"><p>作品二</p></div>
+      <div class="work-info">
+        <p class="work-info-cat">Video Edit</p>
+        <p class="work-info-title">Documentary Short</p>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-item-inner w3"></div>
+      <div class="work-placeholder"><p>作品三</p></div>
+      <div class="work-info">
+        <p class="work-info-cat">Motion Design</p>
+        <p class="work-info-title">Title Sequence</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<div class="about-section" id="about">
+  <div class="about-photo-placeholder reveal"></div>
+  <div class="reveal reveal-delay-1">
+    <div class="section-eyebrow">About Me</div>
+    <h2 class="section-title" style="margin-bottom:1.5rem;">Hello,<br>I'm <em>Jackey</em></h2>
+    <p class="about-body">
+      影像剪輯師、動態設計師，也是個喜歡記錄生活的人。<br><br>
+      我相信每一段影片都有它自己的節奏與靈魂——我的工作，是幫它找到那個節奏。
+      從剪輯、動畫到色彩，每個細節都是故事的一部分。
+    </p>
+    <div class="tools">
+      <span class="tool">After Effects</span>
+      <span class="tool">Premiere Pro</span>
+      <span class="tool">DaVinci Resolve</span>
+      <span class="tool">Cinema 4D</span>
+      <span class="tool">Illustrator</span>
+    </div>
+    <a href="#contact" class="cta-link">合作洽詢 →</a>
+  </div>
+</div>
+
+<!-- Journal -->
+<section class="section" id="journal">
+  <div class="reveal">
+    <div class="section-eyebrow">Journal</div>
+    <h2 class="section-title">Thoughts &<br><em>Life</em></h2>
+  </div>
+  <div class="journal-grid reveal reveal-delay-1">
+    <div class="journal-card">
+      <p class="journal-date">2024 · 12</p>
+      <h3 class="journal-title">動態設計的起點：為什麼我開始學 After Effects</h3>
+      <p class="journal-excerpt">分享我第一次打開 AE 的故事，以及那段痛苦又迷人的學習過程……</p>
+    </div>
+    <div class="journal-card">
+      <p class="journal-date">2024 · 11</p>
+      <h3 class="journal-title">東京街拍日記：鏡頭下的日常</h3>
+      <p class="journal-excerpt">用相機記錄旅途，不是要拍「好照片」，而是想留住那個時刻的感覺……</p>
+    </div>
+    <div class="journal-card">
+      <p class="journal-date">2024 · 10</p>
+      <h3 class="journal-title">剪輯師的工作流程：我如何整理一支影片</h3>
+      <p class="journal-excerpt">從素材整理到輸出，分享我現在使用的效率工作流……</p>
+    </div>
+  </div>
+</section>
+
+<!-- Learn -->
+<section class="learn-section" id="learn">
+  <div class="reveal">
+    <div class="section-eyebrow">Learn</div>
+    <h2 class="section-title">Knowledge<br><em>Sharing</em></h2>
+  </div>
+  <div class="learn-grid reveal reveal-delay-1">
+    <div class="lesson-card">
+      <p class="lesson-num">Lesson 01</p>
+      <h3 class="lesson-title">After Effects 入門：你需要知道的 10 件事</h3>
+      <a href="#" class="cta-link">閱讀 →</a>
+    </div>
+    <div class="lesson-card">
+      <p class="lesson-num">Lesson 02</p>
+      <h3 class="lesson-title">剪輯節奏感：如何讓影片「有感覺」</h3>
+      <a href="#" class="cta-link">閱讀 →</a>
+    </div>
+    <div class="lesson-card">
+      <p class="lesson-num">Lesson 03</p>
+      <h3 class="lesson-title">Color Grading 基礎：用色彩說故事</h3>
+      <a href="#" class="cta-link">閱讀 →</a>
+    </div>
+    <div class="lesson-card">
+      <p class="lesson-num">Lesson 04</p>
+      <h3 class="lesson-title">Motion Typography：讓文字動起來的秘訣</h3>
+      <a href="#" class="cta-link">閱讀 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <h2 class="contact-big reveal">
+    Let's<br>
+    Create<br>
+    <em>Together</em>
+  </h2>
+  <a href="mailto:hello@jackeymotion.com" class="contact-btn reveal reveal-delay-1">
+    Say Hello →
+  </a>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2024 Jackey Motion Design · Taipei</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Vimeo</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+  });
+  function animRing() {
+    rx += (mx - rx - 20) * 0.1;
+    ry += (my - ry - 20) * 0.1;
+    ring.style.transform = `translate(${rx}px, ${ry}px)`;
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
