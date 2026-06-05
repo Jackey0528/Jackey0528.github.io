@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動態設計的起點 — Jackey Motion Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F5F0E8;
+  --cream-dark: #EDE7D9;
+  --ink: #1C1916;
+  --ink-light: #6B6560;
+  --teal: #2D7A6E;
+  --sand: #D4B896;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.5rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(245,240,232,0.94); backdrop-filter: blur(12px);
+}
+.nav-logo { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-back { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.3s, gap 0.3s; }
+.nav-back:hover { color: var(--teal); gap: 0.9rem; }
+.nav-back span { font-size: 1rem; }
+
+/* Hero */
+.article-hero {
+  padding: 8rem 3rem 4rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.article-meta {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.article-cat {
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); background: rgba(45,122,110,0.1);
+  padding: 0.3rem 0.8rem; border-radius: 100px;
+}
+.article-date { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--ink-light); }
+.article-read-time { font-size: 0.72rem; color: var(--ink-light); }
+
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 400; line-height: 1.2; letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.article-title em { font-style: italic; color: var(--teal); }
+
+.article-subtitle {
+  font-size: 1rem; line-height: 1.75; color: var(--ink-light);
+  border-left: 2px solid var(--teal); padding-left: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+/* Cover image */
+.article-cover {
+  width: 100%; aspect-ratio: 16/9; border-radius: 16px;
+  background: linear-gradient(135deg, #c8b49a 0%, #b0c4c0 50%, #c4b0bc 100%);
+  margin-bottom: 4rem;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.article-cover::after {
+  content: 'Cover Image';
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Article body */
+.article-body {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 3rem 6rem;
+}
+
+.article-body p {
+  font-size: 1rem; line-height: 1.9; color: var(--ink);
+  margin-bottom: 1.8rem; font-weight: 300;
+}
+
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 400;
+  line-height: 1.3; margin: 3rem 0 1.2rem;
+  color: var(--ink);
+}
+
+.article-body h3 {
+  font-size: 1rem; font-weight: 400;
+  letter-spacing: 0.04em; margin: 2rem 0 0.8rem;
+  color: var(--ink);
+}
+
+.article-body blockquote {
+  border-left: 2px solid var(--teal);
+  padding: 0.5rem 1.5rem;
+  margin: 2.5rem 0;
+  color: var(--ink-light);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.article-body .highlight {
+  background: var(--cream-dark);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin: 2.5rem 0;
+}
+.article-body .highlight p { margin-bottom: 0; color: var(--ink-light); font-size: 0.9rem; }
+
+.article-body ul {
+  margin: 1rem 0 1.8rem 1.2rem;
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.article-body ul li {
+  font-size: 0.95rem; line-height: 1.75; color: var(--ink);
+}
+.article-body ul li::marker { color: var(--teal); }
+
+.divider {
+  width: 40px; height: 1.5px;
+  background: var(--teal); margin: 3rem 0;
+}
+
+/* Tags */
+.article-tags {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin: 3rem 0;
+}
+.tag {
+  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--teal); border: 1px solid rgba(45,122,110,0.3);
+  padding: 0.3rem 0.8rem; border-radius: 100px;
+}
+
+/* Author */
+.author-card {
+  display: flex; align-items: center; gap: 1.5rem;
+  background: var(--cream-dark); border-radius: 16px;
+  padding: 1.5rem 2rem; margin: 3rem 0;
+}
+.author-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #c8b49a, #8aada8);
+  flex-shrink: 0;
+}
+.author-name { font-size: 0.9rem; font-weight: 400; margin-bottom: 0.2rem; }
+.author-bio { font-size: 0.78rem; color: var(--ink-light); line-height: 1.6; }
+
+/* More articles */
+.more-articles {
+  padding: 4rem 3rem 6rem;
+  border-top: 1px solid rgba(28,25,22,0.08);
+  max-width: 800px; margin: 0 auto;
+}
+.more-title {
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.more-title::before { content: ''; display: block; width: 18px; height: 1.5px; background: var(--teal); }
+
+.more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.more-card {
+  background: var(--cream-dark); border-radius: 12px; padding: 1.5rem;
+  text-decoration: none; color: var(--ink);
+  transition: transform 0.3s;
+}
+.more-card:hover { transform: translateY(-4px); }
+.more-card-date { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
+.more-card-title { font-size: 0.95rem; line-height: 1.4; }
+
+/* Footer */
+footer { padding: 1.8rem 3rem; border-top: 1px solid rgba(28,25,22,0.08); display: flex; justify-content: space-between; align-items: center; background: var(--cream); }
+footer p { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--teal); }
+
+/* RWD */
+@media (max-width: 768px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .article-hero { padding: 7rem 1.5rem 3rem; }
+  .article-body { padding: 0 1.5rem 4rem; }
+  .more-articles { padding: 3rem 1.5rem 4rem; }
+  .more-grid { grid-template-columns: 1fr; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+
+/* Fade in */
+.fade-in { opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s ease 0.1s forwards; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">Jackey Motion Design</a>
+  <a href="index.html#journal" class="nav-back"><span>←</span> 返回日誌</a>
+</nav>
+
+<!-- Article Hero -->
+<div class="article-hero fade-in">
+  <div class="article-meta">
+    <span class="article-cat">日誌</span>
+    <span class="article-date">2024 · 12</span>
+    <span class="article-read-time">· 5 分鐘閱讀</span>
+  </div>
+  <h1 class="article-title">
+    動態設計的起點：<br>
+    為什麼我開始學 <em>After Effects</em>
+  </h1>
+  <p class="article-subtitle">
+    一個完全不懂動畫的人，如何在一年內愛上 Motion Design？這是我的故事。
+  </p>
+</div>
+
+<!-- Cover -->
+<div style="max-width: 800px; margin: 0 auto; padding: 0 3rem;">
+  <div class="article-cover fade-in"></div>
+</div>
+
+<!-- Article Body -->
+<article class="article-body fade-in">
+
+  <p>我第一次打開 After Effects 的那天，完全不知道自己在做什麼。介面密密麻麻的按鈕、時間軸、關鍵影格⋯⋯老實說，我當下的反應是：「這個軟體應該不是給我用的。」</p>
+
+  <p>但我沒有關掉它。</p>
+
+  <h2>為什麼選擇動態設計？</h2>
+
+  <p>在那之前，我已經做了幾年的影片剪輯。剪輯讓我學會了說故事的節奏，但我一直覺得少了什麼——那種讓畫面「活起來」的感覺。每次看到其他創作者的作品裡有精緻的字幕動畫、流暢的轉場效果，我都會多看幾眼。</p>
+
+  <blockquote>
+    「如果剪輯是在說故事，那動態設計就是讓故事有了表情。」
+  </blockquote>
+
+  <p>這句話是我後來自己總結的，但那時候的我只知道：我想做出那樣的東西。</p>
+
+  <h2>最初的三個月：痛苦但值得</h2>
+
+  <p>學 After Effects 的頭三個月，我覺得自己進步非常慢。不是因為沒有資源——YouTube 上有大量的教學——而是因為我不知道從哪裡開始，也不知道練習什麼。</p>
+
+  <div class="highlight">
+    <p>💡 後來我發現，最有效的學習方式不是「看教學」，而是「找一個想做的效果，然後去找怎麼做」。目標驅動的學習效率遠比照順序看課程高得多。</p>
+  </div>
+
+  <h3>我做了什麼讓自己突破？</h3>
+
+  <ul>
+    <li>每天找一個喜歡的 Motion 作品，試著拆解它的動態邏輯</li>
+    <li>不追求完美，先把東西做出來再說</li>
+    <li>加入創作者社群，看別人分享的過程和心得</li>
+    <li>給自己設定一個小專案，有截止日期的那種</li>
+  </ul>
+
+  <p>三個月後，我做出了第一個讓自己滿意的文字動畫。那種感覺很難形容——不是因為它多厲害，而是因為它是我從零開始做出來的。</p>
+
+  <div class="divider"></div>
+
+  <p>現在回頭看，學 After Effects 這件事改變的不只是我的技能，更改變了我看待影像的方式。每次看影片，我都會開始注意動態的細節，思考「這個效果是怎麼做到的？」</p>
+
+  <p>如果你也在考慮要不要開始學，我只有一個建議：<strong>直接打開軟體，做一個東西。</strong>哪怕很醜，哪怕不知道在做什麼，都比「等準備好了再開始」來得有用。</p>
+
+  <div class="article-tags">
+    <span class="tag">After Effects</span>
+    <span class="tag">Motion Design</span>
+    <span class="tag">學習心得</span>
+    <span class="tag">創作日誌</span>
+  </div>
+
+  <!-- Author -->
+  <div class="author-card">
+    <div class="author-avatar"></div>
+    <div>
+      <p class="author-name">Jackey</p>
+      <p class="author-bio">影像剪輯師、動態設計師。喜歡用影像說故事，也喜歡把學到的東西分享出來。</p>
+    </div>
+  </div>
+
+</article>
+
+<!-- More articles -->
+<div class="more-articles">
+  <div class="more-title">更多文章</div>
+  <div class="more-grid">
+    <a href="#" class="more-card">
+      <p class="more-card-date">2024 · 11</p>
+      <p class="more-card-title">東京街拍日記：鏡頭下的日常</p>
+    </a>
+    <a href="#" class="more-card">
+      <p class="more-card-date">2024 · 10</p>
+      <p class="more-card-title">剪輯師的工作流程：我如何整理一支影片</p>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2024 Jackey Motion Design · Taipei</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Vimeo</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
