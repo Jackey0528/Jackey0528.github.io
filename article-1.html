@@ -199,6 +199,17 @@ footer p { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase
 .footer-links a { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.3s; }
 .footer-links a:hover { color: var(--teal); }
 
+/* Lang toggle */
+.lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
+.lang-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem; font-weight: 300;
+  background: none; border: none; cursor: pointer;
+  color: var(--ink-light); transition: color 0.3s; padding: 0;
+}
+.lang-btn.active { color: var(--teal); font-weight: 400; }
+.lang-sep { font-size: 0.7rem; color: rgba(28,25,22,0.2); }
+
 /* RWD */
 @media (max-width: 768px) {
   nav { padding: 1.2rem 1.5rem; }
@@ -220,21 +231,28 @@ footer p { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase
 <!-- Nav -->
 <nav>
   <a href="index.html" class="nav-logo">Jackey Motion Design</a>
-  <a href="index.html#journal" class="nav-back"><span>←</span> 返回日誌</a>
+  <div style="display:flex;align-items:center;gap:2rem;">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="zh">中</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="index.html#journal" class="nav-back"><span>←</span> <span data-zh="返回日誌" data-en="Back">返回日誌</span></a>
+  </div>
 </nav>
 
 <!-- Article Hero -->
 <div class="article-hero fade-in">
   <div class="article-meta">
-    <span class="article-cat">日誌</span>
+    <span class="article-cat" data-zh="日誌" data-en="Journal">日誌</span>
     <span class="article-date">2024 · 12</span>
-    <span class="article-read-time">· 5 分鐘閱讀</span>
+    <span class="article-read-time" data-zh="· 5 分鐘閱讀" data-en="· 5 min read">· 5 分鐘閱讀</span>
   </div>
   <h1 class="article-title">
-    動態設計的起點：<br>
-    為什麼我開始學 <em>After Effects</em>
+    <span data-zh="動態設計的起點：<br>為什麼我開始學 <em>After Effects</em>" data-en="Where It All Began:<br>Why I Started Learning <em>After Effects</em>">動態設計的起點：<br>
+    為什麼我開始學 <em>After Effects</em></span>
   </h1>
-  <p class="article-subtitle">
+  <p class="article-subtitle" data-zh="一個完全不懂動畫的人，如何在一年內愛上 Motion Design？這是我的故事。" data-en="How someone who knew nothing about animation fell in love with Motion Design in a year. This is my story.">
     一個完全不懂動畫的人，如何在一年內愛上 Motion Design？這是我的故事。
   </p>
 </div>
@@ -247,50 +265,50 @@ footer p { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase
 <!-- Article Body -->
 <article class="article-body fade-in">
 
-  <p>我第一次打開 After Effects 的那天，完全不知道自己在做什麼。介面密密麻麻的按鈕、時間軸、關鍵影格⋯⋯老實說，我當下的反應是：「這個軟體應該不是給我用的。」</p>
+  <p data-zh="我第一次打開 After Effects 的那天，完全不知道自己在做什麼。介面密密麻麻的按鈕、時間軸、關鍵影格⋯⋯老實說，我當下的反應是：「這個軟體應該不是給我用的。」" data-en="The day I first opened After Effects, I had absolutely no idea what I was doing. The interface was packed with buttons, timelines, keyframes… honestly, my immediate reaction was: 'This software probably isn't meant for someone like me.'">我第一次打開 After Effects 的那天，完全不知道自己在做什麼。介面密密麻麻的按鈕、時間軸、關鍵影格⋯⋯老實說，我當下的反應是：「這個軟體應該不是給我用的。」</p>
 
-  <p>但我沒有關掉它。</p>
+  <p data-zh="但我沒有關掉它。" data-en="But I didn't close it.">但我沒有關掉它。</p>
 
-  <h2>為什麼選擇動態設計？</h2>
+  <h2 data-zh="為什麼選擇動態設計？" data-en="Why Motion Design?">為什麼選擇動態設計？</h2>
 
-  <p>在那之前，我已經做了幾年的影片剪輯。剪輯讓我學會了說故事的節奏，但我一直覺得少了什麼——那種讓畫面「活起來」的感覺。每次看到其他創作者的作品裡有精緻的字幕動畫、流暢的轉場效果，我都會多看幾眼。</p>
+  <p data-zh="在那之前，我已經做了幾年的影片剪輯。剪輯讓我學會了說故事的節奏，但我一直覺得少了什麼——那種讓畫面「活起來」的感覺。每次看到其他創作者的作品裡有精緻的字幕動畫、流暢的轉場效果，我都會多看幾眼。" data-en="Before that, I had been doing video editing for a few years. Editing taught me the rhythm of storytelling, but I always felt something was missing — that feeling of making images 'come alive'. Whenever I saw other creators' work with refined title animations and smooth transitions, I'd always linger a little longer.">在那之前，我已經做了幾年的影片剪輯。剪輯讓我學會了說故事的節奏，但我一直覺得少了什麼——那種讓畫面「活起來」的感覺。每次看到其他創作者的作品裡有精緻的字幕動畫、流暢的轉場效果，我都會多看幾眼。</p>
 
-  <blockquote>
+  <blockquote data-zh="「如果剪輯是在說故事，那動態設計就是讓故事有了表情。」" data-en="&ldquo;If editing is telling a story, then motion design gives that story a face.&rdquo;">
     「如果剪輯是在說故事，那動態設計就是讓故事有了表情。」
   </blockquote>
 
-  <p>這句話是我後來自己總結的，但那時候的我只知道：我想做出那樣的東西。</p>
+  <p data-zh="這句話是我後來自己總結的，但那時候的我只知道：我想做出那樣的東西。" data-en="I came up with that line myself later, but at the time I just knew: I wanted to make something like that.">這句話是我後來自己總結的，但那時候的我只知道：我想做出那樣的東西。</p>
 
-  <h2>最初的三個月：痛苦但值得</h2>
+  <h2 data-zh="最初的三個月：痛苦但值得" data-en="The First Three Months: Painful but Worth It">最初的三個月：痛苦但值得</h2>
 
-  <p>學 After Effects 的頭三個月，我覺得自己進步非常慢。不是因為沒有資源——YouTube 上有大量的教學——而是因為我不知道從哪裡開始，也不知道練習什麼。</p>
+  <p data-zh="學 After Effects 的頭三個月，我覺得自己進步非常慢。不是因為沒有資源——YouTube 上有大量的教學——而是因為我不知道從哪裡開始，也不知道練習什麼。" data-en="During the first three months of learning After Effects, I felt like my progress was extremely slow. Not because there weren't resources — YouTube has tons of tutorials — but because I didn't know where to start or what to practice.">學 After Effects 的頭三個月，我覺得自己進步非常慢。不是因為沒有資源——YouTube 上有大量的教學——而是因為我不知道從哪裡開始，也不知道練習什麼。</p>
 
   <div class="highlight">
-    <p>💡 後來我發現，最有效的學習方式不是「看教學」，而是「找一個想做的效果，然後去找怎麼做」。目標驅動的學習效率遠比照順序看課程高得多。</p>
+    <p data-zh="💡 後來我發現，最有效的學習方式不是「看教學」，而是「找一個想做的效果，然後去找怎麼做」。目標驅動的學習效率遠比照順序看課程高得多。" data-en="💡 I later discovered that the most effective way to learn isn't to 'watch tutorials', but to 'find an effect you want to make, then figure out how to do it'. Goal-driven learning is far more efficient than watching courses in order.">💡 後來我發現，最有效的學習方式不是「看教學」，而是「找一個想做的效果，然後去找怎麼做」。目標驅動的學習效率遠比照順序看課程高得多。</p>
   </div>
 
-  <h3>我做了什麼讓自己突破？</h3>
+  <h3 data-zh="我做了什麼讓自己突破？" data-en="What Did I Do to Break Through?">我做了什麼讓自己突破？</h3>
 
   <ul>
-    <li>每天找一個喜歡的 Motion 作品，試著拆解它的動態邏輯</li>
-    <li>不追求完美，先把東西做出來再說</li>
-    <li>加入創作者社群，看別人分享的過程和心得</li>
-    <li>給自己設定一個小專案，有截止日期的那種</li>
+    <li data-zh="每天找一個喜歡的 Motion 作品，試著拆解它的動態邏輯" data-en="Every day, find a motion piece I love and try to reverse-engineer its animation logic">每天找一個喜歡的 Motion 作品，試著拆解它的動態邏輯</li>
+    <li data-zh="不追求完美，先把東西做出來再說" data-en="Don't chase perfection — just make something first">不追求完美，先把東西做出來再說</li>
+    <li data-zh="加入創作者社群，看別人分享的過程和心得" data-en="Join creator communities and absorb other people's processes and insights">加入創作者社群，看別人分享的過程和心得</li>
+    <li data-zh="給自己設定一個小專案，有截止日期的那種" data-en="Set yourself a small project with an actual deadline">給自己設定一個小專案，有截止日期的那種</li>
   </ul>
 
-  <p>三個月後，我做出了第一個讓自己滿意的文字動畫。那種感覺很難形容——不是因為它多厲害，而是因為它是我從零開始做出來的。</p>
+  <p data-zh="三個月後，我做出了第一個讓自己滿意的文字動畫。那種感覺很難形容——不是因為它多厲害，而是因為它是我從零開始做出來的。" data-en="Three months later, I made the first text animation I was actually proud of. The feeling is hard to describe — not because it was technically impressive, but because I had built it from nothing.">三個月後，我做出了第一個讓自己滿意的文字動畫。那種感覺很難形容——不是因為它多厲害，而是因為它是我從零開始做出來的。</p>
 
   <div class="divider"></div>
 
-  <p>現在回頭看，學 After Effects 這件事改變的不只是我的技能，更改變了我看待影像的方式。每次看影片，我都會開始注意動態的細節，思考「這個效果是怎麼做到的？」</p>
+  <p data-zh="現在回頭看，學 After Effects 這件事改變的不只是我的技能，更改變了我看待影像的方式。每次看影片，我都會開始注意動態的細節，思考「這個效果是怎麼做到的？」" data-en="Looking back now, learning After Effects changed more than just my skills — it changed the way I see images. Every time I watch a video, I start noticing the details of motion, thinking 'how was that effect done?'">現在回頭看，學 After Effects 這件事改變的不只是我的技能，更改變了我看待影像的方式。每次看影片，我都會開始注意動態的細節，思考「這個效果是怎麼做到的？」</p>
 
-  <p>如果你也在考慮要不要開始學，我只有一個建議：<strong>直接打開軟體，做一個東西。</strong>哪怕很醜，哪怕不知道在做什麼，都比「等準備好了再開始」來得有用。</p>
+  <p data-zh="如果你也在考慮要不要開始學，我只有一個建議：<strong>直接打開軟體，做一個東西。</strong>哪怕很醜，哪怕不知道在做什麼，都比「等準備好了再開始」來得有用。" data-en="If you're thinking about whether to start learning, I have just one piece of advice: <strong>Open the software and make something.</strong> Even if it's ugly, even if you don't know what you're doing — it's still more valuable than 'waiting until you're ready'.">如果你也在考慮要不要開始學，我只有一個建議：<strong>直接打開軟體，做一個東西。</strong>哪怕很醜，哪怕不知道在做什麼，都比「等準備好了再開始」來得有用。</p>
 
   <div class="article-tags">
     <span class="tag">After Effects</span>
     <span class="tag">Motion Design</span>
-    <span class="tag">學習心得</span>
-    <span class="tag">創作日誌</span>
+    <span class="tag" data-zh="學習心得" data-en="Learning">學習心得</span>
+    <span class="tag" data-zh="創作日誌" data-en="Creative Journal">創作日誌</span>
   </div>
 
   <!-- Author -->
@@ -298,23 +316,22 @@ footer p { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase
     <div class="author-avatar"></div>
     <div>
       <p class="author-name">Jackey</p>
-      <p class="author-bio">影像剪輯師、動態設計師。喜歡用影像說故事，也喜歡把學到的東西分享出來。</p>
+      <p class="author-bio" data-zh="影像剪輯師、動態設計師。喜歡用影像說故事，也喜歡把學到的東西分享出來。" data-en="Video editor and motion designer. Loves telling stories through images, and loves sharing what he learns along the way.">影像剪輯師、動態設計師。喜歡用影像說故事，也喜歡把學到的東西分享出來。</p>
     </div>
   </div>
 
 </article>
 
-<!-- More articles -->
 <div class="more-articles">
-  <div class="more-title">更多文章</div>
+  <div class="more-title" data-zh="更多文章" data-en="More Articles">更多文章</div>
   <div class="more-grid">
     <a href="#" class="more-card">
       <p class="more-card-date">2024 · 11</p>
-      <p class="more-card-title">東京街拍日記：鏡頭下的日常</p>
+      <p class="more-card-title" data-zh="東京街拍日記：鏡頭下的日常" data-en="Tokyo Street Photography: Everyday Life Through the Lens">東京街拍日記：鏡頭下的日常</p>
     </a>
     <a href="#" class="more-card">
       <p class="more-card-date">2024 · 10</p>
-      <p class="more-card-title">剪輯師的工作流程：我如何整理一支影片</p>
+      <p class="more-card-title" data-zh="剪輯師的工作流程：我如何整理一支影片" data-en="An Editor's Workflow: How I Organize a Video Project">剪輯師的工作流程：我如何整理一支影片</p>
     </a>
   </div>
 </div>
@@ -329,5 +346,24 @@ footer p { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase
   </div>
 </footer>
 
+<script>
+// Language
+function setLang(lang, save = true) {
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  if (save) localStorage.setItem('jmd-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+// Restore saved language on load
+const savedLang = localStorage.getItem('jmd-lang') || 'zh';
+setLang(savedLang, false);
+</script>
 </body>
 </html>

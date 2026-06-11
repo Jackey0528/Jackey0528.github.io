@@ -185,6 +185,17 @@ footer p { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-delay { transition-delay: 0.1s; }
 
+/* ── LANG TOGGLE ── */
+.lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
+.lang-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem; font-weight: 300;
+  background: none; border: none; cursor: pointer;
+  color: var(--ink-light); transition: color 0.2s; padding: 0;
+}
+.lang-btn.active { color: var(--ink); font-weight: 400; }
+.lang-sep { font-size: 0.7rem; color: var(--line); }
+
 /* ── RWD ── */
 @media (max-width: 900px) {
   nav { padding: 0 2rem; }
@@ -212,38 +223,45 @@ footer p { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); }
 <!-- Nav -->
 <nav>
   <a href="index.html" class="nav-logo">Jackey Motion Design</a>
-  <a href="index.html#work" class="nav-back">← 返回作品</a>
+  <div style="display:flex;align-items:center;gap:2rem;">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="zh">中</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="index.html#work" class="nav-back">← <span data-zh="返回作品" data-en="Back">返回作品</span></a>
+  </div>
 </nav>
 
 <!-- Hero -->
 <div class="project-hero reveal">
   <div class="project-meta">
-    <span class="project-type">Motion Graphic</span>
+    <span class="project-type" data-zh="Motion Graphic" data-en="Motion Graphic">Motion Graphic</span>
     <span class="meta-sep">·</span>
     <span class="project-year">2024</span>
   </div>
   <h1 class="project-title">What is <em>PoE</em></h1>
   <div class="project-intro-grid">
-    <p class="project-desc">
+    <p class="project-desc" data-zh="一支以 Motion Graphic 為核心的介紹影片，清楚解釋何為 PoE（Power over Ethernet）。透過動態圖像與簡潔的視覺語言，將複雜的技術概念轉化為易懂的視覺內容，讓觀眾能快速掌握 PoE 的運作原理與應用場景。" data-en="An introductory motion graphic video that clearly explains what PoE (Power over Ethernet) is. Through dynamic visuals and concise visual language, complex technical concepts are transformed into accessible content, helping viewers quickly grasp how PoE works and where it's applied.">
       一支以 Motion Graphic 為核心的介紹影片，清楚解釋何為 PoE（Power over Ethernet）。
       透過動態圖像與簡潔的視覺語言，將複雜的技術概念轉化為易懂的視覺內容，
       讓觀眾能快速掌握 PoE 的運作原理與應用場景。
     </p>
     <div class="project-credits">
       <div class="credit-row">
-        <span class="credit-label">類型</span>
-        <span class="credit-value">Motion Graphic / MG 介紹影片</span>
+        <span class="credit-label" data-zh="類型" data-en="Type">類型</span>
+        <span class="credit-value" data-zh="Motion Graphic / MG 介紹影片" data-en="Motion Graphic / Explainer">Motion Graphic / MG 介紹影片</span>
       </div>
       <div class="credit-row">
-        <span class="credit-label">動畫設計</span>
+        <span class="credit-label" data-zh="動畫設計" data-en="Animation">動畫設計</span>
         <span class="credit-value">Jackey</span>
       </div>
       <div class="credit-row">
-        <span class="credit-label">分鏡腳本</span>
+        <span class="credit-label" data-zh="分鏡腳本" data-en="Storyboard">分鏡腳本</span>
         <span class="credit-value">Jackey</span>
       </div>
       <div class="credit-row">
-        <span class="credit-label">視覺設計</span>
+        <span class="credit-label" data-zh="視覺設計" data-en="Visual Design">視覺設計</span>
         <span class="credit-value">Jackey</span>
       </div>
     </div>
@@ -252,7 +270,7 @@ footer p { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); }
 
 <!-- Video -->
 <div class="video-section reveal">
-  <p class="section-label">完整影片</p>
+  <p class="section-label" data-zh="完整影片" data-en="Full Video">完整影片</p>
   <div class="video-wrap">
     <iframe
       src="https://www.youtube.com/embed/TdcSUyyiiJQ"
@@ -264,7 +282,7 @@ footer p { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); }
 
 <!-- Storyboard -->
 <div class="images-section reveal">
-  <p class="section-label">分鏡腳本 Storyboard</p>
+  <p class="section-label" data-zh="分鏡腳本 Storyboard" data-en="Storyboard">分鏡腳本 Storyboard</p>
   <div class="storyboard-grid">
     <img src="storyboard/01.jpg" alt="分鏡 01" loading="lazy">
     <img src="storyboard/02.jpg" alt="分鏡 02" loading="lazy">
@@ -283,7 +301,7 @@ footer p { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); }
 
 <!-- Styleframe -->
 <div class="images-section reveal">
-  <p class="section-label">美術設定 Style Frame</p>
+  <p class="section-label" data-zh="美術設定 Style Frame" data-en="Style Frames">美術設定 Style Frame</p>
   <div class="styleframe-grid">
     <img src="styleframe/01.png" alt="美術設定 01" loading="lazy">
     <img src="styleframe/02.png" alt="美術設定 02" loading="lazy">
@@ -303,10 +321,10 @@ footer p { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); }
 
 <!-- Next -->
 <div class="next-section reveal">
-  <a href="index.html#work" class="back-btn">← 所有作品</a>
+  <a href="index.html#work" class="back-btn">← <span data-zh="所有作品" data-en="All Work">所有作品</span></a>
   <div>
-    <p class="next-label">下一個專案</p>
-    <a href="#" class="next-title">Coming Soon →</a>
+    <p class="next-label" data-zh="下一個專案" data-en="Next Project">下一個專案</p>
+    <a href="#" class="next-title" data-zh="Coming Soon →" data-en="Coming Soon →">Coming Soon →</a>
   </div>
 </div>
 
@@ -321,10 +339,29 @@ footer p { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); }
 </footer>
 
 <script>
+// Reveal on scroll
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Language
+function setLang(lang, save = true) {
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  if (save) localStorage.setItem('jmd-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+// Restore saved language on load
+const savedLang = localStorage.getItem('jmd-lang') || 'zh';
+setLang(savedLang, false);
 </script>
 </body>
 </html>

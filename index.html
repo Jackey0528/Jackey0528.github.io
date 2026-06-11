@@ -582,7 +582,7 @@ document.querySelectorAll('.mobile-link').forEach(link => {
 });
 
 // Language
-function setLang(lang) {
+function setLang(lang, save = true) {
   document.querySelectorAll('[data-zh]').forEach(el => {
     el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
   });
@@ -590,10 +590,14 @@ function setLang(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
+  if (save) localStorage.setItem('jmd-lang', lang);
 }
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
 });
+// Restore saved language on load
+const savedLang = localStorage.getItem('jmd-lang') || 'zh';
+setLang(savedLang, false);
 
 // Reveal
 const obs = new IntersectionObserver(entries => {
