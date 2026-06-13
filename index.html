@@ -271,8 +271,13 @@ footer {
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
   .menu-toggle { display: flex; }
-  .hero { height: 80vh; margin-top: 70px; }
-  .hero-content { padding: 0 1.5rem; max-width: 100%; }
+  .hero { height: 90vh; margin-top: 70px; align-items: flex-end; }
+  .hero-bg { object-position: 70% center; }
+  .hero-bg-overlay {
+    background: linear-gradient(0deg, rgba(255,255,255,0.97) 15%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 80%);
+  }
+  .hero-content { padding: 0 1.5rem 2.5rem; max-width: 100%; }
+  .hero-title { white-space: normal; }
   .section, .about-section { padding-left: 1.5rem; padding-right: 1.5rem; }
   .articles-grid, .portfolio-grid { grid-template-columns: 1fr; }
   footer { padding: 2.5rem 1.5rem; flex-direction: column; align-items: flex-start; }
