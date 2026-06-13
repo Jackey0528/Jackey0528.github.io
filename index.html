@@ -6,7 +6,7 @@
 <title>Jackey Motion Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400;1,300&family=Long+Cang&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -310,6 +310,51 @@ footer p { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.06em; color: 
 .footer-links a { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
 .footer-links a:hover { color: var(--ink); }
 
+/* ── HERO VIDEO ── */
+.hero-video-wrap {
+  position: relative; height: 100vh; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+}
+.hero-video-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+.hero-video-title {
+  position: relative; z-index: 1;
+  font-family: 'Long Cang', cursive;
+  font-size: clamp(2.6rem, 9vw, 6.5rem);
+  font-weight: 400; color: #F8F8F6;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding: 0 1.5rem;
+  opacity: 0; animation: fadeUp 1s ease 0.3s forwards;
+}
+
+/* ── WORK GRID 15 ── */
+.work-grid-15 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.5rem 1.5rem;
+}
+.work-card-15 {
+  background: var(--bg-dark); border-radius: 12px;
+  padding: 1.2rem; text-decoration: none; display: block;
+  transition: transform 0.3s;
+}
+.work-card-15:hover { transform: translateY(-4px); }
+.work-thumb-15 {
+  aspect-ratio: 4/3; background: var(--bg-2);
+  border-radius: 8px; overflow: hidden;
+  margin-bottom: 1rem; position: relative;
+}
+.work-thumb-15 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.work-card-title-15 { font-size: 0.88rem; font-weight: 400; color: #F8F8F6; margin-bottom: 0.3rem; }
+.work-card-desc-15 { font-size: 0.72rem; font-weight: 300; color: rgba(248,248,246,0.45); line-height: 1.5; }
+
 /* ── ANIMATIONS ── */
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1); }
@@ -327,6 +372,7 @@ footer p { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.06em; color: 
   .about-wrap { padding: 5rem 2rem; grid-template-columns: 1fr; gap: 3rem; }
   .journal-grid { grid-template-columns: 1fr 1fr; }
   .learn-grid { grid-template-columns: 1fr; }
+  .work-grid-15 { grid-template-columns: repeat(3, 1fr); gap: 2rem 1rem; }
   .contact-wrap { padding: 7rem 2rem; }
   footer { padding: 1.5rem 2rem; }
 }
@@ -339,6 +385,7 @@ footer p { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.06em; color: 
   .section { padding: 4rem 1.5rem; }
   .work-grid { grid-template-columns: 1fr; }
   .work-item:first-child { grid-column: 1; aspect-ratio: 16/10; }
+  .work-grid-15 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
   .about-wrap { padding: 4rem 1.5rem; gap: 2.5rem; }
   .journal-grid { grid-template-columns: 1fr; }
   .learn-grid { grid-template-columns: 1fr; }
@@ -357,8 +404,8 @@ footer p { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.06em; color: 
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#work" data-zh="作品" data-en="Work">作品</a></li>
-      <li><a href="#journal" data-zh="日誌" data-en="Journal">日誌</a></li>
       <li><a href="#learn" data-zh="學習" data-en="Learn">學習</a></li>
+      <li><a href="#journal" data-zh="日誌" data-en="Journal">日誌</a></li>
       <li><a href="#about" data-zh="關於" data-en="About">關於</a></li>
       <li><a href="#contact" data-zh="聯絡" data-en="Contact">聯絡</a></li>
     </ul>
@@ -376,8 +423,8 @@ footer p { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.06em; color: 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#work" class="mobile-link" data-zh="作品" data-en="Work">作品</a>
-  <a href="#journal" class="mobile-link" data-zh="日誌" data-en="Journal">日誌</a>
   <a href="#learn" class="mobile-link" data-zh="學習" data-en="Learn">學習</a>
+  <a href="#journal" class="mobile-link" data-zh="日誌" data-en="Journal">日誌</a>
   <a href="#about" class="mobile-link" data-zh="關於" data-en="About">關於</a>
   <a href="#contact" class="mobile-link" data-zh="聯絡" data-en="Contact">聯絡</a>
   <div class="mobile-lang">
@@ -386,24 +433,13 @@ footer p { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.06em; color: 
   </div>
 </div>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-bg-text">Motion</div>
-  <div class="hero-content">
-    <div class="hero-label">
-      <span class="hero-label-dot"></span>
-      <span data-zh="影片剪輯師 · 動態設計師 · 台北" data-en="Video Editor · Motion Designer · Taipei">影片剪輯師 · 動態設計師 · 台北</span>
-    </div>
-    <h1 class="hero-title">
-      <span data-zh="用影像" data-en="Crafting">用影像</span><br>
-      <em><span data-zh="說故事" data-en="Motion &">說故事</span></em><br>
-      <span data-zh="創作動態" data-en="Stories">創作動態</span>
-    </h1>
-    <div class="hero-footer">
-      <p class="hero-desc" data-zh="影片剪輯、動態設計、生活觀察。這裡是 Jackey 的創作基地。" data-en="Video editing, motion design & life observations. Jackey's creative space.">影片剪輯、動態設計、生活觀察。這裡是 Jackey 的創作基地。</p>
-      <a href="#work" class="hero-cta" data-zh="瀏覽作品 →" data-en="View Work →">瀏覽作品 →</a>
-    </div>
-  </div>
+<!-- Hero Video -->
+<section class="hero-video-wrap">
+  <video class="hero-video" autoplay muted loop playsinline poster="hero-poster.jpg">
+    <source src="hero-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
+  <h1 class="hero-video-title" data-zh="旅行中的動態設計師" data-en="A Motion Designer on the Road">旅行中的動態設計師</h1>
 </section>
 
 <!-- Ticker -->
@@ -439,30 +475,112 @@ footer p { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.06em; color: 
       <a href="#" class="view-all" data-zh="全部作品 →" data-en="All Work →">全部作品 →</a>
     </div>
   </div>
-  <div class="work-grid reveal reveal-delay">
-    <a href="project-1.html" class="work-item" style="text-decoration:none;">
-      <div class="work-thumb w1" style="background-image: url('poe-cover.jpg'); background-size: cover; background-position: center;"></div>
-      <div class="work-caption">
-        <p class="work-caption-cat">Motion Graphic</p>
-        <p class="work-caption-title">What is PoE</p>
-      </div>
+  <div class="work-grid-15 reveal reveal-delay">
+    <a href="project-1.html" class="work-card-15">
+      <div class="work-thumb-15" style="background-image: url('poe-cover.jpg'); background-size: cover; background-position: center;"></div>
+      <p class="work-card-title-15" data-zh="What is PoE" data-en="What is PoE">What is PoE</p>
+      <p class="work-card-desc-15" data-zh="Motion Graphic 介紹影片" data-en="Motion Graphic explainer">Motion Graphic 介紹影片</p>
     </a>
-    <div class="work-item">
-      <div class="work-thumb w2"></div>
-      <div class="work-placeholder"><p data-zh="作品二" data-en="Project 02">作品二</p></div>
-      <div class="work-caption">
-        <p class="work-caption-cat">Video Edit</p>
-        <p class="work-caption-title">Documentary Short</p>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="標題" data-en="Title">標題</p>
+      <p class="work-card-desc-15" data-zh="介紹內容..........." data-en="Project description...........">介紹內容...........</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="標題" data-en="Title">標題</p>
+      <p class="work-card-desc-15" data-zh="介紹內容..........." data-en="Project description...........">介紹內容...........</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="標題" data-en="Title">標題</p>
+      <p class="work-card-desc-15" data-zh="介紹內容..........." data-en="Project description...........">介紹內容...........</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="標題" data-en="Title">標題</p>
+      <p class="work-card-desc-15" data-zh="介紹內容..........." data-en="Project description...........">介紹內容...........</p>
+    </a>
+  </div>
+</section>
+
+<!-- Learn -->
+<section class="section" id="learn">
+  <div class="reveal">
+    <div class="work-header">
+      <div>
+        <p class="section-label" data-zh="學習資源" data-en="Learn">學習資源</p>
+        <h2 class="section-heading"><span data-zh="知識分享" data-en="Knowledge Sharing">知識分享</span></h2>
       </div>
+      <a href="#" class="view-all" data-zh="全部作品 →" data-en="All Work →">全部作品 →</a>
     </div>
-    <div class="work-item">
-      <div class="work-thumb w3"></div>
-      <div class="work-placeholder"><p data-zh="作品三" data-en="Project 03">作品三</p></div>
-      <div class="work-caption">
-        <p class="work-caption-cat">Motion Design</p>
-        <p class="work-caption-title">Title Sequence</p>
+  </div>
+  <div class="work-grid-15 reveal reveal-delay">
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="After Effects 入門" data-en="AE for Beginners">After Effects 入門</p>
+      <p class="work-card-desc-15" data-zh="你需要知道的 10 件事" data-en="10 things you need to know">你需要知道的 10 件事</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="剪輯節奏感" data-en="Editing Rhythm">剪輯節奏感</p>
+      <p class="work-card-desc-15" data-zh="如何讓影片「有感覺」" data-en="How to make a video feel right">如何讓影片「有感覺」</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="Color Grading 基礎" data-en="Color Grading Basics">Color Grading 基礎</p>
+      <p class="work-card-desc-15" data-zh="用色彩說故事" data-en="Telling stories with color">用色彩說故事</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="Motion Typography" data-en="Motion Typography">Motion Typography</p>
+      <p class="work-card-desc-15" data-zh="讓文字動起來的秘訣" data-en="Secrets to animated text">讓文字動起來的秘訣</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="標題" data-en="Title">標題</p>
+      <p class="work-card-desc-15" data-zh="介紹內容..........." data-en="Project description...........">介紹內容...........</p>
+    </a>
+  </div>
+</section>
+
+<!-- Journal -->
+<section class="section" id="journal">
+  <div class="reveal">
+    <div class="work-header">
+      <div>
+        <p class="section-label" data-zh="日誌" data-en="Journal">日誌</p>
+        <h2 class="section-heading"><span data-zh="思考與生活" data-en="Thoughts & Life">思考與生活</span></h2>
       </div>
+      <a href="#" class="view-all" data-zh="全部作品 →" data-en="All Work →">全部作品 →</a>
     </div>
+  </div>
+  <div class="work-grid-15 reveal reveal-delay">
+    <a href="article-1.html" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="動態設計的起點" data-en="Where It All Began">動態設計的起點</p>
+      <p class="work-card-desc-15" data-zh="為什麼我開始學 After Effects" data-en="Why I started learning After Effects">為什麼我開始學 After Effects</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="東京街拍日記" data-en="Tokyo Street Photography">東京街拍日記</p>
+      <p class="work-card-desc-15" data-zh="鏡頭下的日常" data-en="Everyday life through the lens">鏡頭下的日常</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="剪輯師的工作流程" data-en="An Editor's Workflow">剪輯師的工作流程</p>
+      <p class="work-card-desc-15" data-zh="我如何整理一支影片" data-en="How I organize a video project">我如何整理一支影片</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="標題" data-en="Title">標題</p>
+      <p class="work-card-desc-15" data-zh="介紹內容..........." data-en="Project description...........">介紹內容...........</p>
+    </a>
+    <a href="#" class="work-card-15">
+      <div class="work-thumb-15"></div>
+      <p class="work-card-title-15" data-zh="標題" data-en="Title">標題</p>
+      <p class="work-card-desc-15" data-zh="介紹內容..........." data-en="Project description...........">介紹內容...........</p>
+    </a>
   </div>
 </section>
 
@@ -484,60 +602,6 @@ footer p { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.06em; color: 
   </div>
 </div>
 
-<!-- Journal -->
-<section class="section" id="journal">
-  <div class="reveal">
-    <p class="section-label" data-zh="日誌" data-en="Journal">日誌</p>
-    <h2 class="section-heading"><span data-zh="思考與生活" data-en="Thoughts & Life">思考與生活</span></h2>
-  </div>
-  <div class="journal-grid reveal reveal-delay">
-    <a href="article-1.html" class="journal-card">
-      <p class="journal-date">2024 · 12</p>
-      <h3 class="journal-title" data-zh="動態設計的起點：為什麼我開始學 After Effects" data-en="Where It All Began: Why I Started Learning After Effects">動態設計的起點：為什麼我開始學 After Effects</h3>
-      <p class="journal-excerpt" data-zh="分享我第一次打開 AE 的故事，以及那段痛苦又迷人的學習過程……" data-en="The story of the first time I opened AE, and that painful yet fascinating learning journey…">分享我第一次打開 AE 的故事，以及那段痛苦又迷人的學習過程……</p>
-    </a>
-    <div class="journal-card">
-      <p class="journal-date">2024 · 11</p>
-      <h3 class="journal-title" data-zh="東京街拍日記：鏡頭下的日常" data-en="Tokyo Street Photography: Everyday Life Through the Lens">東京街拍日記：鏡頭下的日常</h3>
-      <p class="journal-excerpt" data-zh="用相機記錄旅途，不是要拍「好照片」，而是想留住那個時刻的感覺……" data-en="Using a camera to document travel — not to take 'good photos', but to capture the feeling of the moment…">用相機記錄旅途，不是要拍「好照片」，而是想留住那個時刻的感覺……</p>
-    </div>
-    <div class="journal-card">
-      <p class="journal-date">2024 · 10</p>
-      <h3 class="journal-title" data-zh="剪輯師的工作流程：我如何整理一支影片" data-en="An Editor's Workflow: How I Organize a Video Project">剪輯師的工作流程：我如何整理一支影片</h3>
-      <p class="journal-excerpt" data-zh="從素材整理到輸出，分享我現在使用的效率工作流……" data-en="From organizing footage to final export — sharing the efficient workflow I use today…">從素材整理到輸出，分享我現在使用的效率工作流……</p>
-    </div>
-  </div>
-</section>
-
-<!-- Learn -->
-<section class="section" id="learn" style="background: var(--bg-2);">
-  <div class="reveal">
-    <p class="section-label" data-zh="學習資源" data-en="Learn">學習資源</p>
-    <h2 class="section-heading"><span data-zh="知識分享" data-en="Knowledge Sharing">知識分享</span></h2>
-  </div>
-  <div class="learn-grid reveal reveal-delay">
-    <div class="lesson-card">
-      <p class="lesson-num">01</p>
-      <h3 class="lesson-title" data-zh="After Effects 入門：你需要知道的 10 件事" data-en="After Effects for Beginners: 10 Things You Need to Know">After Effects 入門：你需要知道的 10 件事</h3>
-      <a href="#" class="lesson-link" data-zh="閱讀 →" data-en="Read →">閱讀 →</a>
-    </div>
-    <div class="lesson-card">
-      <p class="lesson-num">02</p>
-      <h3 class="lesson-title" data-zh="剪輯節奏感：如何讓影片「有感覺」" data-en="Editing Rhythm: How to Make Your Video Feel Right">剪輯節奏感：如何讓影片「有感覺」</h3>
-      <a href="#" class="lesson-link" data-zh="閱讀 →" data-en="Read →">閱讀 →</a>
-    </div>
-    <div class="lesson-card">
-      <p class="lesson-num">03</p>
-      <h3 class="lesson-title" data-zh="Color Grading 基礎：用色彩說故事" data-en="Color Grading Basics: Telling Stories with Color">Color Grading 基礎：用色彩說故事</h3>
-      <a href="#" class="lesson-link" data-zh="閱讀 →" data-en="Read →">閱讀 →</a>
-    </div>
-    <div class="lesson-card">
-      <p class="lesson-num">04</p>
-      <h3 class="lesson-title" data-zh="Motion Typography：讓文字動起來的秘訣" data-en="Motion Typography: The Secret to Animated Text">Motion Typography：讓文字動起來的秘訣</h3>
-      <a href="#" class="lesson-link" data-zh="閱讀 →" data-en="Read →">閱讀 →</a>
-    </div>
-  </div>
-</section>
 
 <!-- Contact -->
 <div class="contact-wrap" id="contact">
