@@ -3,347 +3,434 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What is PoE — Jackey Motion Design</title>
+<title>What is PoE — Jackey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg: #F8F8F6;
-  --bg-2: #F2F2EF;
-  --bg-dark: #1A1A1A;
+  --bg: #FFFFFF;
+  --bg-2: #F4F4F2;
+  --bg-dark: #14171F;
   --ink: #1A1A1A;
-  --ink-mid: #666660;
-  --ink-light: #999993;
-  --line: rgba(26,26,26,0.1);
+  --ink-mid: #5C5C5C;
+  --ink-light: #9A9A9A;
+  --line: rgba(26,26,26,0.08);
 }
-
 html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', 'Noto Sans TC', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'DM Sans', -apple-system, sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── NAV ── */
+/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 0 3rem; height: 52px;
+  padding: 0 3rem; height: 70px;
   display: flex; justify-content: space-between; align-items: center;
-  background: rgba(248,248,246,0.92);
-  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.9); backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
-.nav-logo { font-size: 0.82rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
-.nav-back {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.75rem; font-weight: 300; color: var(--ink-mid);
-  text-decoration: none; transition: color 0.2s;
-}
+.nav-logo { font-size: 1.1rem; font-weight: 900; color: var(--ink); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-back { font-size: 0.88rem; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
 .nav-back:hover { color: var(--ink); }
+.lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
+.lang-btn { font-size: 0.8rem; background: none; border: none; cursor: pointer; color: var(--ink-light); transition: color 0.2s; padding: 0; }
+.lang-btn.active { color: var(--ink); font-weight: 700; }
+.lang-sep { font-size: 0.75rem; color: var(--line); }
 
-/* ── HERO ── */
-.project-hero {
-  padding: 8rem 3rem 5rem;
-  border-bottom: 1px solid var(--line);
-  max-width: 1100px; margin: 0 auto;
+/* HERO */
+.hero {
+  padding: 120px 3rem 0;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  min-height: 80vh;
 }
+.hero-meta { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; gap: 1rem; }
+.hero-meta span::after { content: ' /'; margin-left: 1rem; color: var(--line); }
+.hero-meta span:last-child::after { content: ''; }
+.hero-title { font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -0.02em; }
+.hero-title em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; }
+.hero-sub { font-size: 1rem; line-height: 1.8; color: var(--ink-mid); max-width: 420px; }
+.hero-thumb {
+  aspect-ratio: 16/9; border-radius: 16px; overflow: hidden;
+  background: var(--bg-2); box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  position: relative; cursor: pointer;
+}
+.hero-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-thumb-play {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.2); transition: background 0.2s;
+}
+.hero-thumb:hover .hero-thumb-play { background: rgba(0,0,0,0.35); }
+.play-btn {
+  width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.95);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.play-btn svg { width: 20px; height: 20px; fill: var(--ink); margin-left: 3px; }
 
-.project-meta {
-  display: flex; align-items: center; gap: 1rem;
-  margin-bottom: 2rem;
+/* INFO BAR */
+.info-bar {
+  max-width: 1200px; margin: 5rem auto 0; padding: 0 3rem;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(4, 1fr);
 }
-.project-type {
-  font-size: 0.68rem; font-weight: 300; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--ink-light);
-}
-.project-year {
-  font-size: 0.68rem; font-weight: 300; color: var(--ink-light);
-}
-.meta-sep { color: var(--line); }
+.info-item { padding: 1.8rem 0; border-right: 1px solid var(--line); padding-right: 2rem; padding-left: 2rem; }
+.info-item:first-child { padding-left: 0; }
+.info-item:last-child { border-right: none; }
+.info-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.info-label svg { width: 14px; height: 14px; opacity: 0.5; }
+.info-value { font-size: 0.95rem; font-weight: 500; color: var(--ink); }
 
-.project-title {
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 200; line-height: 1; letter-spacing: -0.03em;
-  margin-bottom: 2.5rem;
-}
-.project-title em {
-  font-family: 'Playfair Display', serif;
-  font-style: italic; font-weight: 400;
-}
+/* FINAL VIDEO */
+.final-video { max-width: 1200px; margin: 5rem auto; padding: 0 3rem; display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; }
+.final-video-text h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; }
+.final-video-text p { font-size: 0.95rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 1.5rem; }
+.btn-dark { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--bg-dark); color: #fff; font-size: 0.88rem; font-weight: 500; padding: 0.75rem 1.4rem; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+.btn-dark:hover { opacity: 0.8; }
+.btn-dark svg { width: 14px; height: 14px; fill: #fff; }
+.video-embed { aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+.video-embed iframe { width: 100%; height: 100%; border: none; display: block; }
 
-.project-intro-grid {
-  display: grid; grid-template-columns: 1.5fr 1fr; gap: 5rem;
-  padding-top: 2.5rem; border-top: 1px solid var(--line);
-}
-.project-desc {
-  font-size: 0.95rem; line-height: 1.85; color: var(--ink-mid); font-weight: 300;
-}
-.project-credits { display: flex; flex-direction: column; gap: 1rem; }
-.credit-row { display: flex; flex-direction: column; gap: 0.2rem; }
-.credit-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); }
-.credit-value { font-size: 0.82rem; font-weight: 300; color: var(--ink); }
+/* OVERVIEW */
+.overview { max-width: 1200px; margin: 5rem auto; padding: 3rem; background: var(--bg-2); border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+.overview h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.2rem; }
+.overview p { font-size: 0.95rem; line-height: 1.9; color: var(--ink-mid); }
+.contrib-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+.contrib-tag { font-size: 0.82rem; color: var(--ink-mid); background: var(--bg); border: 1px solid var(--line); padding: 0.35rem 0.85rem; border-radius: 100px; }
 
-/* ── VIDEO ── */
-.video-section {
-  padding: 5rem 3rem;
-  max-width: 1100px; margin: 0 auto;
+/* HORIZONTAL SCROLL */
+.scroll-section { max-width: 1200px; margin: 5rem auto; padding: 0 3rem; }
+.scroll-section h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+.scroll-section p { font-size: 0.85rem; color: var(--ink-light); margin-bottom: 1.5rem; }
+.h-scroll-wrap { position: relative; }
+.h-scroll {
+  display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 1rem; cursor: grab;
+  scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+  -ms-overflow-style: none;
 }
-.section-label {
-  font-size: 0.65rem; font-weight: 300; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--ink-light);
-  margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 0.8rem;
+.h-scroll::-webkit-scrollbar { height: 4px; }
+.h-scroll::-webkit-scrollbar-track { background: transparent; }
+.h-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+.h-scroll.grabbing { cursor: grabbing; }
+.h-scroll-item {
+  flex-shrink: 0; width: 280px; scroll-snap-align: start;
+  border-radius: 12px; overflow: hidden; background: var(--bg-2);
 }
-.section-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--ink-light); }
-
-.video-wrap {
-  position: relative; width: 100%; padding-top: 56.25%;
-  background: var(--bg-dark); overflow: hidden;
-}
-.video-wrap iframe {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  border: none;
-}
-
-/* ── IMAGE SECTIONS ── */
-.images-section {
-  padding: 5rem 3rem;
-  border-top: 1px solid var(--line);
-  max-width: 1100px; margin: 0 auto;
-}
-
-/* Storyboard: 3 欄 grid */
-.storyboard-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
-.storyboard-grid img {
-  width: 100%; aspect-ratio: 16/9;
-  object-fit: cover; display: block;
-  background: var(--bg-2);
-  transition: opacity 0.3s;
-}
-.storyboard-grid img:hover { opacity: 0.85; }
-
-/* Styleframe: 2 欄 grid，第一張全寬 */
-.styleframe-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-.styleframe-grid img {
-  width: 100%; aspect-ratio: 16/9;
-  object-fit: cover; display: block;
-  background: var(--bg-2);
-  transition: opacity 0.3s;
-}
-.styleframe-grid img:hover { opacity: 0.85; }
-.styleframe-grid img:first-child {
-  grid-column: 1 / -1;
-  aspect-ratio: 21/9;
+.h-scroll-item img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.scroll-fade-right {
+  position: absolute; right: 0; top: 0; bottom: 1rem; width: 80px;
+  background: linear-gradient(90deg, transparent, var(--bg));
+  pointer-events: none;
 }
 
-/* ── NEXT PROJECT ── */
-.next-section {
-  padding: 5rem 3rem;
+/* LIGHTBOX */
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 999;
+  background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 8px; object-fit: contain; }
+.lightbox-close {
+  position: absolute; top: 1.5rem; right: 2rem;
+  font-size: 2rem; color: #fff; cursor: pointer; line-height: 1;
+  background: none; border: none; opacity: 0.7; transition: opacity 0.2s;
+}
+.lightbox-close:hover { opacity: 1; }
+.lightbox-prev, .lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: 1.5rem; color: #fff; cursor: pointer;
+  background: rgba(255,255,255,0.1); border: none; padding: 1rem 1.2rem;
+  border-radius: 8px; opacity: 0.7; transition: opacity 0.2s;
+}
+.lightbox-prev:hover, .lightbox-next:hover { opacity: 1; }
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+.lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+.h-scroll-item { cursor: pointer; }
+.project-nav {
+  max-width: 1200px; margin: 5rem auto 0; padding: 2rem 3rem;
   border-top: 1px solid var(--line);
   display: flex; justify-content: space-between; align-items: center;
-  max-width: 1100px; margin: 0 auto;
 }
-.next-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem; }
-.next-title { font-size: 1.2rem; font-weight: 200; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; transition: opacity 0.2s; }
-.next-title:hover { opacity: 0.5; }
-.back-btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.75rem; font-weight: 300; color: var(--ink-mid);
-  text-decoration: none; transition: color 0.2s;
-}
-.back-btn:hover { color: var(--ink); }
+.project-nav-item { text-decoration: none; color: var(--ink); }
+.project-nav-item.next { text-align: right; }
+.project-nav-label { font-size: 0.75rem; color: var(--ink-light); margin-bottom: 0.3rem; }
+.project-nav-title { font-size: 1rem; font-weight: 600; transition: opacity 0.2s; }
+.project-nav-item:hover .project-nav-title { opacity: 0.5; }
+.project-nav-dots { display: flex; gap: 0.4rem; }
+.project-nav-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+.project-nav-dot.active { background: var(--ink); }
 
-/* ── FOOTER ── */
-footer {
-  padding: 1.5rem 3rem; border-top: 1px solid var(--line);
-  display: flex; justify-content: space-between; align-items: center;
-  background: var(--bg);
-}
-footer p { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); }
+/* FOOTER */
+footer { padding: 1.5rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; }
+footer p { font-size: 0.72rem; color: var(--ink-light); }
 .footer-links { display: flex; gap: 1.5rem; }
-.footer-links a { font-size: 0.65rem; font-weight: 300; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+.footer-links a { font-size: 0.72rem; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
 .footer-links a:hover { color: var(--ink); }
 
-/* Animations */
+/* REVEAL */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay { transition-delay: 0.1s; }
+.reveal-delay { transition-delay: 0.12s; }
 
-/* ── LANG TOGGLE ── */
-.lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
-.lang-btn {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.72rem; font-weight: 300;
-  background: none; border: none; cursor: pointer;
-  color: var(--ink-light); transition: color 0.2s; padding: 0;
-}
-.lang-btn.active { color: var(--ink); font-weight: 400; }
-.lang-sep { font-size: 0.7rem; color: var(--line); }
-
-/* ── RWD ── */
+/* RWD */
 @media (max-width: 900px) {
-  nav { padding: 0 2rem; }
-  .project-hero { padding: 7rem 2rem 4rem; }
-  .project-intro-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .video-section, .images-section, .next-section { padding: 4rem 2rem; }
-  .storyboard-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 580px) {
   nav { padding: 0 1.5rem; }
-  .project-hero { padding: 6rem 1.5rem 3rem; }
-  .video-section, .images-section { padding: 3rem 1.5rem; }
-  .storyboard-grid { grid-template-columns: 1fr; }
-  .styleframe-grid { grid-template-columns: 1fr; }
-  .styleframe-grid img:first-child { grid-column: 1; aspect-ratio: 16/9; }
-  .next-section { padding: 3rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 2rem; }
-  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
-  .footer-links { justify-content: center; }
+  .hero { grid-template-columns: 1fr; padding: 100px 1.5rem 0; min-height: auto; gap: 2rem; }
+  .info-bar { grid-template-columns: repeat(2,1fr); padding: 0 1.5rem; }
+  .info-item:nth-child(2) { border-right: none; }
+  .info-item:nth-child(3) { border-top: 1px solid var(--line); padding-left: 0; }
+  .final-video { grid-template-columns: 1fr; padding: 0 1.5rem; gap: 2rem; }
+  .overview { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 2rem; margin: 3rem 1.5rem; }
+  .scroll-section { padding: 0 1.5rem; }
+  .project-nav { padding: 2rem 1.5rem; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- Nav -->
 <nav>
-  <a href="index.html" class="nav-logo">Jackey Motion Design</a>
-  <div style="display:flex;align-items:center;gap:2rem;">
+  <a href="index.html" class="nav-logo">Jackey.</a>
+  <div class="nav-right">
     <div class="lang-toggle">
       <button class="lang-btn" data-lang="zh">中</button>
       <span class="lang-sep">/</span>
       <button class="lang-btn" data-lang="en">EN</button>
     </div>
-    <a href="index.html#work" class="nav-back">← <span data-zh="返回作品" data-en="Back">返回作品</span></a>
+    <a href="index.html" class="nav-back" data-zh="← 返回" data-en="← Back">← 返回</a>
   </div>
 </nav>
 
 <!-- Hero -->
-<div class="project-hero reveal">
-  <div class="project-meta">
-    <span class="project-type" data-zh="Motion Graphic" data-en="Motion Graphic">Motion Graphic</span>
-    <span class="meta-sep">·</span>
-    <span class="project-year">2024</span>
+<section class="hero">
+  <div class="reveal">
+    <div class="hero-meta">
+      <span data-zh="動態設計" data-en="Motion Graphic">動態設計</span>
+      <span>2024</span>
+    </div>
+    <h1 class="hero-title">What is <em>PoE</em></h1>
+    <p class="hero-sub" data-zh="一支解釋 Power over Ethernet 的教育型動畫，讓網路技術變得簡單易懂。" data-en="An educational motion graphic explaining Power over Ethernet — making network technology simple and accessible.">一支解釋 Power over Ethernet 的教育型動畫，讓網路技術變得簡單易懂。</p>
   </div>
-  <h1 class="project-title">What is <em>PoE</em></h1>
-  <div class="project-intro-grid">
-    <p class="project-desc" data-zh="一支以 Motion Graphic 為核心的介紹影片，清楚解釋何為 PoE（Power over Ethernet）。透過動態圖像與簡潔的視覺語言，將複雜的技術概念轉化為易懂的視覺內容，讓觀眾能快速掌握 PoE 的運作原理與應用場景。" data-en="An introductory motion graphic video that clearly explains what PoE (Power over Ethernet) is. Through dynamic visuals and concise visual language, complex technical concepts are transformed into accessible content, helping viewers quickly grasp how PoE works and where it's applied.">
-      一支以 Motion Graphic 為核心的介紹影片，清楚解釋何為 PoE（Power over Ethernet）。
-      透過動態圖像與簡潔的視覺語言，將複雜的技術概念轉化為易懂的視覺內容，
-      讓觀眾能快速掌握 PoE 的運作原理與應用場景。
+  <div class="hero-thumb reveal reveal-delay">
+    <img src="styleframe/01.png" alt="What is PoE">
+  </div>
+</section>
+
+<!-- Info Bar -->
+<div class="info-bar reveal">
+  <div class="info-item">
+    <p class="info-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span data-zh="角色" data-en="Role">角色</span>
     </p>
-    <div class="project-credits">
-      <div class="credit-row">
-        <span class="credit-label" data-zh="類型" data-en="Type">類型</span>
-        <span class="credit-value" data-zh="Motion Graphic / MG 介紹影片" data-en="Motion Graphic / Explainer">Motion Graphic / MG 介紹影片</span>
-      </div>
-      <div class="credit-row">
-        <span class="credit-label" data-zh="動畫設計" data-en="Animation">動畫設計</span>
-        <span class="credit-value">Jackey</span>
-      </div>
-      <div class="credit-row">
-        <span class="credit-label" data-zh="分鏡腳本" data-en="Storyboard">分鏡腳本</span>
-        <span class="credit-value">Jackey</span>
-      </div>
-      <div class="credit-row">
-        <span class="credit-label" data-zh="視覺設計" data-en="Visual Design">視覺設計</span>
-        <span class="credit-value">Jackey</span>
-      </div>
+    <p class="info-value" data-zh="Motion Designer" data-en="Motion Designer">Motion Designer</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      <span data-zh="工具" data-en="Tools">工具</span>
+    </p>
+    <p class="info-value">PS, AI, PR, AE, AU</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span data-zh="製作時間" data-en="Duration">製作時間</span>
+    </p>
+    <p class="info-value" data-zh="2 週" data-en="2 Weeks">2 週</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span data-zh="年份" data-en="Year">年份</span>
+    </p>
+    <p class="info-value">2024</p>
+  </div>
+</div>
+
+<!-- Final Video -->
+<div class="final-video reveal" id="video-section">
+  <div class="final-video-text">
+    <h2 data-zh="完整影片" data-en="Final Video">完整影片</h2>
+    <p data-zh="完整觀看動畫，了解 PoE 的運作原理！" data-en="Watch the full animation and learn how PoE works!">完整觀看動畫，了解 PoE 的運作原理！</p>
+    <a href="https://www.youtube.com/watch?v=TdcSUyyiiJQ" target="_blank" class="btn-dark">
+      <svg viewBox="0 0 24 24"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.1 2.8 12 2.8 12 2.8s-4.1 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.3v2c0 2.2.3 4.3.3 4.3s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.3 21.8 12 21.8 12 21.8s4.1 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.3v-2C23.3 9.1 23 7 23 7zm-13.4 8.7V8.3l8.1 3.7-8.1 3.7z"/></svg>
+      <span data-zh="在 YouTube 觀看" data-en="Watch on YouTube">在 YouTube 觀看</span>
+    </a>
+  </div>
+  <div class="video-embed reveal reveal-delay">
+    <iframe src="https://www.youtube.com/embed/TdcSUyyiiJQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Overview -->
+<div class="overview reveal">
+  <div>
+    <h3 data-zh="專案概述" data-en="Project Overview">專案概述</h3>
+    <p data-zh="PoE（Power over Ethernet）技術讓網路線同時傳輸電力與資料，廣泛應用於監控系統、無線基地台、IP 電話等設備。這支動畫以簡單的角色與圖像，帶領觀眾快速理解 PoE 的概念、優點與應用情境。" data-en="PoE (Power over Ethernet) allows network cables to simultaneously transmit power and data, widely used in surveillance systems, wireless access points, and IP phones. This animation uses simple characters and visuals to help audiences quickly understand PoE's concepts, benefits, and use cases.">PoE（Power over Ethernet）技術讓網路線同時傳輸電力與資料，廣泛應用於監控系統、無線基地台、IP 電話等設備。這支動畫以簡單的角色與圖像，帶領觀眾快速理解 PoE 的概念、優點與應用情境。</p>
+  </div>
+  <div>
+    <h3 data-zh="工作內容" data-en="Work Scope">工作內容</h3>
+    <div class="contrib-grid">
+      <span class="contrib-tag" data-zh="分鏡腳本" data-en="Storyboarding">分鏡腳本</span>
+      <span class="contrib-tag" data-zh="動態製作" data-en="Motion Design">動態製作</span>
+      <span class="contrib-tag" data-zh="美術設計" data-en="Illustration">美術設計</span>
+      <span class="contrib-tag" data-zh="剪輯" data-en="Video Editing">剪輯</span>
+      <span class="contrib-tag" data-zh="配樂" data-en="Music">配樂</span>
+      <span class="contrib-tag" data-zh="配音" data-en="Voice Over">配音</span>
+      <span class="contrib-tag" data-zh="音效" data-en="Sound Design">音效</span>
     </div>
   </div>
 </div>
 
-<!-- Video -->
-<div class="video-section reveal">
-  <p class="section-label" data-zh="完整影片" data-en="Full Video">完整影片</p>
-  <div class="video-wrap">
-    <iframe
-      src="https://www.youtube.com/embed/TdcSUyyiiJQ"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
-</div>
-
 <!-- Storyboard -->
-<div class="images-section reveal">
-  <p class="section-label" data-zh="分鏡腳本 Storyboard" data-en="Storyboard">分鏡腳本 Storyboard</p>
-  <div class="storyboard-grid">
-    <img src="storyboard/01.jpg" alt="分鏡 01" loading="lazy">
-    <img src="storyboard/02.jpg" alt="分鏡 02" loading="lazy">
-    <img src="storyboard/03.jpg" alt="分鏡 03" loading="lazy">
-    <img src="storyboard/04.jpg" alt="分鏡 04" loading="lazy">
-    <img src="storyboard/05.jpg" alt="分鏡 05" loading="lazy">
-    <img src="storyboard/06.jpg" alt="分鏡 06" loading="lazy">
-    <img src="storyboard/07.jpg" alt="分鏡 07" loading="lazy">
-    <img src="storyboard/08.jpg" alt="分鏡 08" loading="lazy">
-    <img src="storyboard/09.jpg" alt="分鏡 09" loading="lazy">
-    <img src="storyboard/10.jpg" alt="分鏡 10" loading="lazy">
-    <img src="storyboard/11.jpg" alt="分鏡 11" loading="lazy">
-    <img src="storyboard/12.jpg" alt="分鏡 12" loading="lazy">
+<div class="scroll-section reveal">
+  <h3 data-zh="分鏡腳本" data-en="Storyboard">分鏡腳本</h3>
+  <p data-zh="Storyboard" data-en="Storyboard">Storyboard</p>
+  <div class="h-scroll-wrap">
+    <div class="h-scroll" id="storyScroll">
+      <div class="h-scroll-item"><img src="storyboard/01.jpg" alt="分鏡 01"></div>
+      <div class="h-scroll-item"><img src="storyboard/02.jpg" alt="分鏡 02"></div>
+      <div class="h-scroll-item"><img src="storyboard/03.jpg" alt="分鏡 03"></div>
+      <div class="h-scroll-item"><img src="storyboard/04.jpg" alt="分鏡 04"></div>
+      <div class="h-scroll-item"><img src="storyboard/05.jpg" alt="分鏡 05"></div>
+      <div class="h-scroll-item"><img src="storyboard/06.jpg" alt="分鏡 06"></div>
+      <div class="h-scroll-item"><img src="storyboard/07.jpg" alt="分鏡 07"></div>
+      <div class="h-scroll-item"><img src="storyboard/08.jpg" alt="分鏡 08"></div>
+      <div class="h-scroll-item"><img src="storyboard/09.jpg" alt="分鏡 09"></div>
+      <div class="h-scroll-item"><img src="storyboard/10.jpg" alt="分鏡 10"></div>
+      <div class="h-scroll-item"><img src="storyboard/11.jpg" alt="分鏡 11"></div>
+      <div class="h-scroll-item"><img src="storyboard/12.jpg" alt="分鏡 12"></div>
+    </div>
+    <div class="scroll-fade-right"></div>
   </div>
 </div>
 
-<!-- Styleframe -->
-<div class="images-section reveal">
-  <p class="section-label" data-zh="美術設定 Style Frame" data-en="Style Frames">美術設定 Style Frame</p>
-  <div class="styleframe-grid">
-    <img src="styleframe/01.png" alt="美術設定 01" loading="lazy">
-    <img src="styleframe/02.png" alt="美術設定 02" loading="lazy">
-    <img src="styleframe/03.png" alt="美術設定 03" loading="lazy">
-    <img src="styleframe/04.png" alt="美術設定 04" loading="lazy">
-    <img src="styleframe/05.png" alt="美術設定 05" loading="lazy">
-    <img src="styleframe/06.png" alt="美術設定 06" loading="lazy">
-    <img src="styleframe/07.png" alt="美術設定 07" loading="lazy">
-    <img src="styleframe/08.png" alt="美術設定 08" loading="lazy">
-    <img src="styleframe/09.png" alt="美術設定 09" loading="lazy">
-    <img src="styleframe/10.png" alt="美術設定 10" loading="lazy">
-    <img src="styleframe/11.png" alt="美術設定 11" loading="lazy">
-    <img src="styleframe/12.png" alt="美術設定 12" loading="lazy">
-    <img src="styleframe/13.png" alt="美術設定 13" loading="lazy">
+<!-- Style Frames -->
+<div class="scroll-section reveal">
+  <h3 data-zh="美術設定" data-en="Style Frames">美術設定</h3>
+  <p data-zh="Style Frames" data-en="Style Frames">Style Frames</p>
+  <div class="h-scroll-wrap">
+    <div class="h-scroll" id="styleScroll">
+      <div class="h-scroll-item"><img src="styleframe/01.png" alt="美術 01"></div>
+      <div class="h-scroll-item"><img src="styleframe/02.png" alt="美術 02"></div>
+      <div class="h-scroll-item"><img src="styleframe/03.png" alt="美術 03"></div>
+      <div class="h-scroll-item"><img src="styleframe/04.png" alt="美術 04"></div>
+      <div class="h-scroll-item"><img src="styleframe/05.png" alt="美術 05"></div>
+      <div class="h-scroll-item"><img src="styleframe/06.png" alt="美術 06"></div>
+      <div class="h-scroll-item"><img src="styleframe/07.png" alt="美術 07"></div>
+      <div class="h-scroll-item"><img src="styleframe/08.png" alt="美術 08"></div>
+      <div class="h-scroll-item"><img src="styleframe/09.png" alt="美術 09"></div>
+      <div class="h-scroll-item"><img src="styleframe/10.png" alt="美術 10"></div>
+      <div class="h-scroll-item"><img src="styleframe/11.png" alt="美術 11"></div>
+      <div class="h-scroll-item"><img src="styleframe/12.png" alt="美術 12"></div>
+      <div class="h-scroll-item"><img src="styleframe/13.png" alt="美術 13"></div>
+    </div>
+    <div class="scroll-fade-right"></div>
   </div>
 </div>
 
-<!-- Next -->
-<div class="next-section reveal">
-  <a href="index.html#work" class="back-btn">← <span data-zh="所有作品" data-en="All Work">所有作品</span></a>
-  <div>
-    <p class="next-label" data-zh="下一個專案" data-en="Next Project">下一個專案</p>
-    <a href="#" class="next-title" data-zh="Coming Soon →" data-en="Coming Soon →">Coming Soon →</a>
+<!-- Project Nav -->
+<div class="project-nav reveal">
+  <a href="#" class="project-nav-item">
+    <p class="project-nav-label" data-zh="← 上一個專案" data-en="← Previous Project">← 上一個專案</p>
+    <p class="project-nav-title" data-zh="Energy Saving Animation" data-en="Energy Saving Animation">Energy Saving Animation</p>
+  </a>
+  <div class="project-nav-dots">
+    <div class="project-nav-dot active"></div>
+    <div class="project-nav-dot"></div>
+    <div class="project-nav-dot"></div>
   </div>
+  <a href="#" class="project-nav-item next">
+    <p class="project-nav-label" data-zh="下一個專案 →" data-en="Next Project →">下一個專案 →</p>
+    <p class="project-nav-title" data-zh="Mount Buller Website" data-en="Mount Buller Website">Mount Buller Website</p>
+  </a>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <button class="lightbox-prev" id="lightboxPrev">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-next" id="lightboxNext">›</button>
+  <p class="lightbox-counter" id="lightboxCounter"></p>
 </div>
 
 <!-- Footer -->
 <footer>
-  <p>© 2024 Jackey Motion Design</p>
+  <p>© 2025 Jackey. All rights reserved.</p>
   <div class="footer-links">
     <a href="#">Instagram</a>
-    <a href="#">Vimeo</a>
+    <a href="#">YouTube</a>
     <a href="#">LinkedIn</a>
   </div>
 </footer>
 
 <script>
-// Reveal on scroll
+// Reveal
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Drag to scroll
+document.querySelectorAll('.h-scroll').forEach(el => {
+  let isDown = false, startX, scrollLeft;
+  el.addEventListener('mousedown', e => { isDown = true; el.classList.add('grabbing'); startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
+  el.addEventListener('mouseleave', () => { isDown = false; el.classList.remove('grabbing'); });
+  el.addEventListener('mouseup', () => { isDown = false; el.classList.remove('grabbing'); });
+  el.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - el.offsetLeft; el.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+});
+
+// Lightbox
+let lightboxImages = [];
+let lightboxIndex = 0;
+
+function openLightbox(images, index) {
+  lightboxImages = images;
+  lightboxIndex = index;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightbox() {
+  document.getElementById('lightboxImg').src = lightboxImages[lightboxIndex];
+  document.getElementById('lightboxCounter').textContent = (lightboxIndex + 1) + ' / ' + lightboxImages.length;
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === document.getElementById('lightbox')) closeLightbox(); });
+document.getElementById('lightboxPrev').addEventListener('click', () => { lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length; updateLightbox(); });
+document.getElementById('lightboxNext').addEventListener('click', () => { lightboxIndex = (lightboxIndex + 1) % lightboxImages.length; updateLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') { lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length; updateLightbox(); }
+  if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % lightboxImages.length; updateLightbox(); }
+});
+
+// Bind lightbox to scroll items
+document.querySelectorAll('#storyScroll .h-scroll-item').forEach((item, i, arr) => {
+  item.addEventListener('click', () => {
+    const imgs = Array.from(arr).map(el => el.querySelector('img').src);
+    openLightbox(imgs, i);
+  });
+});
+document.querySelectorAll('#styleScroll .h-scroll-item').forEach((item, i, arr) => {
+  item.addEventListener('click', () => {
+    const imgs = Array.from(arr).map(el => el.querySelector('img').src);
+    openLightbox(imgs, i);
+  });
+});
 
 // Language
 function setLang(lang, save = true) {
@@ -351,17 +438,11 @@ function setLang(lang, save = true) {
     el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
   });
   document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-  });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
   if (save) localStorage.setItem('jmd-lang', lang);
 }
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
-});
-// Restore saved language on load
-const savedLang = localStorage.getItem('jmd-lang') || 'zh';
-setLang(savedLang, false);
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jmd-lang') || 'zh', false);
 </script>
 </body>
 </html>
