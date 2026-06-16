@@ -17,13 +17,7 @@ html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', 'Noto Sans TC', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
 /* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 0 3rem; height: 70px;
-  display: flex; justify-content: space-between; align-items: center;
-  background: rgba(255,255,255,0.9); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
-}
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 70px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
 .nav-logo { font-size: 1.2rem; font-weight: 900; color: var(--ink); text-decoration: none; }
 .nav-right { display: flex; align-items: center; gap: 2.2rem; }
 .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
@@ -34,10 +28,10 @@ nav {
 .nav-dropdown { position: relative; }
 .nav-dropdown-menu { position: absolute; top: 140%; left: 50%; transform: translateX(-50%); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 0.6rem; min-width: 130px; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
 .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; }
-.nav-dropdown-menu a { display: block; padding: 0.5rem 0.7rem; border-radius: 6px; font-size: 0.85rem; font-weight: 400; color: var(--ink-mid); }
+.nav-dropdown-menu a { display: block; padding: 0.5rem 0.7rem; border-radius: 6px; font-size: 0.85rem; color: var(--ink-mid); }
 .nav-dropdown-menu a:hover { background: var(--bg-2); color: var(--ink); opacity: 1; }
 .lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
-.lang-btn { font-size: 0.8rem; background: none; border: none; cursor: pointer; color: var(--ink-light); transition: color 0.2s; padding: 0; }
+.lang-btn { font-size: 0.8rem; background: none; border: none; cursor: pointer; color: var(--ink-light); padding: 0; transition: color 0.2s; }
 .lang-btn.active { color: var(--ink); font-weight: 700; }
 .lang-sep { font-size: 0.75rem; color: var(--line); }
 .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
@@ -47,57 +41,61 @@ nav {
 .mobile-menu a { font-size: 0.95rem; font-weight: 500; color: var(--ink); text-decoration: none; }
 
 /* HERO */
-.about-hero {
-  padding: 120px 3rem 5rem;
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center;
-}
-.about-hero-photo { aspect-ratio: 4/5; border-radius: 20px; overflow: hidden; background: var(--bg-2); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-.about-hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.about-eyebrow { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
-.about-hero-title { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-.about-hero-text { font-size: 1rem; line-height: 1.9; color: var(--ink-mid); margin-bottom: 1rem; }
-.about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
-.about-tag { font-size: 0.82rem; color: var(--ink-mid); background: var(--bg-2); border: 1px solid var(--line); padding: 0.35rem 0.85rem; border-radius: 100px; }
+.hero { padding: 110px 3rem 5rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem; align-items: center; }
+.hero-photo { aspect-ratio: 3/4; border-radius: 16px; overflow: hidden; background: var(--bg-2); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-eyebrow { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.8rem; }
+.hero-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1.5rem; line-height: 1.2; }
+.hero-text { font-size: 0.95rem; line-height: 1.9; color: var(--ink-mid); margin-bottom: 0.8rem; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
+.hero-tag { font-size: 0.8rem; color: var(--ink-mid); border: 1px solid var(--line); padding: 0.35rem 0.9rem; border-radius: 100px; display: flex; align-items: center; gap: 0.4rem; }
 
-/* DIVIDER */
-.section-divider { max-width: 1200px; margin: 0 auto; padding: 0 3rem; border-top: 1px solid var(--line); }
+/* SECTION HEADER */
+.sec-wrap { max-width: 1200px; margin: 0 auto; padding: 4rem 3rem; }
+.sec-divider { max-width: 1200px; margin: 0 auto; padding: 0 3rem; border-top: 1px solid var(--line); }
+.sec-header { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 3rem; }
+.sec-title-zh { font-size: 1.1rem; font-weight: 900; }
+.sec-title-en { font-size: 1.1rem; font-weight: 400; color: var(--ink-light); }
+
+/* JOURNEY (horizontal timeline) */
+.journey { position: relative; }
+.journey-line { position: absolute; top: 36px; left: 0; right: 0; height: 1px; background: var(--line); }
+.journey-items { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; position: relative; }
+.journey-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.journey-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.2rem; position: relative; z-index: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.journey-year { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.4rem; }
+.journey-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; }
+.journey-desc { font-size: 0.78rem; line-height: 1.6; color: var(--ink-light); }
 
 /* SERVICES */
-.services { max-width: 1200px; margin: 0 auto; padding: 5rem 3rem; }
-.section-label { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
-.section-title { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.01em; margin-bottom: 3rem; }
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.service-card { background: var(--bg-2); border-radius: 16px; padding: 2rem; }
-.service-icon { font-size: 1.8rem; margin-bottom: 1rem; }
-.service-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
-.service-desc { font-size: 0.88rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 1.2rem; }
-.service-items { display: flex; flex-direction: column; gap: 0.3rem; }
-.service-item { font-size: 0.82rem; color: var(--ink-light); }
-.service-item::before { content: '— '; }
+.service-card { background: var(--bg-2); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; cursor: default; transition: box-shadow 0.2s; }
+.service-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.service-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+.service-title { font-size: 1.1rem; font-weight: 900; margin-bottom: 0.8rem; }
+.service-desc { font-size: 0.88rem; line-height: 1.8; color: var(--ink-mid); flex: 1; }
+.service-arrow { margin-top: 1.5rem; font-size: 1rem; color: var(--ink-mid); }
 
-/* TIMELINE */
-.timeline { max-width: 1200px; margin: 0 auto; padding: 5rem 3rem; }
-.timeline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
-.timeline-col-title { font-size: 1rem; font-weight: 700; margin-bottom: 2rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--line); }
-.timeline-items { display: flex; flex-direction: column; gap: 2rem; }
-.timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; }
-.timeline-year { font-size: 0.82rem; font-weight: 700; color: var(--ink-light); padding-top: 0.15rem; }
-.timeline-content-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
-.timeline-content-sub { font-size: 0.85rem; color: var(--ink-light); margin-bottom: 0.4rem; }
-.timeline-content-desc { font-size: 0.85rem; line-height: 1.7; color: var(--ink-mid); }
+/* OUTSIDE OF WORK */
+.outside-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.outside-card { aspect-ratio: 3/4; border-radius: 16px; overflow: hidden; background: var(--bg-2); position: relative; }
+.outside-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.outside-label { position: absolute; bottom: 1rem; left: 1rem; color: #fff; }
+.outside-label-icon { font-size: 0.85rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.3rem; opacity: 0.8; }
+.outside-label-name { font-size: 0.95rem; font-weight: 700; }
+.outside-label-en { font-size: 0.78rem; opacity: 0.7; }
 
 /* CONTACT */
-.contact { max-width: 1200px; margin: 0 auto; padding: 5rem 3rem; }
-.contact-inner { background: var(--bg-dark); border-radius: 20px; padding: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-.contact-title { font-size: 2rem; font-weight: 900; color: #fff; margin-bottom: 1rem; line-height: 1.3; }
-.contact-desc { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.55); }
+.contact-wrap { max-width: 1200px; margin: 0 auto; padding: 4rem 3rem 5rem; }
+.contact-inner { background: var(--bg-dark); border-radius: 20px; padding: 3.5rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.contact-title { font-size: 2rem; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 0.8rem; }
+.contact-desc { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.5); }
 .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-.contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: rgba(255,255,255,0.7); transition: color 0.2s; padding: 1rem 1.2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+.contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: rgba(255,255,255,0.8); padding: 1rem 1.2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: border-color 0.2s, color 0.2s; }
 .contact-link:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
-.contact-link-icon { font-size: 1.1rem; }
-.contact-link-label { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-bottom: 0.1rem; }
-.contact-link-value { font-size: 0.95rem; font-weight: 500; }
+.contact-link-icon { font-size: 1.1rem; flex-shrink: 0; }
+.contact-link-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-bottom: 0.1rem; }
+.contact-link-value { font-size: 0.92rem; font-weight: 500; }
 
 /* FOOTER */
 footer { padding: 1.5rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
@@ -109,23 +107,28 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 /* REVEAL */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay { transition-delay: 0.12s; }
+.reveal-delay { transition-delay: 0.1s; }
 
 /* RWD */
+@media (max-width: 1024px) {
+  .journey-items { grid-template-columns: repeat(3, 1fr); }
+  .outside-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 900px) {
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
   .menu-toggle { display: flex; }
-  .about-hero { grid-template-columns: 1fr; padding: 100px 1.5rem 3rem; gap: 2.5rem; }
-  .about-hero-photo { aspect-ratio: 1/1; }
-  .services { padding: 3rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 100px 1.5rem 3rem; gap: 2rem; }
+  .hero-photo { aspect-ratio: 1/1; }
+  .sec-wrap, .contact-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .sec-divider { padding: 0 1.5rem; }
   .services-grid { grid-template-columns: 1fr; }
-  .timeline { padding: 3rem 1.5rem; }
-  .timeline-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .contact { padding: 3rem 1.5rem; }
-  .contact-inner { grid-template-columns: 1fr; padding: 2.5rem; gap: 2.5rem; }
-  .section-divider { padding: 0 1.5rem; }
+  .contact-inner { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
   footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+}
+@media (max-width: 580px) {
+  .journey-items { grid-template-columns: repeat(2, 1fr); }
+  .outside-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -164,146 +167,146 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 </div>
 
 <!-- Hero -->
-<div class="about-hero">
-  <div class="about-hero-photo reveal">
+<div class="hero">
+  <div class="hero-photo reveal">
     <img src="about-photo.jpg" alt="Jackey">
   </div>
   <div class="reveal reveal-delay">
-    <p class="about-eyebrow" data-zh="關於我" data-en="About Me">關於我</p>
-    <h1 class="about-hero-title"><span data-zh="你好，我是 Jackey。" data-en="Hi, I'm Jackey.">你好，我是 Jackey。</span></h1>
-    <p class="about-hero-text" data-zh="我是一位來自台灣的影像創作者，目前旅居海外。喜歡透過鏡頭與設計記錄生活，也相信好的視覺能讓人與人之間的距離變得更近。" data-en="I'm a visual creator from Taiwan, currently living abroad. I love documenting life through the lens and design, and I believe great visuals can bring people closer together.">我是一位來自台灣的影像創作者，目前旅居海外。喜歡透過鏡頭與設計記錄生活，也相信好的視覺能讓人與人之間的距離變得更近。</p>
-    <p class="about-hero-text" data-zh="我在影片剪輯、動態設計領域有超過 X 年的經驗，曾與品牌、個人創作者、非營利組織合作，製作各類型的影像內容。" data-en="With over X years of experience in video editing and motion design, I've collaborated with brands, individual creators, and non-profits to produce all kinds of visual content.">我在影片剪輯、動態設計領域有超過 X 年的經驗，曾與品牌、個人創作者、非營利組織合作，製作各類型的影像內容。</p>
-    <p class="about-hero-text" data-zh="目前旅居澳洲，持續接案創作中。如果你有合作的想法，歡迎與我聯絡！" data-en="Currently based in Australia, taking on freelance projects. If you have a collaboration in mind, feel free to reach out!">目前旅居澳洲，持續接案創作中。如果你有合作的想法，歡迎與我聯絡！</p>
-    <div class="about-tags">
-      <span class="about-tag" data-zh="✏️ 設計創作" data-en="✏️ Design">✏️ 設計創作</span>
-      <span class="about-tag" data-zh="⛰️ 旅遊探索" data-en="⛰️ Travel">⛰️ 旅遊探索</span>
-      <span class="about-tag" data-zh="📷 攝影記錄" data-en="📷 Photography">📷 攝影記錄</span>
-      <span class="about-tag" data-zh="📚 持續學習" data-en="📚 Learning">📚 持續學習</span>
+    <p class="hero-eyebrow" data-zh="關於我" data-en="About Me">關於我</p>
+    <h1 class="hero-title" data-zh="你好，我是 Jackey。" data-en="Hi, I'm Jackey.">你好，我是 Jackey。</h1>
+    <p class="hero-text" data-zh="我是一位來自台灣的影像創作者，專注於動態設計、影片剪輯與視覺敘事。" data-en="I'm a visual creator from Taiwan, focused on motion design, video editing, and visual storytelling.">我是一位來自台灣的影像創作者，專注於動態設計、影片剪輯與視覺敘事。</p>
+    <p class="hero-text" data-zh="曾任職於科技與電商產業，並在紐西蘭、澳洲持續探索創作與生活的更多可能。" data-en="Previously worked in tech and e-commerce industries, now exploring more possibilities in New Zealand and Australia.">曾任職於科技與電商產業，並在紐西蘭、澳洲持續探索創作與生活的更多可能。</p>
+    <p class="hero-text" data-zh="我喜歡透過鏡頭與設計記錄生活，也相信好的視覺能讓人與人之間的距離變得更近。" data-en="I love documenting life through the lens and design, believing great visuals can bring people closer.">我喜歡透過鏡頭與設計記錄生活，也相信好的視覺能讓人與人之間的距離變得更近。</p>
+    <div class="hero-tags">
+      <span class="hero-tag">✏️ Motion Design</span>
+      <span class="hero-tag">🎬 Video Editing</span>
+      <span class="hero-tag">📷 Travel Storytelling</span>
+      <span class="hero-tag">⛰️ Working Holiday AU / NZ</span>
     </div>
   </div>
 </div>
 
-<div class="section-divider"></div>
+<div class="sec-divider"></div>
+
+<!-- Journey -->
+<div class="sec-wrap reveal">
+  <div class="sec-header">
+    <span class="sec-title-zh" data-zh="我的旅程" data-en="My Journey">我的旅程</span>
+    <span class="sec-title-en">My Journey</span>
+  </div>
+  <div class="journey">
+    <div class="journey-line"></div>
+    <div class="journey-items">
+      <div class="journey-item">
+        <div class="journey-icon">🎬</div>
+        <p class="journey-year">2020</p>
+        <p class="journey-name" data-zh="開始影片剪輯" data-en="Started Editing">開始影片剪輯</p>
+        <p class="journey-desc" data-zh="因為熱愛紀錄生活，開始接觸剪輯。" data-en="Fell in love with documenting life through video.">因為熱愛紀錄生活，開始接觸剪輯。</p>
+      </div>
+      <div class="journey-item">
+        <div class="journey-icon">✨</div>
+        <p class="journey-year">2023</p>
+        <p class="journey-name" data-zh="投入動態設計" data-en="Into Motion Design">投入動態設計</p>
+        <p class="journey-desc" data-zh="學習 After Effects，開啟動態設計的世界。" data-en="Learned After Effects and entered the world of motion.">學習 After Effects，開啟動態設計的世界。</p>
+      </div>
+      <div class="journey-item">
+        <div class="journey-icon">🧳</div>
+        <p class="journey-year">2024</p>
+        <p class="journey-name" data-zh="紐西蘭打工度假" data-en="Working Holiday NZ">紐西蘭打工度假</p>
+        <p class="journey-desc" data-zh="用影像記錄旅程，也累積更多創作能量。" data-en="Documenting the journey and building creative energy.">用影像記錄旅程，也累積更多創作能量。</p>
+      </div>
+      <div class="journey-item">
+        <div class="journey-icon">🏔️</div>
+        <p class="journey-year">2025</p>
+        <p class="journey-name" data-zh="移居澳洲" data-en="Moved to Australia">移居澳洲</p>
+        <p class="journey-desc" data-zh="持續接案與創作，拓展視野與體驗。" data-en="Continuing freelance work and expanding horizons.">持續接案與創作，拓展視野與體驗。</p>
+      </div>
+      <div class="journey-item">
+        <div class="journey-icon">❄️</div>
+        <p class="journey-year">2026</p>
+        <p class="journey-name" data-zh="Mount Buller" data-en="Mount Buller">Mount Buller</p>
+        <p class="journey-desc" data-zh="在雪場工作與生活，享受每個當下。" data-en="Working and living at the snowfield, enjoying the moment.">在雪場工作與生活，享受每個當下。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-divider"></div>
 
 <!-- Services -->
-<div class="services reveal">
-  <p class="section-label" data-zh="可接案內容" data-en="Services">可接案內容</p>
-  <h2 class="section-title" data-zh="我能幫你做什麼" data-en="What I Can Do for You">我能幫你做什麼</h2>
+<div class="sec-wrap reveal">
+  <div class="sec-header">
+    <span class="sec-title-zh" data-zh="我能幫你做什麼" data-en="What I Do">我能幫你做什麼</span>
+    <span class="sec-title-en">What I Do</span>
+  </div>
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon">🎬</div>
       <p class="service-title" data-zh="影片剪輯" data-en="Video Editing">影片剪輯</p>
-      <p class="service-desc" data-zh="從素材到完片，提供專業的剪輯服務，讓你的影片說出最有力的故事。" data-en="From raw footage to final cut, delivering professional editing that tells your story with impact.">從素材到完片，提供專業的剪輯服務，讓你的影片說出最有力的故事。</p>
-      <div class="service-items">
-        <span class="service-item" data-zh="品牌形象影片" data-en="Brand Videos">品牌形象影片</span>
-        <span class="service-item" data-zh="活動紀錄片" data-en="Event Coverage">活動紀錄片</span>
-        <span class="service-item" data-zh="社群短影音" data-en="Social Media Content">社群短影音</span>
-        <span class="service-item" data-zh="個人 Vlog / 旅遊影片" data-en="Vlog / Travel Videos">個人 Vlog / 旅遊影片</span>
-      </div>
+      <p class="service-desc" data-zh="從素材整理到成品輸出，提供專業的剪輯服務，讓你的影片說出最有力的故事。" data-en="From raw footage to final output, delivering professional editing that tells your most powerful story.">從素材整理到成品輸出，提供專業的剪輯服務，讓你的影片說出最有力的故事。</p>
+      <p class="service-arrow">→</p>
     </div>
     <div class="service-card">
       <div class="service-icon">✨</div>
       <p class="service-title" data-zh="動態設計" data-en="Motion Design">動態設計</p>
-      <p class="service-desc" data-zh="讓靜態的視覺動起來，透過流暢的動畫傳遞品牌的溫度與訊息。" data-en="Bringing static visuals to life through fluid animation that communicates your brand's message.">讓靜態的視覺動起來，透過流暢的動畫傳遞品牌的溫度與訊息。</p>
-      <div class="service-items">
-        <span class="service-item" data-zh="MG 動畫 / 教育型影片" data-en="Motion Graphics / Explainer Videos">MG 動畫 / 教育型影片</span>
-        <span class="service-item" data-zh="片頭 / 片尾動畫" data-en="Intro / Outro Animation">片頭 / 片尾動畫</span>
-        <span class="service-item" data-zh="字幕動態效果" data-en="Animated Captions">字幕動態效果</span>
-        <span class="service-item" data-zh="社群動態貼文" data-en="Animated Social Posts">社群動態貼文</span>
-      </div>
+      <p class="service-desc" data-zh="讓靜態的想法動起來，透過流暢的動畫傳遞品牌與內容的價值。" data-en="Bringing static ideas to life through fluid animation that communicates brand and content value.">讓靜態的想法動起來，透過流暢的動畫傳遞品牌與內容的價值。</p>
+      <p class="service-arrow">→</p>
     </div>
     <div class="service-card">
       <div class="service-icon">🎨</div>
       <p class="service-title" data-zh="平面設計" data-en="Graphic Design">平面設計</p>
       <p class="service-desc" data-zh="從概念到視覺，打造風格一致的設計，讓品牌在視覺上留下印象。" data-en="From concept to visual, creating consistent design that leaves a lasting brand impression.">從概念到視覺，打造風格一致的設計，讓品牌在視覺上留下印象。</p>
-      <div class="service-items">
-        <span class="service-item" data-zh="社群視覺設計" data-en="Social Media Visuals">社群視覺設計</span>
-        <span class="service-item" data-zh="海報 / 傳單" data-en="Posters / Flyers">海報 / 傳單</span>
-        <span class="service-item" data-zh="品牌識別設計" data-en="Brand Identity">品牌識別設計</span>
-        <span class="service-item" data-zh="簡報設計" data-en="Presentation Design">簡報設計</span>
-      </div>
+      <p class="service-arrow">→</p>
     </div>
   </div>
 </div>
 
-<div class="section-divider"></div>
+<div class="sec-divider"></div>
 
-<!-- Timeline -->
-<div class="timeline reveal">
-  <div class="timeline-grid">
-    <div>
-      <p class="timeline-col-title" data-zh="🧳 人生經歷" data-en="🧳 Life Journey">🧳 人生經歷</p>
-      <div class="timeline-items">
-        <div class="timeline-item">
-          <span class="timeline-year">2024</span>
-          <div>
-            <p class="timeline-content-title" data-zh="前往澳洲打工度假" data-en="Working Holiday in Australia">前往澳洲打工度假</p>
-            <p class="timeline-content-desc" data-zh="帶著相機與電腦出發，邊旅行邊遠端接案，記錄沿途的生活風景。" data-en="Set off with a camera and laptop, freelancing remotely while traveling and documenting life along the way.">帶著相機與電腦出發，邊旅行邊遠端接案，記錄沿途的生活風景。</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-year">2023</span>
-          <div>
-            <p class="timeline-content-title" data-zh="紐西蘭南島自駕之旅" data-en="South Island Road Trip, New Zealand">紐西蘭南島自駕之旅</p>
-            <p class="timeline-content-desc" data-zh="三週的自駕旅程，用影像記錄了最壯闊的風景與最純粹的自由。" data-en="Three weeks on the road capturing the most breathtaking landscapes and the purest sense of freedom.">三週的自駕旅程，用影像記錄了最壯闊的風景與最純粹的自由。</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-year">2022</span>
-          <div>
-            <p class="timeline-content-title" data-zh="開始學習動態設計" data-en="Started Learning Motion Design">開始學習動態設計</p>
-            <p class="timeline-content-desc" data-zh="第一次打開 After Effects，從完全不懂到做出第一支動畫，花了三個月。" data-en="Opened After Effects for the first time — took three months to go from zero to finishing my first animation.">第一次打開 After Effects，從完全不懂到做出第一支動畫，花了三個月。</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-year">2020</span>
-          <div>
-            <p class="timeline-content-title" data-zh="開始影片剪輯之路" data-en="Started Video Editing">開始影片剪輯之路</p>
-            <p class="timeline-content-desc" data-zh="因為想紀錄自己的生活，開始接觸剪輯，從此一發不可收拾。" data-en="Picked up editing to document my own life — and never stopped since.">因為想紀錄自己的生活，開始接觸剪輯，從此一發不可收拾。</p>
-          </div>
-        </div>
+<!-- Outside of Work -->
+<div class="sec-wrap reveal">
+  <div class="sec-header">
+    <span class="sec-title-zh" data-zh="工作之外" data-en="Outside of Work">工作之外</span>
+    <span class="sec-title-en">Outside of Work</span>
+  </div>
+  <div class="outside-grid">
+    <div class="outside-card">
+      <img src="outside-snowboard.jpg" alt="Snowboarding">
+      <div class="outside-label">
+        <p class="outside-label-icon">❄️ <span data-zh="滑雪" data-en="Snowboarding">滑雪</span></p>
+        <p class="outside-label-name">Snowboarding</p>
       </div>
     </div>
-    <div>
-      <p class="timeline-col-title" data-zh="💼 工作經歷" data-en="💼 Work Experience">💼 工作經歷</p>
-      <div class="timeline-items">
-        <div class="timeline-item">
-          <span class="timeline-year">2024</span>
-          <div>
-            <p class="timeline-content-title" data-zh="自由接案 Freelancer" data-en="Freelancer">自由接案 Freelancer</p>
-            <p class="timeline-content-sub" data-zh="遠端工作" data-en="Remote">遠端工作</p>
-            <p class="timeline-content-desc" data-zh="承接影片剪輯、動態設計、平面設計等項目，服務台灣與海外客戶。" data-en="Taking on video editing, motion design, and graphic design projects for clients in Taiwan and abroad.">承接影片剪輯、動態設計、平面設計等項目，服務台灣與海外客戶。</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-year">2023</span>
-          <div>
-            <p class="timeline-content-title" data-zh="影像後製 — XXX 公司" data-en="Video Post-Production — XXX Company">影像後製 — XXX 公司</p>
-            <p class="timeline-content-sub" data-zh="台北" data-en="Taipei">台北</p>
-            <p class="timeline-content-desc" data-zh="負責商業影片剪輯與後製，包含廣告、活動紀錄、品牌形象影片等。" data-en="Responsible for commercial video editing and post-production, including ads, event coverage, and brand films.">負責商業影片剪輯與後製，包含廣告、活動紀錄、品牌形象影片等。</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-year">2021</span>
-          <div>
-            <p class="timeline-content-title" data-zh="剪輯助理 — XXX 製作公司" data-en="Editing Assistant — XXX Production">剪輯助理 — XXX 製作公司</p>
-            <p class="timeline-content-sub" data-zh="台北" data-en="Taipei">台北</p>
-            <p class="timeline-content-desc" data-zh="協助資深剪輯師進行素材整理、粗剪與輸出，累積實務經驗。" data-en="Assisted senior editors with footage organization, rough cuts, and exports, building hands-on experience.">協助資深剪輯師進行素材整理、粗剪與輸出，累積實務經驗。</p>
-          </div>
-        </div>
+    <div class="outside-card">
+      <img src="outside-photo.jpg" alt="Travel Photography">
+      <div class="outside-label">
+        <p class="outside-label-icon">📷 <span data-zh="旅行攝影" data-en="Travel Photography">旅行攝影</span></p>
+        <p class="outside-label-name">Travel Photography</p>
+      </div>
+    </div>
+    <div class="outside-card">
+      <img src="outside-badminton.jpg" alt="Badminton">
+      <div class="outside-label">
+        <p class="outside-label-icon">🏸 <span data-zh="羽球" data-en="Badminton">羽球</span></p>
+        <p class="outside-label-name">Badminton</p>
+      </div>
+    </div>
+    <div class="outside-card">
+      <img src="outside-travel.jpg" alt="Working Holiday">
+      <div class="outside-label">
+        <p class="outside-label-icon">🌏 <span data-zh="打工度假" data-en="Working Holiday">打工度假</span></p>
+        <p class="outside-label-name">Working Holiday</p>
       </div>
     </div>
   </div>
 </div>
-
-<div class="section-divider"></div>
 
 <!-- Contact -->
-<div class="contact reveal">
+<div class="contact-wrap reveal">
   <div class="contact-inner">
     <div>
       <h2 class="contact-title" data-zh="有合作想法？讓我們聊聊。" data-en="Have a project in mind? Let's talk.">有合作想法？<br>讓我們聊聊。</h2>
-      <p class="contact-desc" data-zh="無論是商業合作、接案詢問，或只是想打個招呼，都歡迎透過以下方式找到我。" data-en="Whether it's a collaboration, a project inquiry, or just a hello — feel free to reach out through any of the channels below.">無論是商業合作、接案詢問，或只是想打個招呼，都歡迎透過以下方式找到我。</p>
+      <p class="contact-desc" data-zh="目前旅居澳洲，歡迎討論影片剪輯、動態設計或其他創作合作。" data-en="Currently based in Australia. Happy to discuss video editing, motion design, or any creative collaboration.">目前旅居澳洲，<br>歡迎討論影片剪輯、動態設計<br>或其他創作合作。</p>
     </div>
     <div class="contact-links">
       <a href="mailto:hello@jackey.com" class="contact-link">
