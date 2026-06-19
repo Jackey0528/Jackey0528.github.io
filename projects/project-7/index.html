@@ -57,19 +57,27 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem;
 .sec-header { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 2.5rem; }
 .sec-title-zh { font-size: 1.2rem; font-weight: 900; }
 .sec-title-en { font-size: 1rem; font-weight: 400; color: var(--ink-light); }
-.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.video-card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--bg); }
-.video-card-top { display: grid; grid-template-columns: 200px 1fr; }
-.video-thumb { position: relative; aspect-ratio: 16/9; background: var(--bg-2); overflow: hidden; }
-.video-thumb iframe { width: 100%; height: 100%; border: none; display: block; }
-.video-duration { position: absolute; bottom: 0.5rem; right: 0.6rem; background: rgba(0,0,0,0.7); color: #fff; font-size: 0.72rem; padding: 0.15rem 0.45rem; border-radius: 4px; }
-.video-info { padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; }
-.video-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
-.video-desc { font-size: 0.82rem; line-height: 1.7; color: var(--ink-mid); margin-bottom: 0.8rem; flex: 1; }
-.video-tools { font-size: 0.78rem; color: var(--ink-light); margin-bottom: 0.8rem; }
-.btn-watch { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 500; color: var(--ink); border: 1px solid var(--line); padding: 0.45rem 1rem; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
-.btn-watch:hover { background: var(--bg-2); }
-.btn-watch svg { width: 10px; height: 10px; fill: var(--ink); margin-left: 1px; }
+
+/* Featured video (top, full width) */
+.video-featured { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--bg); margin-bottom: 1.5rem; }
+.video-featured-embed { aspect-ratio: 16/9; width: 100%; }
+.video-featured-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+.video-featured-info { padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
+.video-featured-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.video-featured-desc { font-size: 0.85rem; line-height: 1.7; color: var(--ink-mid); }
+.video-tools-tags { display: flex; gap: 0.4rem; flex-shrink: 0; }
+.video-tool-tag { font-size: 0.75rem; color: var(--ink-mid); border: 1px solid var(--line); padding: 0.25rem 0.6rem; border-radius: 6px; }
+
+/* Small videos (bottom 3) */
+.video-small-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.video-small-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--bg); }
+.video-small-embed { aspect-ratio: 16/9; width: 100%; }
+.video-small-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+.video-small-info { padding: 0.9rem 1rem; }
+.video-small-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.3rem; line-height: 1.4; }
+.video-small-desc { font-size: 0.78rem; line-height: 1.6; color: var(--ink-mid); margin-bottom: 0.6rem; }
+.video-small-tags { display: flex; gap: 0.3rem; }
+.video-small-tag { font-size: 0.7rem; color: var(--ink-mid); border: 1px solid var(--line); padding: 0.2rem 0.5rem; border-radius: 5px; }
 
 /* BOTTOM SECTION */
 .bottom-section { max-width: 1200px; margin: 5rem auto; padding: 0 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
@@ -122,8 +130,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   .info-item:nth-child(2) { border-right: none; }
   .info-item:nth-child(3) { border-top: 1px solid var(--line); padding-left: 0; }
   .video-section, .bottom-section { padding: 0 1.5rem; }
-  .video-grid { grid-template-columns: 1fr; }
-  .video-card-top { grid-template-columns: 160px 1fr; }
+  .video-small-grid { grid-template-columns: 1fr; }
   .bottom-section { grid-template-columns: 1fr; gap: 3rem; }
   .focused-grid { grid-template-columns: 1fr 1fr; }
   footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
@@ -192,72 +199,69 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     <span class="sec-title-zh" data-zh="作品影片" data-en="Video Showcase">作品影片</span>
     <span class="sec-title-en">Video Showcase</span>
   </div>
-  <div class="video-grid">
 
-    <!-- ACA Intro -->
-    <div class="video-card">
-      <div class="video-card-top">
-        <div class="video-thumb">
-          <iframe src="https://www.youtube.com/embed/cjQP24Sw5Tc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="video-info">
-          <div>
-            <p class="video-title">ACA Intro</p>
-            <p class="video-desc" data-zh="品牌片頭動畫，重點放在 Logo 動態與節奏感。" data-en="Brand intro animation focused on Logo motion and rhythm.">品牌片頭動畫，重點放在 Logo 動態與節奏感。</p>
-            <p class="video-tools">Tools: AE / PR / AI</p>
-          </div>
+  <!-- Featured: Top 100 Medical Talk Forum Intro -->
+  <div class="video-featured">
+    <div class="video-featured-embed">
+      <iframe src="https://www.youtube.com/embed/zMT4B4zqAKE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-featured-info">
+      <div>
+        <p class="video-featured-title">Top 100 Medical Talk Forum Intro</p>
+        <p class="video-featured-desc" data-zh="醫療論壇片頭，偏正式、專業、沉穩的視覺風格。" data-en="Medical forum intro with a formal, professional, and composed visual style.">醫療論壇片頭，偏正式、專業、沉穩的視覺風格。</p>
+      </div>
+      <div class="video-tools-tags">
+        <span class="video-tool-tag">AE</span>
+        <span class="video-tool-tag">PR</span>
+        <span class="video-tool-tag">AI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Small 3 -->
+  <div class="video-small-grid">
+    <div class="video-small-card">
+      <div class="video-small-embed">
+        <iframe src="https://www.youtube.com/embed/cjQP24Sw5Tc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-small-info">
+        <p class="video-small-title">ACA Intro</p>
+        <p class="video-small-desc" data-zh="品牌片頭動畫，重點放在 Logo 動態與節奏感。" data-en="Brand intro animation focused on Logo motion and rhythm.">品牌片頭動畫，重點放在 Logo 動態與節奏感。</p>
+        <div class="video-small-tags">
+          <span class="video-small-tag">AE</span>
+          <span class="video-small-tag">PR</span>
+          <span class="video-small-tag">AI</span>
         </div>
       </div>
     </div>
-
-    <!-- Energetic Pharmacist Intro -->
-    <div class="video-card">
-      <div class="video-card-top">
-        <div class="video-thumb">
-          <iframe src="https://www.youtube.com/embed/qYjsETAZlX8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="video-info">
-          <div>
-            <p class="video-title">Energetic Pharmacist Intro</p>
-            <p class="video-desc" data-zh="活潑、明亮的藥業主題片頭，展現節奏剪輯與動態元素。" data-en="Lively and bright pharmaceutical-themed intro showcasing rhythm editing and dynamic elements.">活潑、明亮的藥業主題片頭，展現節奏剪輯與動態元素。</p>
-            <p class="video-tools">Tools: AE / PR / AI</p>
-          </div>
+    <div class="video-small-card">
+      <div class="video-small-embed">
+        <iframe src="https://www.youtube.com/embed/4YzIY9THQxQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-small-info">
+        <p class="video-small-title">Merck Event Intro</p>
+        <p class="video-small-desc" data-zh="活動開場動畫，重點放在科技感、活動氛圍與視覺衝擊。" data-en="Event opening animation focused on tech aesthetics, event atmosphere, and visual impact.">活動開場動畫，重點放在科技感、活動氛圍與視覺衝擊。</p>
+        <div class="video-small-tags">
+          <span class="video-small-tag">AE</span>
+          <span class="video-small-tag">PR</span>
+          <span class="video-small-tag">AI</span>
         </div>
       </div>
     </div>
-
-    <!-- Merck Event Intro -->
-    <div class="video-card">
-      <div class="video-card-top">
-        <div class="video-thumb">
-          <iframe src="https://www.youtube.com/embed/4YzIY9THQxQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="video-info">
-          <div>
-            <p class="video-title">Merck Event Intro</p>
-            <p class="video-desc" data-zh="活動開場動畫，重點放在科技感、活動氛圍與視覺衝擊。" data-en="Event opening animation focused on tech aesthetics, event atmosphere, and visual impact.">活動開場動畫，重點放在科技感、活動氛圍與視覺衝擊。</p>
-            <p class="video-tools">Tools: AE / PR / AI</p>
-          </div>
+    <div class="video-small-card">
+      <div class="video-small-embed">
+        <iframe src="https://www.youtube.com/embed/qYjsETAZlX8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-small-info">
+        <p class="video-small-title">Energetic Pharmacist Intro</p>
+        <p class="video-small-desc" data-zh="活潑、明亮的藥業主題片頭，展現節奏剪輯與動態元素。" data-en="Lively and bright pharmaceutical-themed intro showcasing rhythm editing and dynamic elements.">活潑、明亮的藥業主題片頭，展現節奏剪輯與動態元素。</p>
+        <div class="video-small-tags">
+          <span class="video-small-tag">AE</span>
+          <span class="video-small-tag">PR</span>
+          <span class="video-small-tag">AI</span>
         </div>
       </div>
     </div>
-
-    <!-- Top 100 Medical Talk Forum Intro -->
-    <div class="video-card">
-      <div class="video-card-top">
-        <div class="video-thumb">
-          <iframe src="https://www.youtube.com/embed/zMT4B4zqAKE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="video-info">
-          <div>
-            <p class="video-title">Top 100 Medical Talk Forum Intro</p>
-            <p class="video-desc" data-zh="醫療論壇片頭，偏正式、專業、沉穩的視覺風格。" data-en="Medical forum intro with a formal, professional, and composed visual style.">醫療論壇片頭，偏正式、專業、沉穩的視覺風格。</p>
-            <p class="video-tools">Tools: AE / PR / AI</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
