@@ -36,7 +36,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem;
 .hero-title-sub { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; font-family: 'Playfair Display', serif; font-style: italic; color: var(--ink-mid); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
 .hero-title-sub .star { color: var(--ink); font-style: normal; font-size: 1.2rem; }
 .hero-sub { font-size: 0.95rem; line-height: 1.8; color: var(--ink-mid); max-width: 440px; }
-.hero-img { border-radius: 16px; overflow: hidden; background: var(--bg-2); box-shadow: 0 20px 50px rgba(0,0,0,0.1); position: relative; cursor: pointer; }
+.hero-img { border-radius: 16px; overflow: hidden; background: var(--bg-2); box-shadow: 0 20px 50px rgba(0,0,0,0.1); position: relative; }
 .hero-img img { width: 100%; display: block; object-fit: cover; }
 .hero-img-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.15); transition: background 0.2s; }
 .hero-img:hover .hero-img-overlay { background: rgba(0,0,0,0.3); }
@@ -86,6 +86,14 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem;
 .focused-icon { font-size: 1.4rem; margin-bottom: 0.8rem; }
 .focused-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
 .focused-desc { font-size: 0.78rem; line-height: 1.7; color: var(--ink-mid); }
+
+
+.project-nav { max-width: 1200px; margin: 5rem auto 0; padding: 2rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.project-nav-item { text-decoration: none; color: var(--ink); }
+.project-nav-item.next { text-align: right; }
+.project-nav-label { font-size: 0.75rem; color: var(--ink-light); margin-bottom: 0.3rem; }
+.project-nav-title { font-size: 1rem; font-weight: 600; transition: opacity 0.2s; }
+.project-nav-item:hover .project-nav-title { opacity: 0.5; }
 
 /* FOOTER */
 footer { padding: 1.5rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; }
@@ -152,13 +160,9 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     <p class="hero-title-sub"><span data-zh="Collection." data-en="Collection.">Collection.</span> <span class="star">✦</span></p>
     <p class="hero-sub" data-zh="收錄不同品牌、活動與醫療論壇的片頭動畫，包含動態設計、節奏剪輯、視覺轉場與品牌氛圍塑造。" data-en="A collection of intro animations for various brands, events, and medical forums — encompassing motion design, rhythm editing, visual transitions, and brand atmosphere.">收錄不同品牌、活動與醫療論壇的片頭動畫，包含動態設計、節奏剪輯、視覺轉場與品牌氛圍塑造。</p>
   </div>
-  <div class="hero-img reveal reveal-delay" id="heroImg">
+  <div class="hero-img reveal reveal-delay">
     <img src="hero-grid.jpg" alt="Intro Animation Collection" loading="eager" fetchpriority="high">
-    <div class="hero-img-overlay">
-      <div class="play-circle">
-        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-      </div>
-    </div>
+
   </div>
 </section>
 
@@ -202,10 +206,6 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
             <p class="video-desc" data-zh="品牌片頭動畫，重點放在 Logo 動態與節奏感。" data-en="Brand intro animation focused on Logo motion and rhythm.">品牌片頭動畫，重點放在 Logo 動態與節奏感。</p>
             <p class="video-tools">Tools: AE / PR / AI</p>
           </div>
-          <a href="https://www.youtube.com/watch?v=cjQP24Sw5Tc" target="_blank" class="btn-watch">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-            <span data-zh="Watch Video" data-en="Watch Video">Watch Video</span>
-          </a>
         </div>
       </div>
     </div>
@@ -222,10 +222,6 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
             <p class="video-desc" data-zh="活潑、明亮的藥業主題片頭，展現節奏剪輯與動態元素。" data-en="Lively and bright pharmaceutical-themed intro showcasing rhythm editing and dynamic elements.">活潑、明亮的藥業主題片頭，展現節奏剪輯與動態元素。</p>
             <p class="video-tools">Tools: AE / PR / AI</p>
           </div>
-          <a href="https://www.youtube.com/watch?v=qYjsETAZlX8" target="_blank" class="btn-watch">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-            <span data-zh="Watch Video" data-en="Watch Video">Watch Video</span>
-          </a>
         </div>
       </div>
     </div>
@@ -242,10 +238,6 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
             <p class="video-desc" data-zh="活動開場動畫，重點放在科技感、活動氛圍與視覺衝擊。" data-en="Event opening animation focused on tech aesthetics, event atmosphere, and visual impact.">活動開場動畫，重點放在科技感、活動氛圍與視覺衝擊。</p>
             <p class="video-tools">Tools: AE / PR / AI</p>
           </div>
-          <a href="https://youtu.be/4YzIY9THQxQ" target="_blank" class="btn-watch">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-            <span data-zh="Watch Video" data-en="Watch Video">Watch Video</span>
-          </a>
         </div>
       </div>
     </div>
@@ -262,10 +254,6 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
             <p class="video-desc" data-zh="醫療論壇片頭，偏正式、專業、沉穩的視覺風格。" data-en="Medical forum intro with a formal, professional, and composed visual style.">醫療論壇片頭，偏正式、專業、沉穩的視覺風格。</p>
             <p class="video-tools">Tools: AE / PR / AI</p>
           </div>
-          <a href="https://youtu.be/zMT4B4zqAKE" target="_blank" class="btn-watch">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-            <span data-zh="Watch Video" data-en="Watch Video">Watch Video</span>
-          </a>
         </div>
       </div>
     </div>
@@ -315,6 +303,18 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   </div>
 </div>
 
+<!-- Project Nav -->
+<div class="project-nav reveal">
+  <a href="../project-6/index.html" class="project-nav-item">
+    <p class="project-nav-label" data-zh="← 上一個專案" data-en="← Previous Project">← 上一個專案</p>
+    <p class="project-nav-title" data-zh="出國網路如何選？" data-en="How to Choose Internet Abroad?">出國網路如何選？</p>
+  </a>
+  <a href="#" class="project-nav-item next">
+    <p class="project-nav-label" data-zh="下一個專案 →" data-en="Next Project →">下一個專案 →</p>
+    <p class="project-nav-title" data-zh="Coming Soon" data-en="Coming Soon">Coming Soon</p>
+  </a>
+</div>
+
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose">✕</button>
@@ -350,7 +350,6 @@ function closeLightbox() {
 }
 
 
-document.getElementById('heroImg').addEventListener('click', () => openLightbox('cjQP24Sw5Tc'));
 document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
 document.getElementById('lightbox').addEventListener('click', e => { if (e.target === document.getElementById('lightbox')) closeLightbox(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
