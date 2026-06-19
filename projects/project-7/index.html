@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>片頭動畫 — Jackey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #FFFFFF; --bg-2: #F4F4F2; --bg-dark: #14171F;
+  --ink: #1A1A1A; --ink-mid: #5C5C5C; --ink-light: #9A9A9A; --line: rgba(26,26,26,0.08);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', 'Noto Sans TC', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 70px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+.nav-logo { font-size: 1.1rem; font-weight: 900; color: var(--ink); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-back { font-size: 0.88rem; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+.nav-back:hover { color: var(--ink); }
+.lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
+.lang-btn { font-size: 0.8rem; background: none; border: none; cursor: pointer; color: var(--ink-light); padding: 0; }
+.lang-btn.active { color: var(--ink); font-weight: 700; }
+.lang-sep { font-size: 0.75rem; color: var(--line); }
+
+/* HERO */
+.hero { padding: 110px 3rem 0; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
+.hero-meta { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; gap: 0.6rem; align-items: center; }
+.hero-meta span { color: var(--ink-light); }
+.hero-meta .sep { color: var(--line); }
+.hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
+.hero-title-sub { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; font-family: 'Playfair Display', serif; font-style: italic; color: var(--ink-mid); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.hero-title-sub .star { color: var(--ink); font-style: normal; font-size: 1.2rem; }
+.hero-sub { font-size: 0.95rem; line-height: 1.8; color: var(--ink-mid); max-width: 440px; }
+.hero-img { border-radius: 16px; overflow: hidden; background: var(--bg-2); box-shadow: 0 20px 50px rgba(0,0,0,0.1); position: relative; cursor: pointer; }
+.hero-img img { width: 100%; display: block; object-fit: cover; }
+.hero-img-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.15); transition: background 0.2s; }
+.hero-img:hover .hero-img-overlay { background: rgba(0,0,0,0.3); }
+.play-circle { width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.92); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.play-circle svg { width: 22px; height: 22px; fill: var(--ink); margin-left: 3px; }
+
+/* INFO BAR */
+.info-bar { max-width: 1200px; margin: 4rem auto 0; padding: 0 3rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); }
+.info-item { padding: 1.6rem 2rem; border-right: 1px solid var(--line); }
+.info-item:first-child { padding-left: 0; }
+.info-item:last-child { border-right: none; }
+.info-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+.info-label svg { width: 13px; height: 13px; opacity: 0.5; }
+.info-value { font-size: 0.95rem; font-weight: 500; }
+
+/* VIDEO SHOWCASE */
+.video-section { max-width: 1200px; margin: 5rem auto; padding: 0 3rem; }
+.sec-header { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 2.5rem; }
+.sec-title-zh { font-size: 1.2rem; font-weight: 900; }
+.sec-title-en { font-size: 1rem; font-weight: 400; color: var(--ink-light); }
+.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.video-card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--bg); }
+.video-card-top { display: grid; grid-template-columns: 200px 1fr; }
+.video-thumb { position: relative; aspect-ratio: 16/9; background: var(--bg-2); overflow: hidden; }
+.video-thumb iframe { width: 100%; height: 100%; border: none; display: block; }
+.video-duration { position: absolute; bottom: 0.5rem; right: 0.6rem; background: rgba(0,0,0,0.7); color: #fff; font-size: 0.72rem; padding: 0.15rem 0.45rem; border-radius: 4px; }
+.video-info { padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; }
+.video-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
+.video-desc { font-size: 0.82rem; line-height: 1.7; color: var(--ink-mid); margin-bottom: 0.8rem; flex: 1; }
+.video-tools { font-size: 0.78rem; color: var(--ink-light); margin-bottom: 0.8rem; }
+.btn-watch { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 500; color: var(--ink); border: 1px solid var(--line); padding: 0.45rem 1rem; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+.btn-watch:hover { background: var(--bg-2); }
+.btn-watch svg { width: 10px; height: 10px; fill: var(--ink); margin-left: 1px; }
+
+/* BOTTOM SECTION */
+.bottom-section { max-width: 1200px; margin: 5rem auto; padding: 0 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+/* 負責項目 */
+.resp-title { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1.5rem; }
+.resp-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.resp-tag { font-size: 0.82rem; color: var(--ink-mid); background: var(--bg-2); border: 1px solid var(--line); padding: 0.4rem 1rem; border-radius: 100px; }
+
+/* What I Focused On */
+.focused-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; }
+.focused-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.focused-card { background: var(--bg-2); border-radius: 12px; padding: 1.2rem; }
+.focused-icon { font-size: 1.4rem; margin-bottom: 0.8rem; }
+.focused-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
+.focused-desc { font-size: 0.78rem; line-height: 1.7; color: var(--ink-mid); }
+
+/* FOOTER */
+footer { padding: 1.5rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; }
+footer p { font-size: 0.72rem; color: var(--ink-light); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.72rem; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--ink); }
+
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox-iframe { width: 85vw; max-width: 960px; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: none; }
+.lightbox-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem; color: #fff; cursor: pointer; background: none; border: none; opacity: 0.7; }
+.lightbox-close:hover { opacity: 1; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay { transition-delay: 0.1s; }
+
+/* RWD */
+@media (max-width: 900px) {
+  nav { padding: 0 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 100px 1.5rem 0; min-height: auto; gap: 2rem; }
+  .info-bar { grid-template-columns: repeat(2,1fr); padding: 0 1.5rem; }
+  .info-item:nth-child(2) { border-right: none; }
+  .info-item:nth-child(3) { border-top: 1px solid var(--line); padding-left: 0; }
+  .video-section, .bottom-section { padding: 0 1.5rem; }
+  .video-grid { grid-template-columns: 1fr; }
+  .video-card-top { grid-template-columns: 160px 1fr; }
+  .bottom-section { grid-template-columns: 1fr; gap: 3rem; }
+  .focused-grid { grid-template-columns: 1fr 1fr; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+}
+@media (max-width: 580px) {
+  .video-card-top { grid-template-columns: 1fr; }
+  .focused-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html" class="nav-logo">Jackey.</a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="zh">中</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="../../portfolio.html" class="nav-back" data-zh="← 返回" data-en="← Back">← 返回</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="reveal">
+    <div class="hero-meta">
+      <span data-zh="動態設計" data-en="Motion Design">動態設計</span>
+      <span class="sep">/</span>
+      <span>INTRO ANIMATION</span>
+    </div>
+    <h1 class="hero-title" data-zh="片頭動畫" data-en="Intro Animation">片頭動畫</h1>
+    <p class="hero-title-sub"><span data-zh="Collection." data-en="Collection.">Collection.</span> <span class="star">✦</span></p>
+    <p class="hero-sub" data-zh="收錄不同品牌、活動與醫療論壇的片頭動畫，包含動態設計、節奏剪輯、視覺轉場與品牌氛圍塑造。" data-en="A collection of intro animations for various brands, events, and medical forums — encompassing motion design, rhythm editing, visual transitions, and brand atmosphere.">收錄不同品牌、活動與醫療論壇的片頭動畫，包含動態設計、節奏剪輯、視覺轉場與品牌氛圍塑造。</p>
+  </div>
+  <div class="hero-img reveal reveal-delay" id="heroImg">
+    <img src="hero-grid.jpg" alt="Intro Animation Collection" loading="eager" fetchpriority="high">
+    <div class="hero-img-overlay">
+      <div class="play-circle">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Info Bar -->
+<div class="info-bar reveal">
+  <div class="info-item">
+    <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span data-zh="角色" data-en="Role">角色</span></p>
+    <p class="info-value">Motion Designer</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg><span data-zh="工具" data-en="Tools">工具</span></p>
+    <p class="info-value">AE, PR, AI, PS</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-zh="類型" data-en="Type">類型</span></p>
+    <p class="info-value">Intro Animation</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-zh="年份" data-en="Year">年份</span></p>
+    <p class="info-value">2023 – 2024</p>
+  </div>
+</div>
+
+<!-- Video Showcase -->
+<div class="video-section reveal">
+  <div class="sec-header">
+    <span class="sec-title-zh" data-zh="作品影片" data-en="Video Showcase">作品影片</span>
+    <span class="sec-title-en">Video Showcase</span>
+  </div>
+  <div class="video-grid">
+
+    <!-- ACA Intro -->
+    <div class="video-card">
+      <div class="video-card-top">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/cjQP24Sw5Tc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <div>
+            <p class="video-title">ACA Intro</p>
+            <p class="video-desc" data-zh="品牌片頭動畫，重點放在 Logo 動態與節奏感。" data-en="Brand intro animation focused on Logo motion and rhythm.">品牌片頭動畫，重點放在 Logo 動態與節奏感。</p>
+            <p class="video-tools">Tools: AE / PR / AI</p>
+          </div>
+          <a href="https://www.youtube.com/watch?v=cjQP24Sw5Tc" target="_blank" class="btn-watch">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            <span data-zh="Watch Video" data-en="Watch Video">Watch Video</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Energetic Pharmacist Intro -->
+    <div class="video-card">
+      <div class="video-card-top">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/qYjsETAZlX8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <div>
+            <p class="video-title">Energetic Pharmacist Intro</p>
+            <p class="video-desc" data-zh="活潑、明亮的藥業主題片頭，展現節奏剪輯與動態元素。" data-en="Lively and bright pharmaceutical-themed intro showcasing rhythm editing and dynamic elements.">活潑、明亮的藥業主題片頭，展現節奏剪輯與動態元素。</p>
+            <p class="video-tools">Tools: AE / PR / AI</p>
+          </div>
+          <a href="https://www.youtube.com/watch?v=qYjsETAZlX8" target="_blank" class="btn-watch">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            <span data-zh="Watch Video" data-en="Watch Video">Watch Video</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Merck Event Intro -->
+    <div class="video-card">
+      <div class="video-card-top">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/4YzIY9THQxQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <div>
+            <p class="video-title">Merck Event Intro</p>
+            <p class="video-desc" data-zh="活動開場動畫，重點放在科技感、活動氛圍與視覺衝擊。" data-en="Event opening animation focused on tech aesthetics, event atmosphere, and visual impact.">活動開場動畫，重點放在科技感、活動氛圍與視覺衝擊。</p>
+            <p class="video-tools">Tools: AE / PR / AI</p>
+          </div>
+          <a href="https://youtu.be/4YzIY9THQxQ" target="_blank" class="btn-watch">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            <span data-zh="Watch Video" data-en="Watch Video">Watch Video</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 100 Medical Talk Forum Intro -->
+    <div class="video-card">
+      <div class="video-card-top">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/zMT4B4zqAKE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <div>
+            <p class="video-title">Top 100 Medical Talk Forum Intro</p>
+            <p class="video-desc" data-zh="醫療論壇片頭，偏正式、專業、沉穩的視覺風格。" data-en="Medical forum intro with a formal, professional, and composed visual style.">醫療論壇片頭，偏正式、專業、沉穩的視覺風格。</p>
+            <p class="video-tools">Tools: AE / PR / AI</p>
+          </div>
+          <a href="https://youtu.be/zMT4B4zqAKE" target="_blank" class="btn-watch">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            <span data-zh="Watch Video" data-en="Watch Video">Watch Video</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Bottom -->
+<div class="bottom-section reveal">
+  <!-- 負責項目 -->
+  <div>
+    <div class="resp-title">
+      <span class="sec-title-zh" data-zh="負責項目" data-en="My Responsibilities">負責項目</span>
+      <span class="sec-title-en">My Responsibilities</span>
+    </div>
+    <div class="resp-tags">
+      <span class="resp-tag" data-zh="動態設計" data-en="Motion Design">動態設計</span>
+      <span class="resp-tag" data-zh="影片剪輯" data-en="Video Editing">影片剪輯</span>
+      <span class="resp-tag" data-zh="轉場設計" data-en="Transition Design">轉場設計</span>
+      <span class="resp-tag" data-zh="節奏編排" data-en="Rhythm Editing">節奏編排</span>
+      <span class="resp-tag" data-zh="Logo Animation" data-en="Logo Animation">Logo Animation</span>
+      <span class="resp-tag" data-zh="視覺合成" data-en="Visual Compositing">視覺合成</span>
+      <span class="resp-tag" data-zh="音樂節奏搭配" data-en="Music Sync">音樂節奏搭配</span>
+    </div>
+  </div>
+
+  <!-- What I Focused On -->
+  <div>
+    <p class="focused-title">What I Focused On</p>
+    <div class="focused-grid">
+      <div class="focused-card">
+        <div class="focused-icon">🎵</div>
+        <p class="focused-name">Rhythm</p>
+        <p class="focused-desc" data-zh="根據音樂節奏安排畫面轉場與動態速度。" data-en="Syncing visual transitions and motion speed to the music's rhythm.">根據音樂節奏安排畫面轉場與動態速度。</p>
+      </div>
+      <div class="focused-card">
+        <div class="focused-icon">✨</div>
+        <p class="focused-name">Brand Mood</p>
+        <p class="focused-desc" data-zh="依照不同品牌與活動調性，設計適合的視覺氛圍。" data-en="Crafting visual atmospheres tailored to each brand and event's tone.">依照不同品牌與活動調性，設計適合的視覺氛圍。</p>
+      </div>
+      <div class="focused-card">
+        <div class="focused-icon">🚀</div>
+        <p class="focused-name">Motion Flow</p>
+        <p class="focused-desc" data-zh="讓 Logo、文字與圖像元素自然銜接，提升片頭完整度。" data-en="Ensuring Logo, text, and image elements transition naturally for a polished intro.">讓 Logo、文字與圖像元素自然銜接，提升片頭完整度。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <iframe class="lightbox-iframe" id="lightboxIframe" src="" allowfullscreen allow="autoplay"></iframe>
+</div>
+
+<footer>
+  <p>© 2025 Jackey. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">YouTube</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Lightbox
+function openLightbox(id) {
+  document.getElementById('lightboxIframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightboxIframe').src = '';
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+
+document.getElementById('heroImg').addEventListener('click', () => openLightbox('cjQP24Sw5Tc'));
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === document.getElementById('lightbox')) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Language
+function setLang(lang, save = true) {
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  if (save) localStorage.setItem('jmd-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jmd-lang') || 'zh', false);
+</script>
+</body>
+</html>
