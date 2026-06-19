@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iPhone 連接器的歷史 — Jackey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #FFFFFF; --bg-2: #F4F4F2; --bg-dark: #14171F;
+  --ink: #1A1A1A; --ink-mid: #5C5C5C; --ink-light: #9A9A9A; --line: rgba(26,26,26,0.08);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', 'Noto Sans TC', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 70px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+.nav-logo { font-size: 1.1rem; font-weight: 900; color: var(--ink); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-back { font-size: 0.88rem; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+.nav-back:hover { color: var(--ink); }
+.lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
+.lang-btn { font-size: 0.8rem; background: none; border: none; cursor: pointer; color: var(--ink-light); padding: 0; }
+.lang-btn.active { color: var(--ink); font-weight: 700; }
+.lang-sep { font-size: 0.75rem; color: var(--line); }
+.hero { padding: 120px 3rem 0; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
+.hero-meta { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; gap: 1rem; }
+.hero-meta span::after { content: ' /'; margin-left: 1rem; color: var(--line); }
+.hero-meta span:last-child::after { content: ''; }
+.hero-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.2rem; letter-spacing: -0.02em; }
+.hero-sub { font-size: 1rem; line-height: 1.8; color: var(--ink-mid); max-width: 420px; }
+.hero-thumb { aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; background: var(--bg-2); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+.hero-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.info-bar { max-width: 1200px; margin: 5rem auto 0; padding: 0 3rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); }
+.info-item { padding: 1.8rem 2rem; border-right: 1px solid var(--line); }
+.info-item:first-child { padding-left: 0; }
+.info-item:last-child { border-right: none; }
+.info-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.info-label svg { width: 14px; height: 14px; opacity: 0.5; }
+.info-value { font-size: 0.95rem; font-weight: 500; }
+.final-video { max-width: 1200px; margin: 5rem auto; padding: 0 3rem; display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; }
+.final-video-text h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; }
+.final-video-text p { font-size: 0.95rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 1.5rem; }
+.btn-dark { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--bg-dark); color: #fff; font-size: 0.88rem; font-weight: 500; padding: 0.75rem 1.4rem; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+.btn-dark:hover { opacity: 0.8; }
+.btn-dark svg { width: 14px; height: 14px; fill: #fff; }
+.video-embed { aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+.video-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+.overview { max-width: 1200px; margin: 5rem auto; padding: 3rem; background: var(--bg-2); border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+.overview h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.2rem; }
+.overview p { font-size: 0.95rem; line-height: 1.9; color: var(--ink-mid); }
+.contrib-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+.contrib-tag { font-size: 0.82rem; color: var(--ink-mid); background: var(--bg); border: 1px solid var(--line); padding: 0.35rem 0.85rem; border-radius: 100px; }
+.scroll-section { max-width: 1200px; margin: 5rem auto; padding: 0 3rem; }
+.scroll-section h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+.scroll-section p { font-size: 0.85rem; color: var(--ink-light); margin-bottom: 1.5rem; }
+.h-scroll-wrap { position: relative; }
+.h-scroll { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; cursor: grab; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.h-scroll::-webkit-scrollbar { height: 4px; }
+.h-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+.h-scroll.grabbing { cursor: grabbing; }
+.h-scroll-item { flex-shrink: 0; width: 280px; scroll-snap-align: start; border-radius: 12px; overflow: hidden; background: var(--bg-2); cursor: pointer; }
+.h-scroll-item img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.scroll-fade-right { position: absolute; right: 0; top: 0; bottom: 1rem; width: 80px; background: linear-gradient(90deg, transparent, var(--bg)); pointer-events: none; }
+.lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 8px; object-fit: contain; }
+.lightbox-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem; color: #fff; cursor: pointer; background: none; border: none; opacity: 0.7; }
+.lightbox-close:hover { opacity: 1; }
+.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #fff; cursor: pointer; background: rgba(255,255,255,0.1); border: none; padding: 1rem 1.2rem; border-radius: 8px; opacity: 0.7; }
+.lightbox-prev:hover, .lightbox-next:hover { opacity: 1; }
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+.lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+.project-nav { max-width: 1200px; margin: 5rem auto 0; padding: 2rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.project-nav-item { text-decoration: none; color: var(--ink); }
+.project-nav-item.next { text-align: right; }
+.project-nav-label { font-size: 0.75rem; color: var(--ink-light); margin-bottom: 0.3rem; }
+.project-nav-title { font-size: 1rem; font-weight: 600; transition: opacity 0.2s; }
+.project-nav-item:hover .project-nav-title { opacity: 0.5; }
+footer { padding: 1.5rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; }
+footer p { font-size: 0.72rem; color: var(--ink-light); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.72rem; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--ink); }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay { transition-delay: 0.12s; }
+@media (max-width: 900px) {
+  nav { padding: 0 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 100px 1.5rem 0; min-height: auto; gap: 2rem; }
+  .info-bar { grid-template-columns: repeat(2,1fr); padding: 0 1.5rem; }
+  .info-item:nth-child(2) { border-right: none; }
+  .info-item:nth-child(3) { border-top: 1px solid var(--line); padding-left: 0; }
+  .final-video { grid-template-columns: 1fr; padding: 0 1.5rem; gap: 2rem; }
+  .overview { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 2rem; margin: 3rem 1.5rem; }
+  .scroll-section { padding: 0 1.5rem; }
+  .project-nav { padding: 2rem 1.5rem; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html" class="nav-logo">Jackey.</a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="zh">中</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="../../portfolio.html" class="nav-back" data-zh="← 返回" data-en="← Back">← 返回</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="reveal">
+    <div class="hero-meta">
+      <span data-zh="動態設計" data-en="Motion Design">動態設計</span>
+      <span>2024</span>
+    </div>
+    <h1 class="hero-title" data-zh="iPhone 連接器的歷史" data-en="The History of iPhone Connectors">iPhone 連接器的歷史</h1>
+    <p class="hero-sub" data-zh="從 30-pin 到 Lightning 再到 USB-C，這支動畫完整梳理了 iPhone 連接器的演進歷史，用視覺說故事的方式呈現科技的變遷。" data-en="From 30-pin to Lightning to USB-C, this animation traces the full evolution of iPhone connectors, using visual storytelling to illustrate the changes in technology.">從 30-pin 到 Lightning 再到 USB-C，這支動畫完整梳理了 iPhone 連接器的演進歷史，用視覺說故事的方式呈現科技的變遷。</p>
+  </div>
+  <div class="hero-thumb reveal reveal-delay">
+    <img src="cover-1920.jpg" alt="iPhone 連接器的歷史">
+  </div>
+</section>
+
+<div class="info-bar reveal">
+  <div class="info-item">
+    <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span data-zh="角色" data-en="Role">角色</span></p>
+    <p class="info-value">Motion Designer</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg><span data-zh="工具" data-en="Tools">工具</span></p>
+    <p class="info-value">PS, AI, PR, AE, AU</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-zh="製作時間" data-en="Duration">製作時間</span></p>
+    <p class="info-value" data-zh="2 週" data-en="2 Weeks">2 週</p>
+  </div>
+  <div class="info-item">
+    <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-zh="年份" data-en="Year">年份</span></p>
+    <p class="info-value">2024</p>
+  </div>
+</div>
+
+<div class="final-video reveal" id="video-section">
+  <div class="final-video-text">
+    <h2 data-zh="完整影片" data-en="Final Video">完整影片</h2>
+    <p data-zh="完整觀看動畫，了解更多詳情！" data-en="Watch the full animation for more details!">完整觀看動畫，了解更多詳情！</p>
+    <a href="https://www.youtube.com/watch?v=l_FVCA0X8EY" target="_blank" class="btn-dark">
+      <svg viewBox="0 0 24 24"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.1 2.8 12 2.8 12 2.8s-4.1 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.3v2c0 2.2.3 4.3.3 4.3s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.3 21.8 12 21.8 12 21.8s4.1 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.3v-2C23.3 9.1 23 7 23 7zm-13.4 8.7V8.3l8.1 3.7-8.1 3.7z"/></svg>
+      <span data-zh="在 YouTube 觀看" data-en="Watch on YouTube">在 YouTube 觀看</span>
+    </a>
+  </div>
+  <div class="video-embed reveal reveal-delay">
+    <iframe src="https://www.youtube.com/embed/l_FVCA0X8EY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="overview reveal">
+  <div>
+    <h3 data-zh="專案概述" data-en="Project Overview">專案概述</h3>
+    <p data-zh="從 30-pin 到 Lightning 再到 USB-C，這支動畫完整梳理了 iPhone 連接器的演進歷史，用視覺說故事的方式呈現科技的變遷。" data-en="From 30-pin to Lightning to USB-C, this animation traces the full evolution of iPhone connectors, using visual storytelling to illustrate the changes in technology.">從 30-pin 到 Lightning 再到 USB-C，這支動畫完整梳理了 iPhone 連接器的演進歷史，用視覺說故事的方式呈現科技的變遷。</p>
+  </div>
+  <div>
+    <h3 data-zh="工作內容" data-en="Work Scope">工作內容</h3>
+    <div class="contrib-grid">
+      <span class="contrib-tag" data-zh="分鏡腳本" data-en="Storyboarding">分鏡腳本</span>
+      <span class="contrib-tag" data-zh="動態製作" data-en="Motion Design">動態製作</span>
+      <span class="contrib-tag" data-zh="美術設計" data-en="Illustration">美術設計</span>
+      <span class="contrib-tag" data-zh="剪輯" data-en="Video Editing">剪輯</span>
+      <span class="contrib-tag" data-zh="配樂" data-en="Music">配樂</span>
+      <span class="contrib-tag" data-zh="配音" data-en="Voice Over">配音</span>
+      <span class="contrib-tag" data-zh="音效" data-en="Sound Design">音效</span>
+    </div>
+  </div>
+</div>
+
+<div class="scroll-section reveal">
+  <h3 data-zh="分鏡腳本" data-en="Storyboard">分鏡腳本</h3>
+  <p>Storyboard</p>
+  <div class="h-scroll-wrap">
+    <div class="h-scroll" id="storyScroll">
+      <div class="h-scroll-item"><img src="storyboard/01.jpg" alt="01" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/02.jpg" alt="02" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/03.jpg" alt="03" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/04.jpg" alt="04" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/05.jpg" alt="05" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/06.jpg" alt="06" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/07.jpg" alt="07" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/08.jpg" alt="08" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/09.jpg" alt="09" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/10.jpg" alt="10" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/11.jpg" alt="11" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="storyboard/12.jpg" alt="12" loading="lazy"></div>
+    </div>
+    <div class="scroll-fade-right"></div>
+  </div>
+</div>
+
+<div class="scroll-section reveal">
+  <h3 data-zh="美術設定" data-en="Style Frames">美術設定</h3>
+  <p>Style Frames</p>
+  <div class="h-scroll-wrap">
+    <div class="h-scroll" id="styleScroll">
+      <div class="h-scroll-item"><img src="styleframe/01.png" alt="01" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/02.png" alt="02" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/03.png" alt="03" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/04.png" alt="04" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/05.png" alt="05" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/06.png" alt="06" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/07.png" alt="07" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/08.png" alt="08" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/09.png" alt="09" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/10.png" alt="10" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/11.png" alt="11" loading="lazy"></div>
+      <div class="h-scroll-item"><img src="styleframe/12.png" alt="12" loading="lazy"></div>
+    </div>
+    <div class="scroll-fade-right"></div>
+  </div>
+</div>
+
+<div class="project-nav reveal">
+  <a href="../project-4/index.html" class="project-nav-item">
+    <p class="project-nav-label" data-zh="← 上一個專案" data-en="← Previous Project">← 上一個專案</p>
+    <p class="project-nav-title">iPhone 連接器的歷史</p>
+  </a>
+  <a href="../project-6/index.html" class="project-nav-item next">
+    <p class="project-nav-label" data-zh="下一個專案 →" data-en="Next Project →">下一個專案 →</p>
+    <p class="project-nav-title">出國網路如何選？</p>
+  </a>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <button class="lightbox-prev" id="lightboxPrev">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-next" id="lightboxNext">›</button>
+  <p class="lightbox-counter" id="lightboxCounter"></p>
+</div>
+
+<footer>
+  <p>© 2025 Jackey. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">YouTube</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+document.querySelectorAll('.h-scroll').forEach(el => {
+  let isDown = false, startX, scrollLeft;
+  el.addEventListener('mousedown', e => { isDown = true; el.classList.add('grabbing'); startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
+  el.addEventListener('mouseleave', () => { isDown = false; el.classList.remove('grabbing'); });
+  el.addEventListener('mouseup', () => { isDown = false; el.classList.remove('grabbing'); });
+  el.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - el.offsetLeft; el.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+});
+
+let lightboxImages = [], lightboxIndex = 0;
+function openLightbox(images, index) { lightboxImages = images; lightboxIndex = index; updateLightbox(); document.getElementById('lightbox').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function updateLightbox() { document.getElementById('lightboxImg').src = lightboxImages[lightboxIndex]; document.getElementById('lightboxCounter').textContent = (lightboxIndex + 1) + ' / ' + lightboxImages.length; }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === document.getElementById('lightbox')) closeLightbox(); });
+document.getElementById('lightboxPrev').addEventListener('click', () => { lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length; updateLightbox(); });
+document.getElementById('lightboxNext').addEventListener('click', () => { lightboxIndex = (lightboxIndex + 1) % lightboxImages.length; updateLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') { lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length; updateLightbox(); }
+  if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % lightboxImages.length; updateLightbox(); }
+});
+document.querySelectorAll('#storyScroll .h-scroll-item').forEach((item, i, arr) => {
+  item.addEventListener('click', () => { const imgs = Array.from(arr).map(el => el.querySelector('img').src); openLightbox(imgs, i); });
+});
+document.querySelectorAll('#styleScroll .h-scroll-item').forEach((item, i, arr) => {
+  item.addEventListener('click', () => { const imgs = Array.from(arr).map(el => el.querySelector('img').src); openLightbox(imgs, i); });
+});
+
+function setLang(lang, save = true) {
+  document.querySelectorAll('[data-zh]').forEach(el => { el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en'); });
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  if (save) localStorage.setItem('jmd-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jmd-lang') || 'zh', false);
+</script>
+</body>
+</html>
