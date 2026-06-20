@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平面設計 — Jackey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #FFFFFF; --bg-2: #F4F4F2; --bg-dark: #14171F;
+  --ink: #1A1A1A; --ink-mid: #5C5C5C; --ink-light: #9A9A9A; --line: rgba(26,26,26,0.08);
+  --accent: #4F46E5;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', 'Noto Sans TC', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 70px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+.nav-logo { font-size: 1.1rem; font-weight: 900; color: var(--ink); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-back { font-size: 0.88rem; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+.nav-back:hover { color: var(--ink); }
+.lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
+.lang-btn { font-size: 0.8rem; background: none; border: none; cursor: pointer; color: var(--ink-light); padding: 0; }
+.lang-btn.active { color: var(--ink); font-weight: 700; }
+.lang-sep { font-size: 0.75rem; color: var(--line); }
+
+/* HERO */
+.hero {
+  margin-top: 70px;
+  background: linear-gradient(135deg, #e8f0fe 0%, #dbeafe 40%, #e0f2fe 70%, #f0fdf4 100%);
+  padding: 4rem 3rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  min-height: 340px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '✦'; position: absolute; top: 2rem; left: 2.5rem;
+  font-size: 1.2rem; color: rgba(99,102,241,0.4);
+}
+.hero-left { position: relative; z-index: 1; }
+.hero-title { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--ink); }
+.hero-sub { font-size: 0.9rem; line-height: 1.85; color: var(--ink-mid); margin-bottom: 1.2rem; max-width: 380px; }
+.hero-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.hero-tag { font-size: 0.78rem; color: var(--ink-mid); background: rgba(255,255,255,0.7); padding: 0.3rem 0.8rem; border-radius: 100px; border: 1px solid rgba(99,102,241,0.2); }
+.hero-illustration { display: flex; justify-content: center; align-items: center; }
+.hero-illustration img { max-height: 260px; width: auto; object-fit: contain; }
+.hero-illustration-placeholder {
+  width: 100%; height: 240px; background: rgba(255,255,255,0.5);
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; color: var(--ink-light); border: 1px dashed rgba(99,102,241,0.3);
+}
+
+/* GRID */
+.grid-section { max-width: 1200px; margin: 4rem auto; padding: 0 3rem; }
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.work-card { cursor: pointer; border-radius: 12px; overflow: hidden; background: var(--bg); border: 1px solid var(--line); transition: transform 0.2s, box-shadow 0.2s; }
+.work-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+.work-thumb { aspect-ratio: 16/9; overflow: hidden; background: var(--bg-2); }
+.work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.work-card:hover .work-thumb img { transform: scale(1.04); }
+.work-info { padding: 1rem 1.1rem; }
+.work-cat-badge { display: inline-block; font-size: 0.68rem; font-weight: 500; color: var(--accent); background: rgba(79,70,229,0.08); padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.5rem; }
+.work-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.25rem; }
+.work-year { font-size: 0.78rem; color: var(--ink-light); }
+
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; padding: 2rem; }
+.lightbox.open { display: flex; }
+.lightbox-inner { background: var(--bg); border-radius: 20px; max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1.3fr 1fr; overflow: hidden; max-height: 90vh; box-shadow: 0 40px 100px rgba(0,0,0,0.3); }
+.lightbox-img-wrap { background: var(--bg-2); position: relative; display: flex; align-items: center; justify-content: center; min-height: 400px; }
+.lightbox-img-wrap img { max-width: 100%; max-height: 70vh; object-fit: contain; display: block; }
+.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: background 0.2s; }
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+.lightbox-prev:hover, .lightbox-next:hover { background: #fff; }
+.lightbox-info { padding: 2.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+.lightbox-close { position: absolute; top: 1.2rem; right: 1.2rem; background: var(--bg-2); border: none; cursor: pointer; width: 34px; height: 34px; border-radius: 50%; font-size: 1rem; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.2s; }
+.lightbox-close:hover { background: var(--line); }
+.lightbox-cat { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent); background: rgba(79,70,229,0.08); padding: 0.25rem 0.7rem; border-radius: 4px; }
+.lightbox-title { font-size: 1.3rem; font-weight: 900; line-height: 1.3; }
+.lightbox-year { font-size: 0.82rem; color: var(--ink-light); }
+.lightbox-desc { font-size: 0.88rem; line-height: 1.8; color: var(--ink-mid); }
+.lightbox-tools-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem; }
+.lightbox-tools { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.lightbox-tool { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--ink); background: var(--bg-2); padding: 0.3rem 0.8rem; border-radius: 6px; }
+.lightbox-tool-dot { width: 10px; height: 10px; border-radius: 2px; }
+.dot-ps { background: #001d26; }
+.dot-ai { background: #ff7f00; }
+
+/* PROJECT NAV */
+.project-nav { max-width: 1200px; margin: 5rem auto 0; padding: 2rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.project-nav-item { text-decoration: none; color: var(--ink); }
+.project-nav-item.next { text-align: right; }
+.project-nav-label { font-size: 0.75rem; color: var(--ink-light); margin-bottom: 0.3rem; }
+.project-nav-title { font-size: 1rem; font-weight: 600; transition: opacity 0.2s; }
+.project-nav-item:hover .project-nav-title { opacity: 0.5; }
+
+/* FOOTER */
+footer { padding: 1.5rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; }
+footer p { font-size: 0.72rem; color: var(--ink-light); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.72rem; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--ink); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RWD */
+@media (max-width: 900px) {
+  nav { padding: 0 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
+  .hero-illustration { display: none; }
+  .grid-section { padding: 0 1.5rem; }
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+  .lightbox-inner { grid-template-columns: 1fr; }
+  .lightbox-img-wrap { min-height: 250px; }
+  .project-nav { padding: 2rem 1.5rem; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+}
+@media (max-width: 580px) {
+  .work-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html" class="nav-logo">Jackey.</a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="zh">中</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="../../portfolio.html" class="nav-back">↔ <span data-zh="返回作品列表" data-en="Back to Portfolio">返回作品列表</span></a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-left reveal">
+    <h1 class="hero-title" data-zh="平面設計" data-en="Graphic Design">平面設計</h1>
+    <p class="hero-sub" data-zh="結合視覺創意與版面策略，打造具有吸引力的平面設計。從活動宣傳、圖文系列到節慶設計，傳遞訊息也創造價值。" data-en="Combining visual creativity and layout strategy to create compelling graphic design. From event promotions and content series to festive visuals, delivering messages and creating value.">結合視覺創意與版面策略，打造具有吸引力的平面設計。從活動宣傳、圖文系列到節慶設計，傳遞訊息也創造價值。</p>
+    <div class="hero-tags">
+      <span class="hero-tag" data-zh="活動宣傳設計" data-en="Event Promotion">活動宣傳設計</span>
+      <span class="hero-tag" data-zh="節慶視覺設計" data-en="Festive Visual">節慶視覺設計</span>
+    </div>
+  </div>
+  <div class="hero-illustration">
+    <div class="hero-illustration-placeholder">
+      <img src="hero-illustration.png" alt="Graphic Design Illustration" onerror="this.parentElement.innerHTML='Illustration'">
+    </div>
+  </div>
+</div>
+
+<!-- Work Grid -->
+<div class="grid-section reveal">
+  <div class="work-grid" id="workGrid">
+
+    <div class="work-card" data-index="0">
+      <div class="work-thumb"><img src="01.jpg" alt="手機直式短片競賽獎品圖" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
+        <p class="work-title" data-zh="手機直式短片競賽獎品圖" data-en="Short Film Contest Prize Visual">手機直式短片競賽獎品圖</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-index="1">
+      <div class="work-thumb"><img src="02.jpg" alt="原鄉踏查評審介紹" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
+        <p class="work-title" data-zh="原鄉踏查評審介紹" data-en="Documentary Contest Judges 01">原鄉踏查評審介紹</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-index="2">
+      <div class="work-thumb"><img src="03.jpg" alt="原鄉踏查評審介紹2" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
+        <p class="work-title" data-zh="原鄉踏查評審介紹 2" data-en="Documentary Contest Judges 02">原鄉踏查評審介紹 2</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-index="3">
+      <div class="work-thumb"><img src="04.jpg" alt="原鄉踏查抽獎圖" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
+        <p class="work-title" data-zh="原鄉踏查抽獎圖" data-en="Documentary Contest Giveaway">原鄉踏查抽獎圖</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-index="4">
+      <div class="work-thumb"><img src="05.jpg" alt="手機直式短片競賽評審圖" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
+        <p class="work-title" data-zh="手機直式短片競賽評審圖" data-en="Short Film Contest Judges">手機直式短片競賽評審圖</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-index="5">
+      <div class="work-thumb"><img src="06.jpg" alt="2024新年祝賀圖" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="節慶視覺設計" data-en="Festive Design">節慶視覺設計</span>
+        <p class="work-title" data-zh="2024 新年祝賀圖" data-en="2024 Chinese New Year Visual">2024 新年祝賀圖</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-index="6">
+      <div class="work-thumb"><img src="07.jpg" alt="2023跨年祝賀圖" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="節慶視覺設計" data-en="Festive Design">節慶視覺設計</span>
+        <p class="work-title" data-zh="2023 跨年祝賀圖" data-en="New Year 2023–2024 Visual">2023 跨年祝賀圖</p>
+        <p class="work-year">2023</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-index="7">
+      <div class="work-thumb"><img src="08.jpg" alt="原鄉踏查入圍名單" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
+        <p class="work-title" data-zh="原鄉踏查入圍名單" data-en="Documentary Contest Nominees">原鄉踏查入圍名單</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-index="8">
+      <div class="work-thumb"><img src="09.jpg" alt="原鄉踏查宣傳圖" loading="lazy"></div>
+      <div class="work-info">
+        <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
+        <p class="work-title" data-zh="原鄉踏查宣傳圖" data-en="Documentary Contest Promotion">原鄉踏查宣傳圖</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Project Nav -->
+<div class="project-nav reveal">
+  <a href="#" class="project-nav-item">
+    <p class="project-nav-label" data-zh="← 上一個專案" data-en="← Previous Project">← 上一個專案</p>
+    <p class="project-nav-title" data-zh="Coming Soon" data-en="Coming Soon">Coming Soon</p>
+  </a>
+  <a href="#" class="project-nav-item next">
+    <p class="project-nav-label" data-zh="下一個專案 →" data-en="Next Project →">下一個專案 →</p>
+    <p class="project-nav-title" data-zh="Coming Soon" data-en="Coming Soon">Coming Soon</p>
+  </a>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <div class="lightbox-img-wrap">
+      <button class="lightbox-prev" id="lbPrev">‹</button>
+      <img id="lbImg" src="" alt="">
+      <button class="lightbox-next" id="lbNext">›</button>
+    </div>
+    <div class="lightbox-info" style="position:relative;">
+      <button class="lightbox-close" id="lbClose">✕</button>
+      <span class="lightbox-cat" id="lbCat"></span>
+      <h2 class="lightbox-title" id="lbTitle"></h2>
+      <p class="lightbox-year" id="lbYear"></p>
+      <p class="lightbox-desc" id="lbDesc"></p>
+      <div>
+        <p class="lightbox-tools-label" data-zh="使用工具" data-en="Tools Used">使用工具</p>
+        <div class="lightbox-tools" id="lbTools"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Jackey. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">YouTube</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+// Work data
+const works = [
+  { img: '01.jpg', cat_zh: '活動宣傳設計', cat_en: 'Event Design', title_zh: '手機直式短片競賽獎品圖', title_en: 'Short Film Contest Prize Visual', year: '2024', desc_zh: '神腦手機直式短片競賽的獎品介紹圖。', desc_en: 'Prize introduction visual for the Senao Mobile Short Film Contest.', tools: ['PS'] },
+  { img: '02.jpg', cat_zh: '活動宣傳設計', cat_en: 'Event Design', title_zh: '原鄉踏查評審介紹', title_en: 'Documentary Contest Judges 01', year: '2024', desc_zh: '神腦原鄉踏查紀錄片競賽的評審介紹圖。', desc_en: 'Judge introduction visual for the Senao Documentary Contest.', tools: ['PS'] },
+  { img: '03.jpg', cat_zh: '活動宣傳設計', cat_en: 'Event Design', title_zh: '原鄉踏查評審介紹 2', title_en: 'Documentary Contest Judges 02', year: '2024', desc_zh: '神腦原鄉踏查紀錄片競賽的評審介紹圖。', desc_en: 'Judge introduction visual for the Senao Documentary Contest.', tools: ['PS'] },
+  { img: '04.jpg', cat_zh: '活動宣傳設計', cat_en: 'Event Design', title_zh: '原鄉踏查抽獎圖', title_en: 'Documentary Contest Giveaway', year: '2024', desc_zh: '神腦原鄉踏查紀錄片競賽的獎品圖。', desc_en: 'Giveaway prize visual for the Senao Documentary Contest.', tools: ['AI'] },
+  { img: '05.jpg', cat_zh: '活動宣傳設計', cat_en: 'Event Design', title_zh: '手機直式短片競賽評審圖', title_en: 'Short Film Contest Judges', year: '2024', desc_zh: '神腦手機直式短片競賽的評審介紹圖。', desc_en: 'Judge introduction visual for the Senao Mobile Short Film Contest.', tools: ['AI'] },
+  { img: '06.jpg', cat_zh: '節慶視覺設計', cat_en: 'Festive Design', title_zh: '2024 新年祝賀圖', title_en: '2024 Chinese New Year Visual', year: '2024', desc_zh: '龍年祝賀圖。', desc_en: 'Year of the Dragon New Year greeting visual.', tools: ['PS'] },
+  { img: '07.jpg', cat_zh: '節慶視覺設計', cat_en: 'Festive Design', title_zh: '2023 跨年祝賀圖', title_en: 'New Year 2023–2024 Visual', year: '2023', desc_zh: '2023–2024 跨年祝賀圖。', desc_en: '2023–2024 New Year greeting visual.', tools: ['PS'] },
+  { img: '08.jpg', cat_zh: '活動宣傳設計', cat_en: 'Event Design', title_zh: '原鄉踏查入圍名單', title_en: 'Documentary Contest Nominees', year: '2024', desc_zh: '神腦原鄉踏查紀錄片競賽的入圍名單。', desc_en: 'Nominee announcement visual for the Senao Documentary Contest.', tools: ['PS'] },
+  { img: '09.jpg', cat_zh: '活動宣傳設計', cat_en: 'Event Design', title_zh: '原鄉踏查宣傳圖', title_en: 'Documentary Contest Promotion', year: '2024', desc_zh: '神腦原鄉踏查紀錄片競賽的宣傳圖。', desc_en: 'Promotion visual for the Senao Documentary Contest.', tools: ['PS'] },
+];
+
+const toolColors = { PS: '#001d26', AI: '#ff7f00' };
+
+let currentIndex = 0;
+const lang = () => localStorage.getItem('jmd-lang') || 'zh';
+
+function openLightbox(index) {
+  currentIndex = index;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderLightbox() {
+  const w = works[currentIndex];
+  const l = lang();
+  document.getElementById('lbImg').src = w.img;
+  document.getElementById('lbCat').textContent = l === 'zh' ? w.cat_zh : w.cat_en;
+  document.getElementById('lbTitle').textContent = l === 'zh' ? w.title_zh : w.title_en;
+  document.getElementById('lbYear').textContent = w.year;
+  document.getElementById('lbDesc').textContent = l === 'zh' ? w.desc_zh : w.desc_en;
+  const toolsEl = document.getElementById('lbTools');
+  toolsEl.innerHTML = w.tools.map(t => `<div class="lightbox-tool"><div class="lightbox-tool-dot" style="background:${toolColors[t]}"></div>${t === 'PS' ? 'Photoshop' : t === 'AI' ? 'Illustrator' : t}</div>`).join('');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('click', () => openLightbox(parseInt(card.dataset.index)));
+});
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === document.getElementById('lightbox')) closeLightbox(); });
+document.getElementById('lbPrev').addEventListener('click', () => { currentIndex = (currentIndex - 1 + works.length) % works.length; renderLightbox(); });
+document.getElementById('lbNext').addEventListener('click', () => { currentIndex = (currentIndex + 1) % works.length; renderLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + works.length) % works.length; renderLightbox(); }
+  if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % works.length; renderLightbox(); }
+});
+
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Language
+function setLang(l, save = true) {
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    el.innerHTML = l === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+  });
+  document.documentElement.lang = l === 'zh' ? 'zh-TW' : 'en';
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === l));
+  if (save) localStorage.setItem('jmd-lang', l);
+  if (document.getElementById('lightbox').classList.contains('open')) renderLightbox();
+}
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jmd-lang') || 'zh', false);
+</script>
+</body>
+</html>
