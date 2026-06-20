@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>產品展示影片 — Jackey</title>
+<title>人物訪談 / 企業介紹影片 — Jackey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -31,8 +31,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem;
 /* HERO */
 .hero { padding: 100px 3rem 0; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: center; min-height: 82vh; }
 .hero-left { display: flex; flex-direction: column; gap: 1rem; }
-.hero-title-zh { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; }
-.hero-title-en { font-size: clamp(1rem, 1.8vw, 1.3rem); font-weight: 400; color: var(--ink-light); letter-spacing: 0.01em; }
+.hero-title-zh { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.02em; }
+.hero-title-en { font-size: clamp(0.95rem, 1.6vw, 1.15rem); font-weight: 400; color: var(--ink-light); }
 .hero-sub { font-size: 0.88rem; line-height: 1.85; color: var(--ink-mid); max-width: 340px; }
 .hero-focus { font-size: 0.8rem; color: var(--ink-light); }
 .hero-focus span { color: var(--ink-mid); }
@@ -59,22 +59,26 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem;
 .sec-header { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 2rem; }
 .sec-title { font-size: 1.2rem; font-weight: 900; }
 .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.video-card { border-radius: 14px; overflow: hidden; background: var(--bg); border: 1px solid var(--line); text-decoration: none; color: var(--ink); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+.video-card { border-radius: 14px; overflow: hidden; background: var(--bg); border: 1px solid var(--line); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
 .video-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
-.video-embed { aspect-ratio: 16/9; background: var(--bg-dark); overflow: hidden; position: relative; }
+.video-embed { aspect-ratio: 16/9; background: var(--bg-dark); overflow: hidden; }
 .video-embed iframe { width: 100%; height: 100%; border: none; display: block; }
 .video-info { padding: 1.1rem 1.3rem; }
-.video-title { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.3rem; }
-.video-subtitle { font-size: 0.8rem; color: var(--ink-light); line-height: 1.5; margin-bottom: 0.7rem; }
+.video-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
+.video-subtitle { font-size: 0.78rem; color: var(--ink-light); line-height: 1.5; margin-bottom: 0.7rem; }
 .video-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .video-tag { font-size: 0.72rem; color: var(--ink-mid); background: var(--bg-2); padding: 0.2rem 0.65rem; border-radius: 100px; }
 
-/* HIGHLIGHT BAR */
-.highlight-bar { max-width: 1200px; margin: 3rem auto 0; padding: 2rem 3rem; background: var(--bg-2); border-radius: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-.highlight-item { display: flex; align-items: flex-start; gap: 1rem; }
-.highlight-item-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
-.highlight-item-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.3rem; }
-.highlight-item-desc { font-size: 0.78rem; line-height: 1.7; color: var(--ink-mid); }
+/* PROCESS */
+.process-section { max-width: 1200px; margin: 5rem auto 0; padding: 0 3rem; }
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--bg-2); border-radius: 16px; overflow: hidden; }
+.process-item { padding: 1.8rem; position: relative; }
+.process-item:not(:last-child)::after { content: '→'; position: absolute; right: -0.6rem; top: 50%; transform: translateY(-50%); font-size: 1rem; color: var(--ink-light); z-index: 1; }
+.process-icon { font-size: 1.4rem; margin-bottom: 0.8rem; }
+.process-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
+.process-desc { font-size: 0.78rem; line-height: 1.7; color: var(--ink-mid); }
+
+/* PROJECT NAV */
 .project-nav { max-width: 1200px; margin: 5rem auto 0; padding: 2rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
 .project-nav-item { text-decoration: none; color: var(--ink); }
 .project-nav-item.next { text-align: right; }
@@ -95,17 +99,25 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 .reveal-delay { transition-delay: 0.1s; }
 
 /* RWD */
+@media (max-width: 1024px) {
+  .video-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-item:nth-child(2)::after { display: none; }
+}
 @media (max-width: 900px) {
   nav { padding: 0 1.5rem; }
   .hero { grid-template-columns: 1fr; padding: 100px 1.5rem 0; min-height: auto; gap: 2.5rem; }
   .info-bar { grid-template-columns: repeat(2,1fr); padding: 0 1.5rem; }
   .info-item:nth-child(2) { border-right: none; }
   .info-item:nth-child(3) { border-top: 1px solid var(--line); padding-left: 0; }
-  .video-list-section { padding: 0 1.5rem; }
-  .video-grid { grid-template-columns: 1fr 1fr; }
-  .highlight-bar { grid-template-columns: 1fr 1fr; margin: 3rem 1.5rem 0; }
+  .video-list-section, .process-section { padding: 0 1.5rem; }
   .project-nav { padding: 2rem 1.5rem; }
   footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+}
+@media (max-width: 580px) {
+  .video-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-item::after { display: none !important; }
 }
 </style>
 </head>
@@ -127,21 +139,21 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 <section class="hero">
   <div class="hero-left reveal">
     <div>
-      <h1 class="hero-title-zh" data-zh="產品展示影片" data-en="Product Showcase">產品展示影片</h1>
-      <p class="hero-title-en" data-zh="Product Showcase" data-en="產品展示影片">Product Showcase</p>
+      <h1 class="hero-title-zh" data-zh="人物訪談 /<br>企業介紹影片" data-en="Corporate Showcase">人物訪談 /<br>企業介紹影片</h1>
+      <p class="hero-title-en" data-zh="Corporate Showcase" data-en="人物訪談 / 企業介紹影片">Corporate Showcase</p>
     </div>
-    <p class="hero-sub" data-zh="透過產品特寫、功能動畫與資訊視覺化，將複雜技術內容轉化為容易理解的影片內容，強化產品價值與專業形象。" data-en="Through product close-ups, feature animations, and information visualization, transforming complex technical content into accessible video that strengthens product value and professional image.">透過產品特寫、功能動畫與資訊視覺化，將複雜技術內容轉化為容易理解的影片內容，強化產品價值與專業形象。</p>
-    <p class="hero-focus" data-zh="專注於：產品展示・技術說明・資訊動畫・視覺包裝" data-en="Focused on: Product Demo · Tech Explainer · Info Animation · Visual Packaging">專注於：<span>產品展示・技術說明・資訊動畫・視覺包裝</span></p>
+    <p class="hero-sub" data-zh="透過人物訪談、綠幕合成與視覺包裝，提升企業形象與專業感，幫助品牌有效傳遞價值與建立信任。" data-en="Through interviews, green screen compositing, and visual packaging, enhancing corporate image and professionalism to help brands communicate value and build trust.">透過人物訪談、綠幕合成與視覺包裝，提升企業形象與專業感，幫助品牌有效傳遞價值與建立信任。</p>
+    <p class="hero-focus" data-zh="專注於：訪談拍攝・綠幕合成・字幕圖文・節奏剪輯" data-en="Focused on: Interview Shooting · Green Screen · Subtitle Design · Rhythm Editing">專注於：<span>訪談拍攝・綠幕合成・字幕圖文・節奏剪輯</span></p>
   </div>
   <div class="hero-video reveal reveal-delay">
     <div class="hero-video-embed">
-      <iframe src="https://www.youtube.com/embed/VYds8L9-FE8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="eager"></iframe>
+      <iframe src="https://www.youtube.com/embed/8Mn08OP7HyA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="eager"></iframe>
     </div>
     <div class="hero-video-label">
       <span class="hero-video-badge">Featured Video</span>
       <div class="hero-video-info">
-        <p class="hero-video-name">MIC-330</p>
-        <p class="hero-video-desc">3U CPCI-Serial Smart System Solution</p>
+        <p class="hero-video-name">40th Anniversary Special</p>
+        <p class="hero-video-desc" data-zh="Advantech 40 週年特別影片" data-en="Advantech 40th Anniversary Film">Advantech 40 週年特別影片</p>
       </div>
     </div>
   </div>
@@ -151,7 +163,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 <div class="info-bar reveal">
   <div class="info-item">
     <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span data-zh="角色" data-en="Role">角色</span></p>
-    <p class="info-value" data-zh="腳本企劃 / 攝影剪輯 / 動畫製作" data-en="Scriptwriting / Filming &amp; Editing / Animation">腳本企劃 / 攝影剪輯 / 動畫製作</p>
+    <p class="info-value" data-zh="腳本企劃 / 攝影剪輯 / 動畫製作" data-en="Scriptwriting / Filming & Editing / Animation">腳本企劃 / 攝影剪輯 / 動畫製作</p>
   </div>
   <div class="info-item">
     <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg><span data-zh="工具" data-en="Tools">工具</span></p>
@@ -159,101 +171,105 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   </div>
   <div class="info-item">
     <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-zh="類型" data-en="Type">類型</span></p>
-    <p class="info-value" data-zh="產品影片" data-en="Product Video">產品影片</p>
+    <p class="info-value" data-zh="企業影片" data-en="Corporate Video">企業影片</p>
   </div>
   <div class="info-item">
     <p class="info-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-zh="年份" data-en="Year">年份</span></p>
-    <p class="info-value">2022 – 2023</p>
+    <p class="info-value">2021 – 2023</p>
   </div>
 </div>
 
 <!-- Video List -->
 <div class="video-list-section reveal">
   <div class="sec-header">
-    <h2 class="sec-title" data-zh="全部影片" data-en="All Product Videos">全部影片</h2>
+    <h2 class="sec-title" data-zh="全部影片" data-en="All Corporate Videos">全部影片</h2>
   </div>
   <div class="video-grid">
 
     <div class="video-card">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/VYds8L9-FE8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/8Mn08OP7HyA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <p class="video-title">MIC-330</p>
-        <p class="video-subtitle">3U CPCI-Serial Smart System Solution</p>
+        <p class="video-title">40th Anniversary Special</p>
+        <p class="video-subtitle" data-zh="Advantech 40 週年宣傳片" data-en="Advantech 40th Anniversary Film">Advantech 40 週年宣傳片</p>
         <div class="video-tags">
-          <span class="video-tag" data-zh="產品展示" data-en="Product Demo">產品展示</span>
-          <span class="video-tag" data-zh="功能介紹" data-en="Feature Intro">功能介紹</span>
+          <span class="video-tag" data-zh="人物訪談" data-en="Interview">人物訪談</span>
+          <span class="video-tag" data-zh="企業形象" data-en="Corporate Image">企業形象</span>
+          <span class="video-tag" data-zh="節慶影片" data-en="Anniversary Film">節慶影片</span>
         </div>
       </div>
     </div>
 
     <div class="video-card">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/CZey-mHjkHc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/sDi7NL7j8HM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <p class="video-title">Energy Solution</p>
-        <p class="video-subtitle">Advancing Energy Transformation with Smart Grid Solution</p>
+        <p class="video-title">Business Introduction Video</p>
+        <p class="video-subtitle" data-zh="醫療手術螢幕介紹影片" data-en="Medical Surgical Monitor Introduction">醫療手術螢幕介紹影片</p>
         <div class="video-tags">
-          <span class="video-tag" data-zh="產品展示" data-en="Product Demo">產品展示</span>
-          <span class="video-tag" data-zh="技術介紹" data-en="Tech Intro">技術介紹</span>
+          <span class="video-tag" data-zh="綠幕合成" data-en="Green Screen">綠幕合成</span>
+          <span class="video-tag" data-zh="企業介紹" data-en="Corporate Intro">企業介紹</span>
+          <span class="video-tag" data-zh="簡報影片" data-en="Presentation">簡報影片</span>
         </div>
       </div>
     </div>
 
     <div class="video-card">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/I_NAUlcgPts" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/L2swd3f8_Og" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <p class="video-title">MIC-3850</p>
-        <p class="video-subtitle">Built for Rugged Environments</p>
+        <p class="video-title">AIM-75S Introduction</p>
+        <p class="video-subtitle" data-zh="Industrial-Grade Tablet AIM-75 介紹" data-en="Industrial-Grade Tablet AIM-75">Industrial-Grade Tablet AIM-75 介紹</p>
         <div class="video-tags">
-          <span class="video-tag" data-zh="產品展示" data-en="Product Demo">產品展示</span>
-          <span class="video-tag" data-zh="功能介紹" data-en="Feature Intro">功能介紹</span>
+          <span class="video-tag" data-zh="產品介紹" data-en="Product Intro">產品介紹</span>
+          <span class="video-tag" data-zh="人物講解" data-en="Presenter">人物講解</span>
+          <span class="video-tag" data-zh="專業形象" data-en="Professional">專業形象</span>
         </div>
       </div>
     </div>
 
     <div class="video-card">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/nD4_yS8R-lU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/pAGNOJHZ13A" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <p class="video-title">WISE-4610</p>
-        <p class="video-subtitle">Industrial LoRaWAN Wireless I/O Modules</p>
+        <p class="video-title">MIC-711</p>
+        <p class="video-subtitle" data-zh="Deploy AI with the NVIDIA Jetson Orin System" data-en="Deploy AI with the NVIDIA Jetson Orin System">Deploy AI with the NVIDIA Jetson Orin System</p>
         <div class="video-tags">
-          <span class="video-tag" data-zh="產品展示" data-en="Product Demo">產品展示</span>
-          <span class="video-tag" data-zh="應用介紹" data-en="Application Intro">應用介紹</span>
+          <span class="video-tag" data-zh="產品介紹" data-en="Product Intro">產品介紹</span>
+          <span class="video-tag" data-zh="英文影片" data-en="English Video">英文影片</span>
+          <span class="video-tag" data-zh="人物講解" data-en="Presenter">人物講解</span>
         </div>
       </div>
     </div>
 
     <div class="video-card">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/PoNAZKH3pcU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/QYj_izQ0Fes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <p class="video-title">PPC-100</p>
-        <p class="video-subtitle">Powerful RISC-Based Android Panel PCs for Industrial Digitalization</p>
+        <p class="video-title">IoT Academy</p>
+        <p class="video-subtitle" data-zh="UNO-410 / UNO-430, Advantech" data-en="UNO-410 / UNO-430, Advantech">UNO-410 / UNO-430, Advantech</p>
         <div class="video-tags">
-          <span class="video-tag" data-zh="產品展示" data-en="Product Demo">產品展示</span>
-          <span class="video-tag" data-zh="產品精覽" data-en="Product Overview">產品精覽</span>
+          <span class="video-tag" data-zh="產品介紹" data-en="Product Intro">產品介紹</span>
+          <span class="video-tag" data-zh="教學影片" data-en="Tutorial">教學影片</span>
         </div>
       </div>
     </div>
 
     <div class="video-card">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/cjRvA1bDFyU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/z_EsqqLfARI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <p class="video-title">MIC-770</p>
-        <p class="video-subtitle">MIC-7 Series Advantages</p>
+        <p class="video-title" data-zh="研華科技｜自動化展" data-en="Advantech — Automation Show">研華科技｜自動化展</p>
+        <p class="video-subtitle" data-zh="智慧製造、綠色節能、人工智慧、自動控制四大主題導覽" data-en="Smart Manufacturing, Green Energy, AI & Automation — Four Theme Tour">智慧製造、綠色節能、人工智慧、自動控制四大主題導覽</p>
         <div class="video-tags">
-          <span class="video-tag" data-zh="產品展示" data-en="Product Demo">產品展示</span>
-          <span class="video-tag" data-zh="技術介紹" data-en="Tech Intro">技術介紹</span>
+          <span class="video-tag" data-zh="展覽紀錄" data-en="Exhibition">展覽紀錄</span>
+          <span class="video-tag" data-zh="企業形象" data-en="Corporate Image">企業形象</span>
         </div>
       </div>
     </div>
@@ -261,47 +277,44 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   </div>
 </div>
 
-<!-- Highlight Bar -->
-<div class="highlight-bar reveal">
-  <div class="highlight-item">
-    <span class="highlight-item-icon">📦</span>
-    <div>
-      <p class="highlight-item-title" data-zh="產品視覺化" data-en="Product Visualization">產品視覺化</p>
-      <p class="highlight-item-desc" data-zh="透過 3D 動畫與特寫鏡頭，清楚呈現產品結構與細節。" data-en="Using 3D animation and close-up shots to clearly showcase product structure and details.">透過 3D 動畫與特寫鏡頭，清楚呈現產品結構與細節。</p>
-    </div>
+<!-- Process -->
+<div class="process-section reveal">
+  <div class="sec-header">
+    <h2 class="sec-title" data-zh="製作流程" data-en="Production Process">製作流程</h2>
   </div>
-  <div class="highlight-item">
-    <span class="highlight-item-icon">📊</span>
-    <div>
-      <p class="highlight-item-title" data-zh="資訊圖表化" data-en="Infographics">資訊圖表化</p>
-      <p class="highlight-item-desc" data-zh="將複雜技術數據轉化為易懂的視覺圖表。" data-en="Transforming complex technical data into easy-to-understand visual charts.">將複雜技術數據轉化為易懂的視覺圖表。</p>
+  <div class="process-grid">
+    <div class="process-item">
+      <div class="process-icon">📋</div>
+      <p class="process-title" data-zh="企劃與腳本" data-en="Planning & Script">企劃與腳本</p>
+      <p class="process-desc" data-zh="根據客戶需求企劃內容，撰寫腳本與訪綱。" data-en="Planning content based on client needs, writing scripts and interview outlines.">根據客戶需求企劃內容，撰寫腳本與訪綱。</p>
     </div>
-  </div>
-  <div class="highlight-item">
-    <span class="highlight-item-icon">🎬</span>
-    <div>
-      <p class="highlight-item-title" data-zh="節奏與敘事" data-en="Rhythm & Storytelling">節奏與敘事</p>
-      <p class="highlight-item-desc" data-zh="依產品特性調整節奏，強化影片的故事性與說服力。" data-en="Adjusting rhythm to product characteristics, strengthening narrative and persuasive power.">依產品特性調整節奏，強化影片的故事性與說服力。</p>
+    <div class="process-item">
+      <div class="process-icon">🎥</div>
+      <p class="process-title" data-zh="拍攝與錄製" data-en="Filming & Recording">拍攝與錄製</p>
+      <p class="process-desc" data-zh="進行人物訪談或綠幕拍攝，確保畫面與收音品質。" data-en="Conducting interviews or green screen filming, ensuring visual and audio quality.">進行人物訪談或綠幕拍攝，確保畫面與收音品質。</p>
     </div>
-  </div>
-  <div class="highlight-item">
-    <span class="highlight-item-icon">🎯</span>
-    <div>
-      <p class="highlight-item-title" data-zh="品牌一致性" data-en="Brand Consistency">品牌一致性</p>
-      <p class="highlight-item-desc" data-zh="維持品牌色與視覺風格，強化專業形象與辨識度。" data-en="Maintaining brand colors and visual style to strengthen professional image and recognition.">維持品牌色與視覺風格，強化專業形象與辨識度。</p>
+    <div class="process-item">
+      <div class="process-icon">✂️</div>
+      <p class="process-title" data-zh="剪輯與合成" data-en="Editing & Compositing">剪輯與合成</p>
+      <p class="process-desc" data-zh="剪輯影像、排版合成、字幕與圖文設計。" data-en="Editing footage, compositing, subtitle and graphic design.">剪輯影像、排版合成、字幕與圖文設計。</p>
+    </div>
+    <div class="process-item">
+      <div class="process-icon">🎨</div>
+      <p class="process-title" data-zh="調色與輸出" data-en="Color Grading & Export">調色與輸出</p>
+      <p class="process-desc" data-zh="調整色調與音效，輸出最終成品影片。" data-en="Adjusting color tone and audio, exporting the final video.">調整色調與音效，輸出最終成品影片。</p>
     </div>
   </div>
 </div>
 
 <!-- Project Nav -->
 <div class="project-nav reveal">
-  <a href="#" class="project-nav-item">
+  <a href="../project-9/index.html" class="project-nav-item">
     <p class="project-nav-label" data-zh="← 上一個專案" data-en="← Previous Project">← 上一個專案</p>
-    <p class="project-nav-title" data-zh="Coming Soon" data-en="Coming Soon">Coming Soon</p>
+    <p class="project-nav-title" data-zh="產品展示影片" data-en="Product Showcase">產品展示影片</p>
   </a>
-  <a href="../project-10/index.html" class="project-nav-item next">
+  <a href="#" class="project-nav-item next">
     <p class="project-nav-label" data-zh="下一個專案 →" data-en="Next Project →">下一個專案 →</p>
-    <p class="project-nav-title" data-zh="人物訪談 / 企業介紹影片" data-en="Corporate Showcase">人物訪談 / 企業介紹影片</p>
+    <p class="project-nav-title" data-zh="Coming Soon" data-en="Coming Soon">Coming Soon</p>
   </a>
 </div>
 
