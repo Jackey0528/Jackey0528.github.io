@@ -145,8 +145,8 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 <div class="page-header reveal">
   <p class="page-eyebrow" data-zh="作品集" data-en="Portfolio">作品集</p>
   <div class="page-header-top">
-    <h1 class="page-title" id="pageTitle" data-zh="動態設計" data-en="Motion Design">動態設計</h1>
-    <p class="page-count"><span id="pageCount">4</span> <span data-zh="個作品" data-en="projects">個作品</span></p>
+    <h1 class="page-title" data-zh="作品集" data-en="Portfolio">作品集</h1>
+    <p class="page-count"><span id="pageCount">8</span> <span data-zh="個作品" data-en="projects">個作品</span></p>
   </div>
 </div>
 
@@ -284,9 +284,6 @@ function switchTab(tab) {
   // Update panels
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + tab).classList.add('active');
-  // Update header
-  const lang = localStorage.getItem('jmd-lang') || 'zh';
-  document.getElementById('pageTitle').textContent = lang === 'zh' ? titleZh[tab] : titleEn[tab];
   document.getElementById('pageCount').textContent = counts[tab];
   // Update URL
   history.replaceState(null, '', '?tab=' + tab);
@@ -320,9 +317,6 @@ function setLang(lang, save = true) {
   });
   document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
-  // Update dynamic title
-  const tab = new URLSearchParams(location.search).get('tab') || 'motion';
-  document.getElementById('pageTitle').textContent = lang === 'zh' ? titleZh[tab] : titleEn[tab];
   if (save) localStorage.setItem('jmd-lang', lang);
 }
 document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
