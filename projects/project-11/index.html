@@ -31,27 +31,36 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem;
 /* HERO */
 .hero {
   margin-top: 70px;
-  background: linear-gradient(135deg, #e8f0fe 0%, #dbeafe 40%, #e0f2fe 70%, #f0fdf4 100%);
+  position: relative; overflow: hidden;
+  min-height: 300px;
+  display: flex; align-items: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+.hero-left {
+  position: relative; z-index: 1;
   padding: 4rem 3rem;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
-  min-height: 340px; position: relative; overflow: hidden;
+  max-width: 520px;
 }
-.hero::before {
-  content: '✦'; position: absolute; top: 2rem; left: 2.5rem;
-  font-size: 1.2rem; color: rgba(99,102,241,0.4);
-}
-.hero-left { position: relative; z-index: 1; }
 .hero-title { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--ink); }
 .hero-sub { font-size: 0.9rem; line-height: 1.85; color: var(--ink-mid); margin-bottom: 1.2rem; max-width: 380px; }
 .hero-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-.hero-tag { font-size: 0.78rem; color: var(--ink-mid); background: rgba(255,255,255,0.7); padding: 0.3rem 0.8rem; border-radius: 100px; border: 1px solid rgba(99,102,241,0.2); }
-.hero-illustration { display: flex; justify-content: center; align-items: center; }
-.hero-illustration img { max-height: 260px; width: auto; object-fit: contain; }
-.hero-illustration-placeholder {
-  width: 100%; height: 240px; background: rgba(255,255,255,0.5);
-  border-radius: 16px; display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem; color: var(--ink-light); border: 1px dashed rgba(99,102,241,0.3);
+.hero-tag { font-size: 0.78rem; color: var(--ink-mid); background: rgba(255,255,255,0.75); padding: 0.3rem 0.8rem; border-radius: 100px; border: 1px solid rgba(99,102,241,0.2); }
+
+/* FILTER TABS */
+.filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.filter-btn {
+  font-size: 0.82rem; font-weight: 500; cursor: pointer;
+  background: rgba(255,255,255,0.5); border: 1px solid rgba(99,102,241,0.2);
+  color: var(--ink-mid); padding: 0.4rem 1rem; border-radius: 100px;
+  transition: all 0.2s;
 }
+.filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.filter-btn:hover:not(.active) { background: rgba(255,255,255,0.8); }
 
 /* GRID */
 .grid-section { max-width: 1200px; margin: 4rem auto; padding: 0 3rem; }
@@ -113,7 +122,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 @media (max-width: 900px) {
   nav { padding: 0 1.5rem; }
   .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
-  .hero-illustration { display: none; }
+
   .grid-section { padding: 0 1.5rem; }
   .work-grid { grid-template-columns: repeat(2, 1fr); }
   .lightbox-inner { grid-template-columns: 1fr; }
@@ -143,25 +152,22 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 <!-- Hero -->
 <div class="hero">
   <div class="hero-left reveal">
-    <h1 class="hero-title" data-zh="平面設計" data-en="Graphic Design">平面設計</h1>
-    <p class="hero-sub" data-zh="結合視覺創意與版面策略，打造具有吸引力的平面設計。從活動宣傳、圖文系列到節慶設計，傳遞訊息也創造價值。" data-en="Combining visual creativity and layout strategy to create compelling graphic design. From event promotions and content series to festive visuals, delivering messages and creating value.">結合視覺創意與版面策略，打造具有吸引力的平面設計。從活動宣傳、圖文系列到節慶設計，傳遞訊息也創造價值。</p>
-    <div class="hero-tags">
-      <span class="hero-tag" data-zh="活動宣傳設計" data-en="Event Promotion">活動宣傳設計</span>
-      <span class="hero-tag" data-zh="節慶視覺設計" data-en="Festive Visual">節慶視覺設計</span>
+    <h1 class="hero-title">Graphic Design</h1>
+    <p class="hero-sub">結合視覺創意與版面策略，打造具有吸引力的平面設計。<br>從活動宣傳、圖文系列到節慶設計，傳遞訊息也創造價值。</p>
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all" data-zh="全部作品" data-en="All Works">全部作品</button>
+      <button class="filter-btn" data-filter="活動宣傳設計" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</button>
+      <button class="filter-btn" data-filter="節慶視覺設計" data-zh="節慶視覺設計" data-en="Festive Design">節慶視覺設計</button>
     </div>
   </div>
-  <div class="hero-illustration">
-    <div class="hero-illustration-placeholder">
-      <img src="hero-illustration.png" alt="Graphic Design Illustration" onerror="this.parentElement.innerHTML='Illustration'">
-    </div>
-  </div>
+<img class="hero-bg" src="hero-illustration.png" alt="">
 </div>
 
 <!-- Work Grid -->
 <div class="grid-section reveal">
   <div class="work-grid" id="workGrid">
 
-    <div class="work-card" data-index="0">
+    <div class="work-card" data-index="0" data-cat="活動宣傳設計">
       <div class="work-thumb"><img src="01.jpg" alt="手機直式短片競賽獎品圖" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
@@ -170,7 +176,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <div class="work-card" data-index="1">
+    <div class="work-card" data-index="1" data-cat="活動宣傳設計">
       <div class="work-thumb"><img src="02.jpg" alt="原鄉踏查評審介紹" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
@@ -179,7 +185,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <div class="work-card" data-index="2">
+    <div class="work-card" data-index="2" data-cat="活動宣傳設計">
       <div class="work-thumb"><img src="03.jpg" alt="原鄉踏查評審介紹2" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
@@ -188,7 +194,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <div class="work-card" data-index="3">
+    <div class="work-card" data-index="3" data-cat="活動宣傳設計">
       <div class="work-thumb"><img src="04.jpg" alt="原鄉踏查抽獎圖" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
@@ -197,7 +203,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <div class="work-card" data-index="4">
+    <div class="work-card" data-index="4" data-cat="活動宣傳設計">
       <div class="work-thumb"><img src="05.jpg" alt="手機直式短片競賽評審圖" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
@@ -206,7 +212,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <div class="work-card" data-index="5">
+    <div class="work-card" data-index="5" data-cat="節慶視覺設計">
       <div class="work-thumb"><img src="06.jpg" alt="2024新年祝賀圖" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="節慶視覺設計" data-en="Festive Design">節慶視覺設計</span>
@@ -215,7 +221,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <div class="work-card" data-index="6">
+    <div class="work-card" data-index="6" data-cat="節慶視覺設計">
       <div class="work-thumb"><img src="07.jpg" alt="2023跨年祝賀圖" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="節慶視覺設計" data-en="Festive Design">節慶視覺設計</span>
@@ -224,7 +230,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <div class="work-card" data-index="7">
+    <div class="work-card" data-index="7" data-cat="活動宣傳設計">
       <div class="work-thumb"><img src="08.jpg" alt="原鄉踏查入圍名單" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
@@ -233,7 +239,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <div class="work-card" data-index="8">
+    <div class="work-card" data-index="8" data-cat="活動宣傳設計">
       <div class="work-thumb"><img src="09.jpg" alt="原鄉踏查宣傳圖" loading="lazy"></div>
       <div class="work-info">
         <span class="work-cat-badge" data-zh="活動宣傳設計" data-en="Event Design">活動宣傳設計</span>
@@ -343,6 +349,23 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + works.length) % works.length; renderLightbox(); }
   if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % works.length; renderLightbox(); }
+});
+
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.work-card').forEach(card => {
+      if (filter === 'all' || card.dataset.cat === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
 });
 
 // Reveal
