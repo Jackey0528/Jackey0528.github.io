@@ -198,9 +198,9 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <a href="../../index.html" class="nav-logo">Jackey.</a>
   <div class="nav-right">
     <div class="lang-toggle">
-      <button class="lang-btn" data-lang="zh">中</button>
+      <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
       <span class="lang-sep">/</span>
-      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
     </div>
     <a href="../../journal.html" class="nav-back" data-zh="← 返回日誌" data-en="← Back">← 返回日誌</a>
   </div>
@@ -494,8 +494,8 @@ function selectJob(i) {
   renderDetail(jobsData[i]);
 }
 
-function renderDetail(j) {
-  const l = lang();
+function renderDetail(j, forceLang) {
+  const l = forceLang || lang();
   const hasChart = j.chartLabels;
   const chartId = 'chart-' + j.id;
   const tableId = 'table-' + j.id;
@@ -585,10 +585,10 @@ function setLang(lang, save = true) {
   document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
   if (save) localStorage.setItem('jmd-lang', lang);
-  renderDetail(jobsData[currentJobIndex]);
+  renderDetail(jobsData[currentJobIndex], lang);
 }
-document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
-setLang(localStorage.getItem('jmd-lang') || 'zh', false);
+const initLang = localStorage.getItem('jmd-lang') || 'zh';
+setLang(initLang, false);
 selectJob(0);
 </script>
 <!-- Photo Lightbox -->
