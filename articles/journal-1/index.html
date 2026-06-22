@@ -11,7 +11,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="澳洲打工度假一年，我實際賺了多少錢？">
 <meta property="og:description" content="從草莓農場、物流倉庫到蔬菜工廠的真實收支紀錄。稅後總收入 A$58,189，實際存款約台幣 22 萬。">
-<meta property="og:image" content="https://jackey0528.github.io/articles/journal-1/cover.jpg">
+<meta property="og:image" content="https://jackey0528.github.io/articles/journal-1/thumb.jpg">
 <meta property="og:url" content="https://jackey0528.github.io/articles/journal-1/index.html">
 <meta property="article:published_time" content="2026-06-20">
 <script type="application/ld+json">
@@ -51,14 +51,23 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem;
 .lang-sep { font-size: 0.7rem; color: var(--line); }
 
 /* LAYOUT */
-.article-wrap { max-width: 680px; margin: 0 auto; padding: 80px 1.5rem 4rem; }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
 
 /* HEADER */
-.article-meta { font-size: 0.75rem; color: var(--ink-light); margin-bottom: 1.2rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-.article-meta .sep { color: var(--line); }
-.article-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 0.8rem; }
-.article-subtitle { font-size: 0.92rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 2rem; }
-.cover-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; display: block; background: var(--bg-2); margin-bottom: 3rem; }
+/* HERO VIDEO */
+.hero-video-wrap { position: relative; width: 100%; height: 500px; overflow: hidden; margin-top: 60px; margin-bottom: 0; }
+.hero-video-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+.hero-video-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 3rem; max-width: 860px; }
+.article-meta { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+.article-meta .sep { color: rgba(255,255,255,0.3); }
+.article-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 0.6rem; color: #fff; white-space: nowrap; }
+.article-subtitle { font-size: 0.92rem; line-height: 1.8; color: rgba(255,255,255,0.75); }
+@media (max-width: 768px) {
+  .hero-video-wrap { height: 320px; margin-top: 60px; }
+  .hero-video-content { padding: 0 1.5rem; }
+  .article-title { white-space: normal; font-size: 1.6rem; }
+}
 
 /* SECTION */
 .sec-title { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 700; margin: 2.5rem 0 1rem; }
@@ -209,16 +218,28 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 <div class="article-wrap">
 
   <!-- Header -->
-  <div class="article-meta">
-    <span data-zh="澳洲打工度假" data-en="Working Holiday AU">澳洲打工度假</span>
-    <span class="sep">·</span>
-    <span>2026.06.20</span>
-    <span class="sep">·</span>
-    <span>Australia</span>
+</div><!-- close article-wrap temporarily -->
+
+<!-- Hero Video -->
+<div class="hero-video-wrap">
+  <video autoplay muted loop playsinline>
+    <source src="hero-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
+  <div class="hero-video-content">
+    <div class="article-meta">
+      <span data-zh="澳洲打工度假" data-en="Working Holiday AU">澳洲打工度假</span>
+      <span class="sep">·</span>
+      <span>2026.06.20</span>
+      <span class="sep">·</span>
+      <span>Australia</span>
+    </div>
+    <h1 class="article-title" data-zh="澳洲打工度假一年，我賺了多少？" data-en="One Year in Australia — How Much Did I Earn?">澳洲打工度假一年，我賺了多少？</h1>
+    <p class="article-subtitle" data-zh="從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。" data-en="A real record of income and expenses — from strawberry farms and logistics to vegetable factories.">從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。</p>
   </div>
-  <h1 class="article-title" data-zh="澳洲打工度假一年，我實際賺了多少錢？" data-en="One Year Working Holiday in Australia — How Much Did I Actually Earn?">澳洲打工度假一年，我實際賺了多少錢？</h1>
-  <p class="article-subtitle" data-zh="從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。" data-en="A real record of income and expenses — from strawberry farms and logistics to vegetable factories.">從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。</p>
-  <img class="cover-img" src="cover.jpg" alt="澳洲公路自駕風景，打工度假一年旅程記錄">
+</div>
+
+<div class="article-wrap"><!-- reopen article-wrap -->
 
   <!-- 快速總結 -->
   <h2 class="sec-title" data-zh="快速總結" data-en="Quick Summary">快速總結</h2>
