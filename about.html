@@ -79,8 +79,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem;
 /* OUTSIDE OF WORK */
 .outside-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
 .outside-card { aspect-ratio: 3/4; border-radius: 16px; overflow: hidden; background: var(--bg-2); position: relative; }
+.outside-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.65) 100%); }
 .outside-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.outside-label { position: absolute; bottom: 1rem; left: 1rem; color: #fff; }
+.outside-label { position: absolute; bottom: 1rem; left: 1rem; color: #fff; z-index: 1; }
 .outside-label-icon { font-size: 0.85rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.3rem; opacity: 0.8; }
 .outside-label-name { font-size: 0.95rem; font-weight: 700; }
 .outside-label-en { font-size: 0.78rem; opacity: 0.7; }
