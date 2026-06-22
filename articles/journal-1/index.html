@@ -3,168 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- SEO: Title & Description -->
 <title>澳洲打工度假一年，我實際賺了多少錢？草莓農場、倉庫、工廠真實收支紀錄 | Jackey</title>
-<meta name="description" content="從草莓農場、物流倉庫到蔬菜工廠，在澳洲打工度假一年的完整收入與支出紀錄。總收入 $61,870 AUD，實際存款 $23,630 AUD（約台幣 49 萬），完整時薪與費用明細分享。">
+<meta name="description" content="從草莓農場、物流倉庫到蔬菜工廠，在澳洲打工度假一年的完整收入與支出紀錄。總收入 A$58,189，實際存款 A$10,204（約台幣 22 萬）。">
 <meta name="keywords" content="澳洲打工度假, 澳洲收入, 草莓農場收入, 打工度假存款, 澳洲生活費, Working Holiday Australia, 澳洲時薪">
 <meta name="author" content="Jackey">
 <link rel="canonical" href="https://jackey0528.github.io/articles/journal-1/index.html">
-
-<!-- Open Graph (Facebook / Line 分享) -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="澳洲打工度假一年，我實際賺了多少錢？">
-<meta property="og:description" content="從草莓農場、物流倉庫到蔬菜工廠的真實收支紀錄。總收入 $61,870 AUD，實際存款約台幣 49 萬。">
+<meta property="og:description" content="從草莓農場、物流倉庫到蔬菜工廠的真實收支紀錄。稅後總收入 A$58,189，實際存款約台幣 22 萬。">
 <meta property="og:image" content="https://jackey0528.github.io/articles/journal-1/cover.jpg">
 <meta property="og:url" content="https://jackey0528.github.io/articles/journal-1/index.html">
-<meta property="og:site_name" content="Jackey — 旅行中的設計師">
-<meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2026-06-20">
-<meta property="article:author" content="Jackey">
-<meta property="article:tag" content="澳洲打工度假">
-<meta property="article:tag" content="Working Holiday">
-<meta property="article:tag" content="澳洲收入">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="澳洲打工度假一年，我實際賺了多少錢？">
-<meta name="twitter:description" content="從草莓農場、物流倉庫到蔬菜工廠的真實收支紀錄。總收入 $61,870 AUD，實際存款約台幣 49 萬。">
-<meta name="twitter:image" content="https://jackey0528.github.io/articles/journal-1/cover.jpg">
-
-<!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "澳洲打工度假一年，我實際賺了多少錢？",
-  "description": "從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。總收入 $61,870 AUD，實際存款 $23,630 AUD（約台幣 49 萬）。",
-  "image": "https://jackey0528.github.io/articles/journal-1/cover.jpg",
   "datePublished": "2026-06-20",
-  "dateModified": "2026-06-20",
-  "author": {
-    "@type": "Person",
-    "name": "Jackey",
-    "url": "https://jackey0528.github.io"
-  },
-  "publisher": {
-    "@type": "Person",
-    "name": "Jackey",
-    "url": "https://jackey0528.github.io"
-  },
+  "author": {"@type": "Person", "name": "Jackey", "url": "https://jackey0528.github.io"},
   "url": "https://jackey0528.github.io/articles/journal-1/index.html",
-  "inLanguage": "zh-TW",
-  "keywords": "澳洲打工度假, 草莓農場, 物流倉庫, 蔬菜工廠, 打工度假存款, Working Holiday Australia"
+  "inLanguage": "zh-TW"
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --bg: #FFFFFF; --bg-2: #F4F4F2; --bg-dark: #14171F;
-  --ink: #1A1A1A; --ink-mid: #5C5C5C; --ink-light: #9A9A9A; --line: rgba(26,26,26,0.08);
+  --ink: #1A1A1A; --ink-mid: #5C5C5C; --ink-light: #9A9A9A; --line: rgba(26,26,26,0.1);
+  --green: #16a34a;
 }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', 'Noto Sans TC', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
 /* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 70px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
-.nav-logo { font-size: 1.1rem; font-weight: 900; color: var(--ink); text-decoration: none; }
-.nav-right { display: flex; align-items: center; gap: 2rem; }
-.nav-back { font-size: 0.88rem; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 60px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+.nav-logo { font-size: 1rem; font-weight: 900; color: var(--ink); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.nav-back { font-size: 0.82rem; color: var(--ink-mid); text-decoration: none; }
 .nav-back:hover { color: var(--ink); }
 .lang-toggle { display: flex; align-items: center; gap: 0.3rem; }
-.lang-btn { font-size: 0.8rem; background: none; border: none; cursor: pointer; color: var(--ink-light); padding: 0; }
+.lang-btn { font-size: 0.78rem; background: none; border: none; cursor: pointer; color: var(--ink-light); padding: 0; }
 .lang-btn.active { color: var(--ink); font-weight: 700; }
-.lang-sep { font-size: 0.75rem; color: var(--line); }
+.lang-sep { font-size: 0.7rem; color: var(--line); }
 
-/* ARTICLE HEADER */
-.article-header { padding: 110px 0 0; max-width: 720px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
-.article-meta { font-size: 0.8rem; color: var(--ink-light); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
-.article-meta span { display: flex; align-items: center; gap: 0.3rem; }
+/* LAYOUT */
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 80px 1.5rem 4rem; }
+
+/* HEADER */
+.article-meta { font-size: 0.75rem; color: var(--ink-light); margin-bottom: 1.2rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 .article-meta .sep { color: var(--line); }
-.article-title { font-family: 'Noto Serif TC', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; margin-bottom: 1rem; }
-.article-subtitle { font-size: 1rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 2rem; }
+.article-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 0.8rem; }
+.article-subtitle { font-size: 0.92rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 2rem; }
+.cover-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; display: block; background: var(--bg-2); margin-bottom: 3rem; }
 
-/* COVER IMAGE */
-.cover-wrap { max-width: 720px; margin: 0 auto 4rem; padding: 0 2rem; }
-.cover-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 14px; display: block; background: var(--bg-2); }
+/* SECTION */
+.sec-title { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 700; margin: 2.5rem 0 1rem; }
+.sec-desc { font-size: 0.85rem; color: var(--ink-light); margin-bottom: 1.2rem; }
 
-/* ARTICLE BODY */
-.article-body { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
-.section-title { font-family: 'Noto Serif TC', serif; font-size: 1.4rem; font-weight: 700; margin: 3rem 0 1.2rem; }
-.article-body p { font-size: 0.95rem; line-height: 1.9; color: var(--ink-mid); margin-bottom: 1rem; }
-
-/* SUMMARY CARDS */
-.summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 1.5rem 0; }
-.summary-card { background: var(--bg); padding: 1.4rem 1.2rem; text-align: center; }
-.summary-label { font-size: 0.72rem; color: var(--ink-light); letter-spacing: 0.08em; margin-bottom: 0.6rem; }
-.summary-value { font-size: 1.2rem; font-weight: 900; color: var(--ink); line-height: 1.2; }
-.summary-sub { font-size: 0.72rem; color: var(--ink-light); margin-top: 0.3rem; }
+/* QUICK SUMMARY */
+.qs-main { text-align: center; background: var(--bg-2); border-radius: 14px; padding: 1.8rem; margin-bottom: 1rem; }
+.qs-main-label { font-size: 0.72rem; color: var(--ink-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.qs-main-value { font-size: 2.4rem; font-weight: 900; color: var(--green); line-height: 1; margin-bottom: 0.3rem; }
+.qs-main-sub { font-size: 0.8rem; color: var(--ink-light); }
+.qs-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.7rem; }
+.qs-card { background: var(--bg-2); border-radius: 10px; padding: 1rem; }
+.qs-card-label { font-size: 0.68rem; color: var(--ink-light); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.qs-card-value { font-size: 1rem; font-weight: 700; }
+.qs-card-sub { font-size: 0.7rem; color: var(--ink-light); margin-top: 0.2rem; }
 
 /* TIMELINE */
-.timeline { margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0; }
-.timeline-row { display: grid; grid-template-columns: 100px 1fr; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
-.timeline-row:first-child { border-top: 1px solid var(--line); }
-.timeline-date { font-size: 0.82rem; color: var(--ink-light); font-weight: 500; }
-.timeline-event { font-size: 0.92rem; color: var(--ink); }
+.timeline { border-top: 1px solid var(--line); }
+.tl-row { display: grid; grid-template-columns: 100px 1fr; gap: 1rem; padding: 0.65rem 0; border-bottom: 1px solid var(--line); align-items: start; }
+.tl-date { font-size: 0.78rem; color: var(--ink-light); padding-top: 0.1rem; }
+.tl-event { font-size: 0.88rem; }
 
-/* JOB SCROLL */
-.job-scroll-wrap { position: relative; margin: 1.5rem 0; }
-.job-scroll { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.5rem; cursor: grab; scrollbar-width: none; }
-.job-scroll::-webkit-scrollbar { display: none; }
-.job-scroll.grabbing { cursor: grabbing; }
-.job-card { flex-shrink: 0; width: 220px; scroll-snap-align: start; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg); }
-.job-thumb { aspect-ratio: 4/3; background: var(--bg-2); overflow: hidden; }
-.job-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.job-info { padding: 1rem; }
-.job-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.6rem; }
-.job-detail { font-size: 0.78rem; color: var(--ink-light); line-height: 1.8; }
-.job-detail span { color: var(--ink-mid); }
-.scroll-fade { position: absolute; right: 0; top: 0; bottom: 0.5rem; width: 60px; background: linear-gradient(90deg, transparent, var(--bg)); pointer-events: none; }
+/* SPLIT VIEW */
+.sv-wrap { display: grid; grid-template-columns: 160px 1fr; gap: 0.8rem; margin-bottom: 1.5rem; align-items: start; }
+.sv-list { display: flex; flex-direction: column; gap: 0.5rem; position: sticky; top: 80px; }
+.sv-card { padding: 0.9rem 1rem; border-radius: 10px; border: 1px solid var(--line); cursor: pointer; background: var(--bg); transition: border-color 0.15s, background 0.15s; }
+.sv-card:hover { border-color: var(--ink-mid); }
+.sv-card.active { border-color: var(--ink); background: var(--bg-2); }
+.sv-card-num { font-size: 0.65rem; color: var(--ink-light); margin-bottom: 0.3rem; }
+.sv-card-name { font-size: 0.9rem; font-weight: 700; }
+.sv-detail-panel { border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem; background: var(--bg); overflow-y: auto; max-height: 70vh; scroll-behavior: smooth; }
+.sv-empty { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 0.82rem; color: var(--ink-light); }
+.sv-detail-name { font-size: 1.05rem; font-weight: 900; margin-bottom: 0.15rem; }
+.sv-detail-sub { font-size: 0.78rem; color: var(--ink-light); margin-bottom: 1rem; }
+.sv-stats { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 1rem; }
+.sv-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 1rem; border-bottom: 1px solid var(--line); font-size: 0.82rem; }
+.sv-stat-row:last-child { border-bottom: none; }
+.sv-stat-label { color: var(--ink-mid); }
+.sv-stat-val { font-weight: 700; }
+.sv-stat-val.big { font-size: 1.1rem; font-weight: 900; }
+.sv-desc-box { background: var(--bg-2); border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.8rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 1rem; }
+.sv-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem; }
+.sv-photos img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; background: var(--bg-2); display: block; }
+.sv-jobs-hint { font-size: 0.72rem; color: var(--ink-light); margin-bottom: 1.5rem; }
+
+/* JOB DETAIL PANEL */
+.job-detail { display: none; border: 1px solid var(--line); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem; background: var(--bg); }
+.job-detail.open { display: block; }
+.job-detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; }
+.job-detail-name { font-size: 1.1rem; font-weight: 900; }
+.job-detail-company { font-size: 0.82rem; color: var(--ink-light); }
+.job-detail-date { font-size: 0.82rem; color: var(--ink-light); margin-top: 0.2rem; }
+.job-detail-close { background: var(--bg-2); border: none; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; font-size: 0.9rem; flex-shrink: 0; }
+.job-detail-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.2rem; }
+.job-detail-photos img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; background: var(--bg-2); display: block; }
+.job-detail-stats { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 1.2rem; }
+.job-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; border-bottom: 1px solid var(--line); }
+.job-stat-row:last-child { border-bottom: none; }
+.job-stat-left { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--ink-mid); }
+.job-stat-icon { font-size: 1rem; }
+.job-stat-value { font-size: 0.95rem; font-weight: 700; }
+.job-stat-value.big { font-size: 1.2rem; font-weight: 900; }
+.job-desc-box { background: var(--bg-2); border-radius: 8px; padding: 0.9rem 1rem; font-size: 0.82rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 1.2rem; }
+.chart-section { margin-bottom: 1.2rem; }
+.chart-title { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.5rem; }
+.chart-wrap { position: relative; height: 180px; }
+.chart-hint { font-size: 0.72rem; color: var(--ink-light); margin-top: 0.4rem; }
+.chart-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; margin-bottom: 1.2rem; }
+.chart-stat-item { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--line); font-size: 0.82rem; }
+.chart-stat-item span:last-child { font-weight: 600; }
+.weekly-table-toggle { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.82rem; font-weight: 600; border: none; background: none; padding: 0.5rem 0; color: var(--ink); margin-bottom: 0.5rem; }
+.weekly-table-wrap { display: none; }
+.weekly-table-wrap.open { display: block; }
+.weekly-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+.weekly-table th { text-align: left; padding: 0.4rem 0.6rem; background: var(--bg-2); color: var(--ink-light); font-weight: 500; border-bottom: 1px solid var(--line); }
+.weekly-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--line); }
+.weekly-table tr:last-child td { border-bottom: none; }
+.weekly-note { font-size: 0.72rem; color: var(--ink-light); margin-top: 0.5rem; }
 
 /* EXPENSE */
-.expense-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; margin: 1.2rem 0; }
-.expense-item { font-size: 0.88rem; color: var(--ink-mid); padding: 0.5rem 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
-.expense-item span { color: var(--ink); font-weight: 600; }
+.expense-section { margin: 0.5rem 0 1.5rem; }
+.expense-category { margin-bottom: 1.2rem; }
+.expense-cat-header { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.4rem; border-bottom: 1.5px solid var(--ink); margin-bottom: 0.5rem; }
+.expense-cat-name { font-size: 0.92rem; font-weight: 700; }
+.expense-cat-total { font-size: 0.92rem; font-weight: 700; }
+.expense-sub-item { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--ink-mid); padding: 0.2rem 0; }
+.expense-sub-item span:last-child { color: var(--ink); }
 
-/* FINAL SUMMARY */
-.final-summary { background: var(--bg-2); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; }
-.final-summary-grid { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 1rem; align-items: center; }
-.final-col { text-align: center; }
-.final-label { font-size: 0.72rem; color: var(--ink-light); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
-.final-value { font-size: 1.1rem; font-weight: 900; }
-.final-col.highlight { background: var(--bg); border-radius: 10px; padding: 1.2rem; }
-.final-col.highlight .final-value { font-size: 1.4rem; color: var(--ink); }
-.final-col.highlight .final-sub { font-size: 0.78rem; color: var(--ink-light); margin-top: 0.3rem; }
+/* FINAL */
+.final-top { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 0.7rem; }
+.final-card { background: var(--bg-2); border-radius: 10px; padding: 1.2rem; }
+.final-card-label { font-size: 0.68rem; color: var(--ink-light); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.final-card-value { font-size: 1rem; font-weight: 900; }
+.final-card-sub { font-size: 0.7rem; color: var(--ink-light); margin-top: 0.2rem; }
+.final-highlight { background: var(--bg-dark); border-radius: 12px; padding: 2rem; text-align: center; }
+.final-highlight-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+.final-highlight-value { font-size: 2.2rem; font-weight: 900; color: #fff; margin-bottom: 0.4rem; }
+.final-highlight-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+.final-note { font-size: 0.72rem; color: var(--ink-light); margin-top: 0.6rem; }
 
 /* HARVEST */
-.harvest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0; align-items: start; }
-.harvest-text p { font-size: 0.92rem; line-height: 1.9; color: var(--ink-mid); margin-bottom: 0.6rem; }
-.harvest-quote { background: var(--bg-2); border-radius: 12px; padding: 1.5rem; position: relative; }
-.harvest-quote::before { content: '\201C'; font-size: 3rem; color: var(--line); line-height: 1; position: absolute; top: 0.5rem; left: 1rem; font-family: serif; }
-.harvest-quote p { font-size: 0.95rem; line-height: 1.85; color: var(--ink); font-weight: 500; padding-top: 1.5rem; }
-.harvest-quote::after { content: '\201D'; font-size: 3rem; color: var(--line); line-height: 1; display: block; text-align: right; font-family: serif; margin-top: -1rem; }
+.harvest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1rem 0; }
+.harvest-text p { font-size: 0.88rem; line-height: 1.9; color: var(--ink-mid); margin-bottom: 0.6rem; }
+.harvest-quote { background: var(--bg-2); border-radius: 10px; padding: 1.2rem 1.2rem 0.6rem; position: relative; }
+.harvest-quote::before { content: '\201C'; font-size: 2.5rem; color: rgba(0,0,0,0.1); line-height: 1; position: absolute; top: 0.3rem; left: 0.8rem; font-family: serif; }
+.harvest-quote p { font-size: 0.88rem; line-height: 1.85; color: var(--ink); font-weight: 500; padding-top: 1.2rem; }
+.harvest-quote::after { content: '\201D'; font-size: 2.5rem; color: rgba(0,0,0,0.1); line-height: 0.5; display: block; text-align: right; font-family: serif; }
 
 /* FOOTER */
-.article-footer { max-width: 720px; margin: 5rem auto 0; padding: 2rem 2rem; border-top: 1px solid var(--line); }
-footer { padding: 1.5rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; }
+.article-footer { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 3rem; font-size: 0.75rem; color: var(--ink-light); }
+footer { padding: 1.5rem 2rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
 footer p { font-size: 0.72rem; color: var(--ink-light); }
 .footer-links { display: flex; gap: 1.5rem; }
 .footer-links a { font-size: 0.72rem; color: var(--ink-light); text-decoration: none; }
 .footer-links a:hover { color: var(--ink); }
 
-/* RWD */
-@media (max-width: 768px) {
-  nav { padding: 0 1.5rem; }
-  .article-header, .cover-wrap, .article-body { padding-left: 1.5rem; padding-right: 1.5rem; }
-  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 580px) {
+  .sv-wrap { grid-template-columns: 1fr; } .sv-list { flex-direction: row; flex-wrap: wrap; } .sv-card { flex: 1; min-width: 120px; }
   .harvest-grid { grid-template-columns: 1fr; }
-  .final-summary-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .expense-grid { grid-template-columns: 1fr; }
-  footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+  .qs-grid { grid-template-columns: 1fr 1fr; }
+  .chart-stats { grid-template-columns: 1fr; }
 }
+
+/* PHOTO LIGHTBOX */
+.sv-photos img { cursor: zoom-in; transition: opacity 0.2s; }
+.sv-photos img:hover { opacity: 0.85; }
+.photo-lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
+.photo-lightbox.open { display: flex; }
+.photo-lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 8px; }
+.photo-lb-close { position: absolute; top: 1.2rem; right: 1.5rem; font-size: 1.8rem; color: #fff; background: none; border: none; cursor: pointer; opacity: 0.7; }
+.photo-lb-close:hover { opacity: 1; }
 </style>
 </head>
 <body>
@@ -177,156 +202,166 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       <span class="lang-sep">/</span>
       <button class="lang-btn" data-lang="en">EN</button>
     </div>
-    <a href="../../journal.html" class="nav-back" data-zh="← 返回日誌" data-en="← Back to Journal">← 返回日誌</a>
+    <a href="../../journal.html" class="nav-back" data-zh="← 返回日誌" data-en="← Back">← 返回日誌</a>
   </div>
 </nav>
 
-<!-- Article Header -->
-<div class="article-header">
+<div class="article-wrap">
+
+  <!-- Header -->
   <div class="article-meta">
-    <span data-zh="澳洲打工度假" data-en="Working Holiday Australia">澳洲打工度假</span>
+    <span data-zh="澳洲打工度假" data-en="Working Holiday AU">澳洲打工度假</span>
     <span class="sep">·</span>
     <span>2026.06.20</span>
     <span class="sep">·</span>
     <span>Australia</span>
   </div>
-  <h1 class="article-title" data-zh="澳洲打工度假一年，我實際賺了多少錢？" data-en="One Year Working Holiday in Australia — How Much Did I Actually Earn?">澳洲打工度假一年，<br>我實際賺了多少錢？</h1>
-  <p class="article-subtitle" data-zh="從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。" data-en="A real record of income and expenses — from strawberry farms and logistics warehouses to vegetable factories.">從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。</p>
-</div>
-
-<!-- Cover Image -->
-<div class="cover-wrap">
+  <h1 class="article-title" data-zh="澳洲打工度假一年，我實際賺了多少錢？" data-en="One Year Working Holiday in Australia — How Much Did I Actually Earn?">澳洲打工度假一年，我實際賺了多少錢？</h1>
+  <p class="article-subtitle" data-zh="從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。" data-en="A real record of income and expenses — from strawberry farms and logistics to vegetable factories.">從草莓農場、物流倉庫到蔬菜工廠的真實收入與支出紀錄。</p>
   <img class="cover-img" src="cover.jpg" alt="澳洲公路自駕風景，打工度假一年旅程記錄">
-</div>
-
-<!-- Body -->
-<div class="article-body">
 
   <!-- 快速總結 -->
-  <h2 class="section-title" data-zh="快速總結" data-en="Quick Summary">快速總結</h2>
-  <div class="summary-grid">
-    <div class="summary-card">
-      <p class="summary-label" data-zh="總收入" data-en="Total Income">總收入</p>
-      <p class="summary-value">$61,870</p>
-      <p class="summary-sub">AUD</p>
+  <h2 class="sec-title" data-zh="快速總結" data-en="Quick Summary">快速總結</h2>
+  <div class="qs-main">
+    <p class="qs-main-label" data-zh="實際存款" data-en="Net Savings">實際存款</p>
+    <p class="qs-main-value">A$10,204</p>
+    <p class="qs-main-sub" data-zh="約 NT$ 226,887" data-en="approx. NT$226,887">約 NT$ 226,887</p>
+  </div>
+  <div class="qs-grid">
+    <div class="qs-card">
+      <p class="qs-card-label" data-zh="總收入（稅後）" data-en="Total Income (after tax)">總收入（稅後）</p>
+      <p class="qs-card-value">A$58,189</p>
+      <p class="qs-card-sub" data-zh="稅前：$65,165 AUD" data-en="Pre-tax: $65,165 AUD">稅前：$65,165 AUD</p>
     </div>
-    <div class="summary-card">
-      <p class="summary-label" data-zh="總支出" data-en="Total Expenses">總支出</p>
-      <p class="summary-value">$38,240</p>
-      <p class="summary-sub">AUD</p>
+    <div class="qs-card">
+      <p class="qs-card-label" data-zh="總支出" data-en="Total Expenses">總支出</p>
+      <p class="qs-card-value">~A$40,000</p>
     </div>
-    <div class="summary-card">
-      <p class="summary-label" data-zh="實際存款" data-en="Net Savings">實際存款</p>
-      <p class="summary-value">$23,630</p>
-      <p class="summary-sub" data-zh="約台幣 NT$493,000" data-en="approx. NT$493,000">約台幣 NT$493,000</p>
-    </div>
-    <div class="summary-card">
-      <p class="summary-label" data-zh="工作內容" data-en="Jobs Held">工作內容</p>
-      <p class="summary-value">4 <span style="font-size:1rem;font-weight:400;" data-zh="個" data-en="jobs">個</span></p>
+    <div class="qs-card">
+      <p class="qs-card-label" data-zh="工作數量" data-en="Jobs Held">工作數量</p>
+      <p class="qs-card-value">4 <span style="font-size:0.85rem;font-weight:400;" data-zh="份" data-en="jobs">份</span></p>
     </div>
   </div>
 
   <!-- 時間軸 -->
-  <h2 class="section-title" data-zh="我的澳洲一年（時間軸）" data-en="My Year in Australia (Timeline)">我的澳洲一年（時間軸）</h2>
+  <h2 class="sec-title" data-zh="我的澳洲一年（時間軸）" data-en="My Year in Australia (Timeline)">我的澳洲一年（時間軸）</h2>
   <div class="timeline">
-    <div class="timeline-row">
-      <span class="timeline-date">2025.05</span>
-      <span class="timeline-event" data-zh="抵達布里斯本" data-en="Arrived in Brisbane">抵達布里斯本</span>
-    </div>
-    <div class="timeline-row">
-      <span class="timeline-date" data-zh="約 2 週" data-en="~2 weeks">約 2 週</span>
-      <span class="timeline-event" data-zh="包裹配送（Delivery Driver）" data-en="Package Delivery (Delivery Driver)">包裹配送（Delivery Driver）</span>
-    </div>
-    <div class="timeline-row">
-      <span class="timeline-date" data-zh="約 4 個月" data-en="~4 months">約 4 個月</span>
-      <span class="timeline-event" data-zh="草莓農場（Strawberry Farm）" data-en="Strawberry Farm">草莓農場（Strawberry Farm）</span>
-    </div>
-    <div class="timeline-row">
-      <span class="timeline-date" data-zh="約 3 個月" data-en="~3 months">約 3 個月</span>
-      <span class="timeline-event" data-zh="物流倉庫（Warehouse）" data-en="Logistics Warehouse">物流倉庫（Warehouse）</span>
-    </div>
-    <div class="timeline-row">
-      <span class="timeline-date" data-zh="約 4 個月" data-en="~4 months">約 4 個月</span>
-      <span class="timeline-event" data-zh="蔬菜工廠（Vegetable Factory）" data-en="Vegetable Factory">蔬菜工廠（Vegetable Factory）</span>
-    </div>
+    <div class="tl-row"><span class="tl-date">2025.05</span><span class="tl-event" data-zh="抵達布里斯本" data-en="Arrived in Brisbane">抵達布里斯本</span></div>
+    <div class="tl-row"><span class="tl-date">2025.06–08</span><span class="tl-event" data-zh="包裹配送（Delivery Driver・TEMU）" data-en="Package Delivery (Delivery Driver · TEMU)">包裹配送（Delivery Driver・TEMU）</span></div>
+    <div class="tl-row"><span class="tl-date">2025.06–10</span><span class="tl-event" data-zh="草莓農場（Picker・TSL）" data-en="Strawberry Farm (Picker · TSL)">草莓農場（Picker・TSL）</span></div>
+    <div class="tl-row"><span class="tl-date">2025.11–2026.01</span><span class="tl-event" data-zh="物流公司（Dispatch Team・Synnex）" data-en="Logistics Company (Dispatch Team · Synnex)">物流公司（Dispatch Team・Synnex）</span></div>
+    <div class="tl-row"><span class="tl-date">2026.02–05</span><span class="tl-event" data-zh="蔬菜工廠（Box Boy・Bonnacord）" data-en="Vegetable Factory (Box Boy · Bonnacord)">蔬菜工廠（Box Boy・Bonnacord）</span></div>
   </div>
 
   <!-- 收入明細 -->
-  <h2 class="section-title" data-zh="收入明細（各工作收入）" data-en="Income Breakdown (by Job)">收入明細（各工作收入）</h2>
-  <div class="job-scroll-wrap">
-    <div class="job-scroll" id="jobScroll">
-      <div class="job-card">
-        <div class="job-thumb"><img src="job-1.jpg" alt="澳洲打工度假包裹配送工作 Delivery Driver" loading="lazy"></div>
-        <div class="job-info">
-          <p class="job-name" data-zh="包裹配送" data-en="Package Delivery">包裹配送</p>
-          <p class="job-detail"><span data-zh="工作時間" data-en="Duration">工作時間</span>：<span data-zh="約 2 週" data-en="~2 weeks">約 2 週</span></p>
-          <p class="job-detail"><span data-zh="稅後收入" data-en="Net Income">稅後收入</span>：<span>$1,050 AUD</span></p>
-          <p class="job-detail"><span data-zh="時薪" data-en="Hourly Rate">時薪</span>：<span data-zh="約 $29.33/hr" data-en="~$29.33/hr">約 $29.33/hr</span></p>
-        </div>
+  <h2 class="sec-title" data-zh="收入明細（各工作收入）" data-en="Income Breakdown (by Job)">收入明細（各工作收入）</h2>
+  <p class="sec-desc" data-zh="這一年我做了 4 份工作，以下是各工作的收入總覽。" data-en="I worked 4 jobs this year. Here's the income overview for each.">這一年我做了 4 份工作，以下是各工作的收入總覽。</p>
+
+  <div class="sv-wrap">
+    <div class="sv-list">
+      <div class="sv-card active" onclick="selectJob(0)">
+        <p class="sv-card-num">01</p>
+        <p class="sv-card-name" data-zh="包裹配送" data-en="Package Delivery">包裹配送</p>
       </div>
-      <div class="job-card">
-        <div class="job-thumb"><img src="job-2.jpg" alt="澳洲草莓農場打工 Strawberry Farm" loading="lazy"></div>
-        <div class="job-info">
-          <p class="job-name" data-zh="草莓農場" data-en="Strawberry Farm">草莓農場</p>
-          <p class="job-detail"><span data-zh="工作時間" data-en="Duration">工作時間</span>：<span data-zh="約 4 個月" data-en="~4 months">約 4 個月</span></p>
-          <p class="job-detail"><span data-zh="稅後收入" data-en="Net Income">稅後收入</span>：<span>$10,400 AUD</span></p>
-          <p class="job-detail"><span data-zh="時薪" data-en="Hourly Rate">時薪</span>：<span data-zh="約 $24.10/hr" data-en="~$24.10/hr">約 $24.10/hr</span></p>
-        </div>
+      <div class="sv-card" onclick="selectJob(1)">
+        <p class="sv-card-num">02</p>
+        <p class="sv-card-name" data-zh="草莓農場" data-en="Strawberry Farm">草莓農場</p>
       </div>
-      <div class="job-card">
-        <div class="job-thumb"><img src="job-3.jpg" alt="澳洲物流倉庫打工 Warehouse" loading="lazy"></div>
-        <div class="job-info">
-          <p class="job-name" data-zh="物流倉庫" data-en="Logistics Warehouse">物流倉庫</p>
-          <p class="job-detail"><span data-zh="工作時間" data-en="Duration">工作時間</span>：<span data-zh="約 3 個月" data-en="~3 months">約 3 個月</span></p>
-          <p class="job-detail"><span data-zh="稅後收入" data-en="Net Income">稅後收入</span>：<span>$9,400 AUD</span></p>
-          <p class="job-detail"><span data-zh="時薪" data-en="Hourly Rate">時薪</span>：<span data-zh="約 $28.10/hr" data-en="~$28.10/hr">約 $28.10/hr</span></p>
-        </div>
+      <div class="sv-card" onclick="selectJob(2)">
+        <p class="sv-card-num">03</p>
+        <p class="sv-card-name" data-zh="物流公司" data-en="Logistics Company">物流公司</p>
       </div>
-      <div class="job-card">
-        <div class="job-thumb"><img src="job-4.jpg" alt="澳洲蔬菜工廠打工 Vegetable Factory" loading="lazy"></div>
-        <div class="job-info">
-          <p class="job-name" data-zh="蔬菜工廠" data-en="Vegetable Factory">蔬菜工廠</p>
-          <p class="job-detail"><span data-zh="工作時間" data-en="Duration">工作時間</span>：<span data-zh="約 4 個月" data-en="~4 months">約 4 個月</span></p>
-          <p class="job-detail"><span data-zh="稅後收入" data-en="Net Income">稅後收入</span>：<span>$18,200 AUD</span></p>
-          <p class="job-detail"><span data-zh="時薪" data-en="Hourly Rate">時薪</span>：<span data-zh="約 $20.20/hr" data-en="~$20.20/hr">約 $20.20/hr</span></p>
-        </div>
+      <div class="sv-card" onclick="selectJob(3)">
+        <p class="sv-card-num">04</p>
+        <p class="sv-card-name" data-zh="蔬菜工廠" data-en="Vegetable Factory">蔬菜工廠</p>
       </div>
     </div>
-    <div class="scroll-fade"></div>
+    <div class="sv-detail-panel" id="svDetailPanel">
+      <div class="sv-empty" data-zh="← 點擊左側工作查看詳細" data-en="← Click a job to see details">← 點擊左側工作查看詳細</div>
+    </div>
   </div>
+  <p class="sv-jobs-hint" data-zh="點擊左側工作卡片查看完整收入明細與每週記錄。" data-en="Click a job on the left to see full income details and weekly records.">點擊左側工作卡片查看完整收入明細與每週記錄。</p>
 
-  <!-- 支出明細 -->
-  <h2 class="section-title" data-zh="支出明細（總支出：$38,240 AUD）" data-en="Expense Breakdown (Total: $38,240 AUD)">支出明細（總支出：$38,240 AUD）</h2>
-  <div class="expense-grid">
-    <div class="expense-item"><span data-zh="房租" data-en="Rent">房租</span><span>$13,800 AUD</span></div>
-    <div class="expense-item"><span data-zh="車子（油錢／保險／維修）" data-en="Car (fuel/insurance/maintenance)">車子（油錢／保險／維修）</span><span>$7,800 AUD</span></div>
-    <div class="expense-item"><span data-zh="食物" data-en="Food">食物</span><span>$7,200 AUD</span></div>
-    <div class="expense-item"><span data-zh="旅遊／娛樂" data-en="Travel / Entertainment">旅遊／娛樂</span><span>$4,600 AUD</span></div>
-    <div class="expense-item"><span data-zh="其他生活開銷" data-en="Other Living Expenses">其他生活開銷</span><span>$4,840 AUD</span></div>
+    <!-- 支出明細 -->
+  <h2 class="sec-title" data-zh="支出明細（總支出：~$40,000 AUD）" data-en="Expense Breakdown (Total: ~$40,000 AUD)">支出明細（總支出：~$40,000 AUD）</h2>
+  <div class="expense-section">
+    <div class="expense-category">
+      <div class="expense-cat-header">
+        <span class="expense-cat-name" data-zh="房租" data-en="Rent">房租</span>
+        <span class="expense-cat-total">$8,676.75</span>
+      </div>
+      <div class="expense-sub-item"><span>Caboolture (2025.06–2025.10)</span><span>$3,938.40</span></div>
+      <div class="expense-sub-item"><span>Melbourne / Caulfiled North (2025.10–2026.01)</span><span>$2,720.00</span></div>
+      <div class="expense-sub-item"><span>Barinsdale (2026.02–2026.05)</span><span>$2,720.00</span></div>
+    </div>
+    <div class="expense-category">
+      <div class="expense-cat-header">
+        <span class="expense-cat-name" data-zh="租車" data-en="Car Rental">租車</span>
+        <span class="expense-cat-total">$8,480.10</span>
+      </div>
+      <div class="expense-sub-item"><span data-zh="昆州 (2025.05–2025.10)" data-en="QLD (2025.05–2025.10)">昆州 (2025.05–2025.10)</span><span>$3,938.40</span></div>
+      <div class="expense-sub-item"><span data-zh="維州 (2025.11–2026.05)" data-en="VIC (2025.11–2026.05)">維州 (2025.11–2026.05)</span><span>$2,720.00</span></div>
+    </div>
+    <div class="expense-category">
+      <div class="expense-cat-header">
+        <span class="expense-cat-name" data-zh="油錢" data-en="Fuel">油錢</span>
+        <span class="expense-cat-total">~$2,500.00</span>
+      </div>
+    </div>
+    <div class="expense-category">
+      <div class="expense-cat-header">
+        <span class="expense-cat-name" data-zh="生活採買" data-en="Groceries">生活採買</span>
+        <span class="expense-cat-total">$2,300.00</span>
+      </div>
+      <div class="expense-sub-item"><span>Aldi, Coles, Woolworths, Kmart...etc</span><span></span></div>
+    </div>
+    <div class="expense-category">
+      <div class="expense-cat-header">
+        <span class="expense-cat-name" data-zh="旅遊" data-en="Travel">旅遊</span>
+        <span class="expense-cat-total">~$6,500.00</span>
+      </div>
+      <div class="expense-sub-item"><span>Airbnb, Booking.com, Agoda, Car hire...etc</span><span></span></div>
+    </div>
+    <div class="expense-category">
+      <div class="expense-cat-header">
+        <span class="expense-cat-name" data-zh="外食" data-en="Eating Out">外食</span>
+        <span class="expense-cat-total">~$4,500.00</span>
+      </div>
+      <div class="expense-sub-item"><span>Maccas, KFC, Malatang......etc</span><span></span></div>
+    </div>
+    <div class="expense-category">
+      <div class="expense-cat-header">
+        <span class="expense-cat-name" data-zh="其他" data-en="Others">其他</span>
+        <span class="expense-cat-total">~$700.00</span>
+      </div>
+      <div class="expense-sub-item"><span data-zh="工作用具／慶生活動／網購亂買...etc" data-en="Work tools / celebrations / online shopping...etc">工作用具／慶生活動／網購亂買...etc</span><span></span></div>
+    </div>
   </div>
 
   <!-- 最後存了多少 -->
-  <h2 class="section-title" data-zh="最後我實際存了多少？" data-en="How Much Did I Actually Save?">最後我實際存了多少？</h2>
-  <div class="final-summary">
-    <div class="final-summary-grid">
-      <div class="final-col">
-        <p class="final-label" data-zh="總收入" data-en="Total Income">總收入</p>
-        <p class="final-value">$61,870 AUD</p>
-      </div>
-      <div class="final-col">
-        <p class="final-label" data-zh="總支出" data-en="Total Expenses">總支出</p>
-        <p class="final-value">$38,240 AUD</p>
-      </div>
-      <div class="final-col highlight">
-        <p class="final-label" data-zh="實際存款" data-en="Net Savings">實際存款</p>
-        <p class="final-value">$23,630 AUD</p>
-        <p class="final-sub" data-zh="約台幣 NT$493,000" data-en="approx. NT$493,000">約台幣 NT$493,000</p>
-      </div>
+  <h2 class="sec-title" data-zh="最後我實際存了多少？" data-en="How Much Did I Actually Save?">最後我實際存了多少？</h2>
+  <p class="sec-desc" data-zh="如果只看一年收支，答案如下；但考量到旅遊消費與生活品質，這個數字是值得的。" data-en="Looking at the full year of income and expenses, here's the bottom line.">如果只看一年收支，答案如下；但考量到旅遊消費與生活品質，這個數字是值得的。</p>
+  <div class="final-top">
+    <div class="final-card">
+      <p class="final-card-label" data-zh="總收入（稅後）" data-en="Total Income (after tax)">總收入（稅後）</p>
+      <p class="final-card-value">A$50,204.62</p>
+      <p class="final-card-sub" data-zh="約 NT$ 1,120,000" data-en="approx. NT$1,120,000">約 NT$ 1,120,000</p>
+    </div>
+    <div class="final-card">
+      <p class="final-card-label" data-zh="總支出" data-en="Total Expenses">總支出</p>
+      <p class="final-card-value">~A$40,000</p>
+      <p class="final-card-sub" data-zh="約 NT$ 892,000" data-en="approx. NT$892,000">約 NT$ 892,000</p>
     </div>
   </div>
+  <div class="final-highlight">
+    <p class="final-highlight-label" data-zh="實際存款" data-en="Net Savings">實際存款</p>
+    <p class="final-highlight-value">A$10,204.62</p>
+    <p class="final-highlight-sub" data-zh="約台幣 NT$226,887" data-en="approx. NT$226,887">約台幣 NT$226,887</p>
+  </div>
+  <p class="final-note" data-zh="澳幣兌台幣 1 AUD = NT$ 22.23（請自行參考）" data-en="Exchange rate: 1 AUD = NT$22.23 (for reference only)">澳幣兌台幣 1 AUD = NT$ 22.23（請自行參考）</p>
 
-  <!-- 最大收穫 -->
-  <h2 class="section-title" data-zh="這一年最大的收穫" data-en="The Biggest Takeaway from This Year">這一年最大的收穫</h2>
+  <!-- 這一年最大的收穫 -->
+  <h2 class="sec-title" data-zh="這一年最大的收穫" data-en="The Biggest Takeaway from This Year">這一年最大的收穫</h2>
   <div class="harvest-grid">
     <div class="harvest-text">
       <p data-zh="如果只看銀行帳戶數字，我這一年只是賺到了一些錢。" data-en="If you only look at the bank numbers, I just made some money this year.">如果只看銀行帳戶數字，我這一年只是賺到了一些錢。</p>
@@ -338,10 +373,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     </div>
   </div>
 
-</div><!-- end article-body -->
-
-<div class="article-footer">
-  <p style="font-size:0.8rem;color:var(--ink-light);" data-zh="寫於 2026.06.20 · Australia" data-en="Written on 2026.06.20 · Australia">寫於 2026.06.20 · Australia</p>
+  <div class="article-footer" data-zh="寫於 2026.06.20 · Australia" data-en="Written on 2026.06.20 · Australia">寫於 2026.06.20 · Australia</div>
 </div>
 
 <footer>
@@ -354,13 +386,196 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 </footer>
 
 <script>
-// Drag to scroll
-const el = document.getElementById('jobScroll');
-let isDown = false, startX, scrollLeft;
-el.addEventListener('mousedown', e => { isDown = true; el.classList.add('grabbing'); startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
-el.addEventListener('mouseleave', () => { isDown = false; el.classList.remove('grabbing'); });
-el.addEventListener('mouseup', () => { isDown = false; el.classList.remove('grabbing'); });
-el.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - el.offsetLeft; el.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+// Split view job data
+const jobsData = [
+  {
+    id: 'delivery',
+    name_zh: '包裹配送', name_en: 'Package Delivery',
+    sub: 'Delivery Driver · TEMU · 2025.06–08',
+    photos: ['1-a.jpg','1-b.jpg'],
+    stats: [
+      { label_zh: '總工時', label_en: 'Total Hours', val: '約 140 小時' },
+      { label_zh: '平均時薪', label_en: 'Avg Rate', val: '~A$15.71 / hr' },
+      { label_zh: '平均週工時', label_en: 'Avg Weekly', val: '24.5 hr / week' },
+      { label_zh: '總收入', label_en: 'Total Income', val: 'A$2,200.00', big: true },
+    ],
+    desc_zh: '以自用車輛接單配送包裹，工作時間彈性，每次出勤約 10 小時。因為是兼差性質，工作時數較少，收入相對有限。',
+    desc_en: 'Delivered packages using my own vehicle with flexible hours, averaging around 10 hours per session. As a side gig, hours were limited so income was relatively low.',
+    chart: null,
+    table: null
+  },
+  {
+    id: 'tsl',
+    name_zh: '草莓農場', name_en: 'Strawberry Farm',
+    sub: 'Picker · TSL · 2025.06–10',
+    photos: ['2-a.jpg','2-b.jpg'],
+    stats: [
+      { label_zh: '總工時', label_en: 'Total Hours', val: '503.75 小時' },
+      { label_zh: '平均時薪', label_en: 'Avg Rate', val: 'A$31.69 / hr' },
+      { label_zh: '平均週工時', label_en: 'Avg Weekly', val: '26.5 hr / week' },
+      { label_zh: '總收入', label_en: 'Total Income', val: 'A$15,966.84', big: true },
+    ],
+    desc_zh: '在草莓農場擔任採收員（Picker），主要負責採收、分級與包裝草莓。工作季節性較強，天氣會影響工時多寡。',
+    desc_en: 'Worked as a Picker on a strawberry farm, responsible for harvesting, grading, and packing strawberries. Highly seasonal work with hours affected by weather.',
+    chartTitle_zh: '每週收入走勢', chartTitle_en: 'Weekly Income Trend',
+    chartHint_zh: '小提醒：雨天或天氣不佳時，工時會減少，收入也會受到影響。', chartHint_en: 'Note: Rainy weather reduces working hours and income.',
+    chartLabels: ['06/02','06/09','06/16','06/23','06/30','07/07','07/14','07/21','07/28','08/04','08/11','08/18','08/25','09/01','09/08','09/15','09/22','09/29','10/06'],
+    chartData: [1140.22,1010.13,742.29,535.68,596.90,950.70,673.41,800.17,1022.00,1180.45,879.40,1014.08,1378.52,1299.29,1323.06,1386.44,1307.21,990.31,554.58],
+    stats2: [
+      { label_zh: '最高週收入', label_en: 'Highest week', val: 'A$1,386.44' },
+      { label_zh: '最低週收入', label_en: 'Lowest week', val: 'A$535.68' },
+      { label_zh: '平均週收入', label_en: 'Avg weekly', val: 'A$840.36' },
+      { label_zh: '有收入的週數', label_en: 'Weeks worked', val: '19 週' },
+    ],
+    tableHead: ['週期','工時(小時)','時薪(A$)','薪水(A$)'],
+    tableData: [['06/02–06/08','37.25','31.69','$1,140.22'],['06/09–06/15','33','31.69','$1,010.13'],['06/16–06/22','24.25','31.69','$742.29'],['06/23–06/29','17.5','31.69','$535.68'],['06/30–07/06','19.5','31.69','$596.90'],['07/07–07/13','30','31.69','$950.70'],['07/14–07/20','21.25','31.69','$673.41'],['07/21–07/27','25.25','31.69','$800.17'],['07/28–08/03','32.25','31.69','$1,022.00'],['08/04–08/10','37.25','31.69','$1,180.45'],['08/11–08/17','27.75','31.69','$879.40'],['08/18–08/24','32','31.69','$1,014.08'],['08/25–08/31','43.5','31.69','$1,378.52'],['09/01–09/07','41','31.69','$1,299.29'],['09/08–09/14','41.75','31.69','$1,323.06'],['09/15–09/21','43.75','31.69','$1,386.44'],['09/22–09/28','41.25','31.69','$1,307.21'],['09/29–10/05','31.25','31.69','$990.31'],['10/06–10/12','17.5','31.69','$554.58']]
+  },
+  {
+    id: 'synnex',
+    name_zh: '物流公司', name_en: 'Logistics Company',
+    sub: 'Dispatch Team · Synnex · 2025.11–2026.01',
+    photos: ['3-a.jpg','3-b.jpg'],
+    stats: [
+      { label_zh: '總工時', label_en: 'Total Hours', val: '417.9 小時' },
+      { label_zh: '平均時薪', label_en: 'Avg Rate', val: 'A$32→$26 / hr' },
+      { label_zh: '平均週工時', label_en: 'Avg Weekly', val: '32 hr / week' },
+      { label_zh: '總收入', label_en: 'Total Income', val: 'A$18,785.67', big: true },
+    ],
+    desc_zh: '在物流公司擔任 Dispatch Team，負責倉庫揀貨與配送排程。採雙週薪制，前期時薪 $32，後期調整為 $26。',
+    desc_en: 'Worked in a logistics company\'s Dispatch Team. Biweekly pay, starting at $32/hr then adjusted to $26/hr.',
+    chartTitle_zh: '雙週收入走勢', chartTitle_en: 'Biweekly Income Trend',
+    chartHint_zh: null, chartHint_en: null,
+    chartLabels: ['10/27–11/09','11/10–11/23','11/24–12/07','12/08–12/21','12/22–01/04','01/05–01/18','01/19–02/01'],
+    chartData: [2447.04,4404.69,1836.31,3904.32,2218.19,3856.67,2963.45],
+    stats2: [
+      { label_zh: '最高雙週收入', label_en: 'Highest period', val: 'A$4,404.69' },
+      { label_zh: '最低雙週收入', label_en: 'Lowest period', val: 'A$1,836.31' },
+      { label_zh: '共發薪次數', label_en: 'Pay periods', val: '7 次' },
+      { label_zh: '總收入（稅後）', label_en: 'Total (after tax)', val: 'A$18,785.67' },
+    ],
+    tableHead: ['週期','工時(小時)','時薪(A$)','薪水(A$)'],
+    tableData: [['10/27–11/09','30.3','32','$2,447.04'],['11/10–11/23','76','32','$4,404.69'],['11/24–12/07','38','32','$1,836.31'],['12/08–12/21','76','32','$3,904.32'],['12/22–01/04','76','26','$2,218.19'],['01/05–01/18','76','26','$3,856.67'],['01/19–02/01','45.6','26','$2,963.45']]
+  },
+  {
+    id: 'bonnacord',
+    name_zh: '蔬菜工廠', name_en: 'Vegetable Factory',
+    sub: 'Box Boy · Bonnacord · 2026.02–05',
+    photos: ['4-a.jpg','4-b.jpg'],
+    stats: [
+      { label_zh: '總工時', label_en: 'Total Hours', val: '491.75 小時' },
+      { label_zh: '平均時薪', label_en: 'Avg Rate', val: 'A$31.19 / hr' },
+      { label_zh: '平均週工時', label_en: 'Avg Weekly', val: '30.7 hr / week' },
+      { label_zh: '總收入', label_en: 'Total Income', val: 'A$15,452.11', big: true },
+    ],
+    desc_zh: '在蔬菜工廠擔任 Box Boy，負責蔬菜分裝與包裝作業。工作穩定，採週薪制。',
+    desc_en: 'Worked as a Box Boy in a vegetable factory, responsible for sorting and packing vegetables. Stable work with weekly pay.',
+    chartTitle_zh: '每週收入走勢', chartTitle_en: 'Weekly Income Trend',
+    chartHint_zh: null, chartHint_en: null,
+    chartLabels: ['01/29','02/05','02/12','02/19','02/26','03/05','03/12','03/19','03/26','04/02','04/09','04/16','04/23','04/30','05/07','05/14'],
+    chartData: [764.16,1294.39,1426.94,1411.35,1247.60,732.97,1270.99,1083.85,1536.11,1110.36,31.19,1200.82,1161.83,1232.01,1270.99,686.18],
+    stats2: [
+      { label_zh: '最高週收入', label_en: 'Highest week', val: 'A$1,536.11' },
+      { label_zh: '最低週收入', label_en: 'Lowest week', val: 'A$31.19' },
+      { label_zh: '平均週收入', label_en: 'Avg weekly', val: 'A$965.76' },
+      { label_zh: '有收入的週數', label_en: 'Weeks worked', val: '16 週' },
+    ],
+    tableHead: ['週期','工時(小時)','時薪(A$)','薪水(A$)'],
+    tableData: [['01/29–02/04','24.5','31.19','$764.16'],['02/05–02/11','41.5','31.19','$1,294.39'],['02/12–02/18','45.75','31.19','$1,426.94'],['02/19–02/25','45.25','31.19','$1,411.35'],['02/26–03/04','40','31.19','$1,247.60'],['03/05–03/11','23.5','31.19','$732.97'],['03/12–03/18','40.75','31.19','$1,270.99'],['03/19–03/25','34.75','31.19','$1,083.85'],['03/26–04/01','49.25','31.19','$1,536.11'],['04/02–04/08','29','31.19','$1,110.36'],['04/09–04/15','24','31.19','$31.19'],['04/16–04/22','38.5','31.19','$1,200.82'],['04/23–04/29','37.25','31.19','$1,161.83'],['04/30–05/06','39.5','31.19','$1,232.01'],['05/07–05/13','40.75','31.19','$1,270.99'],['05/14–05/20','22','31.19','$686.18']]
+  }
+];
+
+let currentJobIndex = 0;
+let chartInstances = {};
+const lang = () => localStorage.getItem('jmd-lang') || 'zh';
+
+function selectJob(i) {
+  currentJobIndex = i;
+  document.querySelectorAll('.sv-card').forEach((c, idx) => c.classList.toggle('active', idx === i));
+  renderDetail(jobsData[i]);
+}
+
+function renderDetail(j) {
+  const l = lang();
+  const hasChart = j.chartLabels;
+  const chartId = 'chart-' + j.id;
+  const tableId = 'table-' + j.id;
+
+  const panel = document.getElementById('svDetailPanel');
+  panel.scrollTop = 0;
+  panel.innerHTML = `
+    <div class="sv-detail-name">${l === 'zh' ? j.name_zh : j.name_en}</div>
+    <div class="sv-detail-sub">${j.sub}</div>
+    <div class="sv-photos">
+      <img src="${j.photos[0]}" alt="${l === 'zh' ? j.name_zh : j.name_en}" loading="lazy" onclick="openPhotoLb(this.src)">
+      <img src="${j.photos[1]}" alt="${l === 'zh' ? j.name_zh : j.name_en}" loading="lazy" onclick="openPhotoLb(this.src)">
+    </div>
+    <div class="sv-stats">
+      ${j.stats.map(s => `<div class="sv-stat-row">
+        <span class="sv-stat-label">${l === 'zh' ? s.label_zh : s.label_en}</span>
+        <span class="sv-stat-val${s.big ? ' big' : ''}">${s.val}</span>
+      </div>`).join('')}
+    </div>
+    <div class="sv-desc-box">${l === 'zh' ? j.desc_zh : j.desc_en}</div>
+    ${hasChart ? `
+    <div class="chart-section">
+      <p class="chart-title">${l === 'zh' ? j.chartTitle_zh : j.chartTitle_en}</p>
+      <div class="chart-wrap"><canvas id="${chartId}"></canvas></div>
+      ${j.chartHint_zh ? `<p class="chart-hint">${l === 'zh' ? j.chartHint_zh : j.chartHint_en}</p>` : ''}
+    </div>
+    <div class="chart-stats">
+      ${j.stats2.map(s => `<div class="chart-stat-item"><span>${l === 'zh' ? s.label_zh : s.label_en}</span><span>${s.val}</span></div>`).join('')}
+    </div>
+    <button class="weekly-table-toggle" onclick="toggleTable('${j.id}')">
+      <span id="${j.id}-icon">▸</span>
+      <span>${l === 'zh' ? '完整薪資紀錄' : 'Full Pay Records'}</span>
+    </button>
+    <div class="weekly-table-wrap" id="${tableId}">
+      <table class="weekly-table">
+        <thead><tr>${j.tableHead.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${j.tableData.map(row => `<tr>${row.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
+      </table>
+      <p class="weekly-note">${l === 'zh' ? '以上為稅後收入，已扣除稅金與退休金。' : 'Above figures are after-tax, with tax and superannuation deducted.'}</p>
+    </div>
+    ` : ''}
+  `;
+
+  if (hasChart) {
+    if (chartInstances[j.id]) chartInstances[j.id].destroy();
+    chartInstances[j.id] = new Chart(document.getElementById(chartId), {
+      type: 'line',
+      data: {
+        labels: j.chartLabels,
+        datasets: [{ data: j.chartData, borderColor: '#1A1A1A', backgroundColor: '#1A1A1A18', borderWidth: 2, pointRadius: 3, fill: true, tension: 0.3 }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => 'A$' + ctx.raw.toLocaleString() } } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 45 } },
+          y: { grid: { color: '#f0f0f0' }, ticks: { font: { size: 10 }, callback: v => 'A$' + v } }
+        }
+      }
+    });
+  }
+}
+
+function toggleTable(id) {
+  const wrap = document.getElementById('table-' + id);
+  const icon = document.getElementById(id + '-icon');
+  const open = wrap.classList.toggle('open');
+  icon.textContent = open ? '▾' : '▸';
+}
+function openPhotoLb(src) {
+  document.getElementById('photoLbImg').src = src;
+  document.getElementById('photoLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePhotoLb() {
+  document.getElementById('photoLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePhotoLb(); });
+document.getElementById('photoLightbox').addEventListener('click', e => { if (e.target === document.getElementById('photoLightbox')) closePhotoLb(); });
 
 // Language
 function setLang(lang, save = true) {
@@ -370,9 +585,17 @@ function setLang(lang, save = true) {
   document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
   if (save) localStorage.setItem('jmd-lang', lang);
+  renderDetail(jobsData[currentJobIndex]);
 }
 document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
 setLang(localStorage.getItem('jmd-lang') || 'zh', false);
+selectJob(0);
 </script>
+<!-- Photo Lightbox -->
+<div class="photo-lightbox" id="photoLightbox">
+  <button class="photo-lb-close" onclick="closePhotoLb()">✕</button>
+  <img id="photoLbImg" src="" alt="">
+</div>
+
 </body>
 </html>
