@@ -66,7 +66,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem;
 @media (max-width: 768px) {
   .hero-video-wrap { height: 320px; margin-top: 0; }
   .hero-video-content { padding: 0 1.5rem; }
-  .article-title { white-space: normal; font-size: 1.6rem; }
+  .article-title { white-space: normal; font-size: 1.2rem; letter-spacing: -0.02em; }
 }
 
 /* SECTION */
@@ -162,7 +162,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem;
 .final-card-label { font-size: 0.68rem; color: var(--ink-light); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
 .final-card-value { font-size: 1rem; font-weight: 900; }
 .final-card-sub { font-size: 0.7rem; color: var(--ink-light); margin-top: 0.2rem; }
-.final-highlight { background: var(--bg-dark); border-radius: 12px; padding: 2rem; text-align: center; }
+.final-highlight { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 12px; padding: 2rem; text-align: center; }
 .final-highlight-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-bottom: 0.6rem; }
 .final-highlight-value { font-size: 2.2rem; font-weight: 900; color: #fff; margin-bottom: 0.4rem; }
 .final-highlight-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
@@ -183,7 +183,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 .footer-links a:hover { color: var(--ink); }
 
 @media (max-width: 580px) {
-  .sv-wrap { grid-template-columns: 1fr; } .sv-list { flex-direction: row; flex-wrap: wrap; } .sv-card { flex: 1; min-width: 120px; }
+  .sv-wrap { grid-template-columns: 1fr; gap: 0.6rem; } .sv-list { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; } .sv-card { flex: 1 0 40%; padding: 0.6rem 0.8rem; } .sv-detail-panel { max-height: none; overflow-y: visible; } .sv-list { position: static; }
   .harvest-grid { grid-template-columns: 1fr; }
   .qs-grid { grid-template-columns: 1fr 1fr; }
   .chart-stats { grid-template-columns: 1fr; }
@@ -377,9 +377,9 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <!-- 這一年最大的收穫 -->
   <h2 class="sec-title" data-zh="這一年最大的收穫" data-en="The Biggest Takeaway from This Year">這一年最大的收穫</h2>
   <div class="harvest-body">
-    <p class="harvest-p" data-zh="如果只看銀行帳戶數字，我這一年只是賺到了一些錢。但如果加上這歷程的事、遇到的人、克服的恐懼與不安，我知道這一年是我人生中很重要的一段旅程。謝謝這段旅程中的所有人，也謝謝那個沒有放棄的自己。" data-en="If you only look at the bank numbers, I just made some money this year. But if you add the experiences, the people I met, and the fears I overcame — I know this year was one of the most important journeys of my life. Thank you to everyone along this journey, and thank you to the version of me who never gave up.">如果只看銀行帳戶數字，我這一年只是賺到了一些錢。但如果加上這歷程的事、遇到的人、克服的恐懼與不安，我知道這一年是我人生中很重要的一段旅程。謝謝這段旅程中的所有人，也謝謝那個沒有放棄的自己。</p>
+    <p class="harvest-p" data-zh="這一年花很多的時間在集簽，很幸運都能找到時薪制的工作，相對工作與福利待遇都友善很多，可惜這一年的果季不好，工時不太長，不然可能可以賺到更多的錢。感謝這一年一路上所相遇的所有人、經歷的所有大小事情、努力克服的所有恐懼與不安，讓我成為更好更勇敢的人，是我很重要的一段旅程，再次感謝你們。也感謝勇敢沒放棄的自己。" data-en="This year, I spent a lot of time on the working holiday visa process and was lucky to find hourly-wage jobs that offered relatively friendly working conditions and benefits. Unfortunately, it wasn't a great season for fruit picking, so working hours were shorter than expected — otherwise I could have earned even more. Thank you to everyone I met along the way, every big and small experience, and every fear and uncertainty I pushed through. You've all made me a better and braver person. This was a truly important journey for me. Thank you all. And thank you to the version of me who never gave up.">這一年花很多的時間在集簽，很幸運都能找到時薪制的工作，相對工作與福利待遇都友善很多，可惜這一年的果季不好，工時不太長，不然可能可以賺到更多的錢。感謝這一年一路上所相遇的所有人、經歷的所有大小事情、努力克服的所有恐懼與不安，讓我成為更好更勇敢的人，是我很重要的一段旅程，再次感謝你們。也感謝勇敢沒放棄的自己。</p>
     <blockquote class="harvest-quote">
-      <p data-zh="生活不會一直很順利，但你會越來越相信，自己有能力走下去。" data-en="Life won't always go smoothly, but you'll grow more and more certain that you have what it takes to keep going.">生活不會一直很順利，但你會越來越相信，自己有能力走下去。</p>
+      <p data-zh="世界很大，不必急著成為誰；獲取多少成就。只要持續向前，就已經很好了。" data-en="The world is vast — no need to rush into becoming someone or achieving great things. As long as you keep moving forward, that is already enough.">世界很大，不必急著成為誰；獲取多少成就。只要持續向前，就已經很好了。</p>
     </blockquote>
   </div>
 
@@ -482,7 +482,7 @@ const jobsData = [
     chartTitle_zh: '每週收入走勢', chartTitle_en: 'Weekly Income Trend',
     chartHint_zh: null, chartHint_en: null,
     chartLabels: ['01/29','02/05','02/12','02/19','02/26','03/05','03/12','03/19','03/26','04/02','04/09','04/16','04/23','04/30','05/07','05/14'],
-    chartData: [764.16,1294.39,1426.94,1411.35,1247.60,732.97,1270.99,1083.85,1536.11,1110.36,31.19,1200.82,1161.83,1232.01,1270.99,686.18],
+    chartData: [764.16,1294.39,1426.94,1411.35,1247.60,732.97,1270.99,1083.85,1536.11,1110.36,748.56,1200.82,1161.83,1232.01,1270.99,686.18],
     stats2: [
       { label_zh: '最高週收入', label_en: 'Highest week', val: 'A$1,536.11' },
       { label_zh: '最低週收入', label_en: 'Lowest week', val: 'A$31.19' },
@@ -490,7 +490,7 @@ const jobsData = [
       { label_zh: '有收入的週數', label_en: 'Weeks worked', val: '16 週' },
     ],
     tableHead: ['週期','工時(小時)','時薪(A$)','薪水(A$)'],
-    tableData: [['01/29–02/04','24.5','31.19','$764.16'],['02/05–02/11','41.5','31.19','$1,294.39'],['02/12–02/18','45.75','31.19','$1,426.94'],['02/19–02/25','45.25','31.19','$1,411.35'],['02/26–03/04','40','31.19','$1,247.60'],['03/05–03/11','23.5','31.19','$732.97'],['03/12–03/18','40.75','31.19','$1,270.99'],['03/19–03/25','34.75','31.19','$1,083.85'],['03/26–04/01','49.25','31.19','$1,536.11'],['04/02–04/08','29','31.19','$1,110.36'],['04/09–04/15','24','31.19','$31.19'],['04/16–04/22','38.5','31.19','$1,200.82'],['04/23–04/29','37.25','31.19','$1,161.83'],['04/30–05/06','39.5','31.19','$1,232.01'],['05/07–05/13','40.75','31.19','$1,270.99'],['05/14–05/20','22','31.19','$686.18']]
+    tableData: [['01/29–02/04','24.5','31.19','$764.16'],['02/05–02/11','41.5','31.19','$1,294.39'],['02/12–02/18','45.75','31.19','$1,426.94'],['02/19–02/25','45.25','31.19','$1,411.35'],['02/26–03/04','40','31.19','$1,247.60'],['03/05–03/11','23.5','31.19','$732.97'],['03/12–03/18','40.75','31.19','$1,270.99'],['03/19–03/25','34.75','31.19','$1,083.85'],['03/26–04/01','49.25','31.19','$1,536.11'],['04/02–04/08','29','31.19','$1,110.36'],['04/09–04/15','24','31.19','$748.56'],['04/16–04/22','38.5','31.19','$1,200.82'],['04/23–04/29','37.25','31.19','$1,161.83'],['04/30–05/06','39.5','31.19','$1,232.01'],['05/07–05/13','40.75','31.19','$1,270.99'],['05/14–05/20','22','31.19','$686.18']]
   }
 ];
 
