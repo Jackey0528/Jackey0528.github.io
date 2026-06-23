@@ -197,6 +197,21 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 .photo-lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 8px; }
 .photo-lb-close { position: absolute; top: 1.2rem; right: 1.5rem; font-size: 1.8rem; color: #fff; background: none; border: none; cursor: pointer; opacity: 0.7; }
 .photo-lb-close:hover { opacity: 1; }
+
+/* EXPENSE CHART */
+.expense-chart-section { margin: 2rem 0; }
+.expense-chart-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 1rem; color: var(--ink-light); letter-spacing: 0.05em; text-transform: uppercase; }
+.bar-chart { display: flex; flex-direction: column; gap: 0.6rem; }
+.bar-row { display: grid; grid-template-columns: 80px 1fr 80px; gap: 0.6rem; align-items: center; font-size: 0.78rem; }
+.bar-label { color: var(--ink-mid); text-align: right; }
+.bar-track { background: var(--bg-2); border-radius: 100px; height: 10px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 100px; background: var(--ink); transition: width 1s ease; }
+.bar-value { color: var(--ink-mid); font-weight: 600; }
+
+/* CLOSING PHOTO */
+.closing-photo-wrap { margin-top: 3rem; }
+.closing-photo-img { width: 100%; border-radius: 12px; display: block; object-fit: cover; max-height: 400px; }
+.closing-photo-caption { font-size: 0.75rem; color: var(--ink-light); margin-top: 0.6rem; text-align: center; }
 </style>
 </head>
 <body>
@@ -244,8 +259,8 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <div class="qs-grid">
     <div class="qs-card">
       <p class="qs-card-label" data-zh="總收入（稅後）" data-en="Total Income (after tax)">總收入（稅後）</p>
-      <p class="qs-card-value">A$58,189</p>
-      <p class="qs-card-sub" data-zh="稅前：$65,165 AUD" data-en="Pre-tax: $65,165 AUD">稅前：$65,165 AUD</p>
+      <p class="qs-card-value">A$50,204.62</p>
+      <p class="qs-card-sub" data-zh="稅前：$58,189 AUD" data-en="Pre-tax: $58,189 AUD">稅前：$58,189 AUD</p>
     </div>
     <div class="qs-card">
       <p class="qs-card-label" data-zh="總支出" data-en="Total Expenses">總支出</p>
@@ -352,7 +367,49 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     </div>
   </div>
 
-  <!-- 最後存了多少 -->
+  <!-- Expense Bar Chart -->
+  <div class="expense-chart-section">
+    <p class="expense-chart-title" data-zh="支出比例" data-en="Expense Breakdown">支出比例</p>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <span class="bar-label" data-zh="租車" data-en="Car Rental">租車</span>
+        <div class="bar-track"><div class="bar-fill" style="width:21.2%"></div></div>
+        <span class="bar-value">21.2%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label" data-zh="旅遊" data-en="Travel">旅遊</span>
+        <div class="bar-track"><div class="bar-fill" style="width:16.3%"></div></div>
+        <span class="bar-value">16.3%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label" data-zh="房租" data-en="Rent">房租</span>
+        <div class="bar-track"><div class="bar-fill" style="width:21.7%"></div></div>
+        <span class="bar-value">21.7%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label" data-zh="外食" data-en="Eating Out">外食</span>
+        <div class="bar-track"><div class="bar-fill" style="width:11.3%"></div></div>
+        <span class="bar-value">11.3%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label" data-zh="油錢" data-en="Fuel">油錢</span>
+        <div class="bar-track"><div class="bar-fill" style="width:6.3%"></div></div>
+        <span class="bar-value">6.3%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label" data-zh="生活採買" data-en="Groceries">生活採買</span>
+        <div class="bar-track"><div class="bar-fill" style="width:5.8%"></div></div>
+        <span class="bar-value">5.8%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label" data-zh="其他" data-en="Others">其他</span>
+        <div class="bar-track"><div class="bar-fill" style="width:1.8%"></div></div>
+        <span class="bar-value">1.8%</span>
+      </div>
+    </div>
+  </div>
+
+    <!-- 最後存了多少 -->
   <h2 class="sec-title" data-zh="最後我實際存了多少？" data-en="How Much Did I Actually Save?">最後我實際存了多少？</h2>
   <p class="sec-desc" data-zh="如果只看一年收支，答案如下；但考量到旅遊消費與生活品質，這個數字是值得的。" data-en="Looking at the full year of income and expenses, here's the bottom line.">如果只看一年收支，答案如下；但考量到旅遊消費與生活品質，這個數字是值得的。</p>
   <div class="final-top">
@@ -383,7 +440,13 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     </blockquote>
   </div>
 
-  <div class="article-footer" data-zh="寫於 2026.06.20 · Australia" data-en="Written on 2026.06.20 · Australia">寫於 2026.06.20 · Australia</div>
+  <!-- Closing Photo -->
+  <div class="closing-photo-wrap">
+    <img class="closing-photo-img" src="thumb.png" alt="Port Macquarie Town Beach Breakwall">
+    <p class="closing-photo-caption">Port Macquarie — Town Beach Breakwall 沿海長堤的彩繪石頭路</p>
+  </div>
+
+    <div class="article-footer" data-zh="寫於 2026.06.20 · Australia" data-en="Written on 2026.06.20 · Australia">寫於 2026.06.20 · Australia</div>
 </div>
 
 <footer>
@@ -409,8 +472,8 @@ const jobsData = [
       { label_zh: '平均週工時', label_en: 'Avg Weekly', val: '24.5 hr / week' },
       { label_zh: '總收入', label_en: 'Total Income', val: 'A$2,200.00', big: true },
     ],
-    desc_zh: '以自用車輛接單配送包裹，工作時間彈性，每次出勤約 10 小時。因為是兼差性質，工作時數較少，收入相對有限。',
-    desc_en: 'Delivered packages using my own vehicle with flexible hours, averaging around 10 hours per session. As a side gig, hours were limited so income was relatively low.',
+    desc_zh: '以自用車輛接單配送包裹，工作時間彈性，每個包裹收入是 2 元，每次出勤約 10 小時。因為是兼差性質，工作時數較少，收入相對有限。',
+    desc_en: 'Delivered packages using my own vehicle with flexible hours. Each package earned $2, with each shift averaging around 10 hours. As a side gig, hours were limited so income was relatively low.',
     chart: null,
     table: null
   },
@@ -425,8 +488,8 @@ const jobsData = [
       { label_zh: '平均週工時', label_en: 'Avg Weekly', val: '26.5 hr / week' },
       { label_zh: '總收入', label_en: 'Total Income', val: 'A$15,966.84', big: true },
     ],
-    desc_zh: '在草莓農場擔任採收員（Picker），主要負責採收、分級與包裝草莓。工作季節性較強，天氣會影響工時多寡。',
-    desc_en: 'Worked as a Picker on a strawberry farm, responsible for harvesting, grading, and packing strawberries. Highly seasonal work with hours affected by weather.',
+    desc_zh: '在草莓農場擔任採收員（Picker），主要負責採收、剪枝與除草。工作季節性較強，天氣會影響工時多寡。',
+    desc_en: 'Worked as a Picker on a strawberry farm, responsible for harvesting, pruning, and weeding. Highly seasonal work with hours affected by weather.',
     chartTitle_zh: '每週收入走勢', chartTitle_en: 'Weekly Income Trend',
     chartHint_zh: '小提醒：雨天或天氣不佳時，工時會減少，收入也會受到影響。', chartHint_en: 'Note: Rainy weather reduces working hours and income.',
     chartLabels: ['06/02','06/09','06/16','06/23','06/30','07/07','07/14','07/21','07/28','08/04','08/11','08/18','08/25','09/01','09/08','09/15','09/22','09/29','10/06'],
@@ -451,8 +514,8 @@ const jobsData = [
       { label_zh: '平均週工時', label_en: 'Avg Weekly', val: '32 hr / week' },
       { label_zh: '總收入', label_en: 'Total Income', val: 'A$18,785.67', big: true },
     ],
-    desc_zh: '在物流公司擔任 Dispatch Team，負責倉庫揀貨與配送排程。採雙週薪制，前期時薪 $32，後期調整為 $26。',
-    desc_en: 'Worked in a logistics company\'s Dispatch Team. Biweekly pay, starting at $32/hr then adjusted to $26/hr.',
+    desc_zh: '在物流公司擔任清點人員，負責倉庫揀貨、點貨、包板與叫車。採雙週薪制，前四週時薪 $32（Casual Contract），後期調整為 $26（Full Time Contract）。',
+    desc_en: 'Worked as a warehouse checker, responsible for picking, counting, palletizing, and calling transport. Biweekly pay, starting at $32/hr (Casual Contract) then adjusted to $26/hr (Full Time Contract).',
     chartTitle_zh: '雙週收入走勢', chartTitle_en: 'Biweekly Income Trend',
     chartHint_zh: null, chartHint_en: null,
     chartLabels: ['10/27–11/09','11/10–11/23','11/24–12/07','12/08–12/21','12/22–01/04','01/05–01/18','01/19–02/01'],
@@ -477,8 +540,8 @@ const jobsData = [
       { label_zh: '平均週工時', label_en: 'Avg Weekly', val: '30.7 hr / week' },
       { label_zh: '總收入', label_en: 'Total Income', val: 'A$15,452.11', big: true },
     ],
-    desc_zh: '在蔬菜工廠擔任 Box Boy，負責蔬菜分裝與包裝作業。工作穩定，採週薪制。',
-    desc_en: 'Worked as a Box Boy in a vegetable factory, responsible for sorting and packing vegetables. Stable work with weekly pay.',
+    desc_zh: '在蔬菜工廠擔任 Box Boy，負責搬運箱子與包裝流程。工作穩定，採週薪制。',
+    desc_en: 'Worked as a Box Boy in a vegetable factory, responsible for moving boxes and the packing process. Stable work with weekly pay.',
     chartTitle_zh: '每週收入走勢', chartTitle_en: 'Weekly Income Trend',
     chartHint_zh: null, chartHint_en: null,
     chartLabels: ['01/29','02/05','02/12','02/19','02/26','03/05','03/12','03/19','03/26','04/02','04/09','04/16','04/23','04/30','05/07','05/14'],
