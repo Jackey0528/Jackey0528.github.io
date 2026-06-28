@@ -54,7 +54,7 @@ nav {
 .mobile-menu a { font-size: 0.95rem; font-weight: 500; color: var(--ink); text-decoration: none; }
 
 /* PAGE HEADER */
-.page-header { padding: 120px 3rem 3rem; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--line); }
+.page-header { padding: 3rem 3rem 3rem; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--line); }
 .page-header-top { display: flex; justify-content: space-between; align-items: flex-end; }
 .page-eyebrow { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.8rem; }
 .page-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; letter-spacing: -0.02em; }
@@ -104,6 +104,11 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 @media (max-width: 580px) {
   .card-grid { grid-template-columns: 1fr; }
 }
+
+/* ARTICLES HERO */
+.articles-hero { position: relative; width: 100%; height: 400px; overflow: hidden; margin-top: 0; }
+.articles-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.articles-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.35); }
 </style>
 </head>
 <body>
@@ -138,6 +143,13 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <a href="journal.html" data-zh="日誌" data-en="Journal">日誌</a>
   <a href="portfolio.html" data-zh="作品集" data-en="Portfolio">作品集</a>
   <a href="about.html" data-zh="關於我" data-en="About">關於我</a>
+</div>
+
+
+<!-- Articles Hero -->
+<div class="articles-hero">
+  <img src="articles-hero.jpg" alt="文章橫幅" loading="eager">
+  <div class="articles-hero-overlay"></div>
 </div>
 
 <!-- Header -->
