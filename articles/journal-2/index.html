@@ -97,9 +97,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem;
 .info-card-item-value { font-weight: 600; color: var(--ink); }
 
 /* HIGHLIGHT BOX */
-.highlight-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.88rem; line-height: 1.8; color: #9a3412; }
-.highlight-box.green { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
-.highlight-box.yellow { background: #fefce8; border-color: #fde68a; color: #854d0e; }
+.highlight-box { border-left: 3px solid var(--ink-light); margin: 1.2rem 0; padding: 0.5rem 0 0.5rem 1.2rem; font-size: 0.9rem; line-height: 1.85; color: var(--ink-mid); font-style: italic; }
+.highlight-box.green { border-left-color: var(--green); }
+.highlight-box.yellow { border-left-color: var(--ink-light); }
 
 /* LIST */
 .article-list { list-style: none; margin: 0.8rem 0 1rem 0; }
@@ -133,6 +133,14 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   .info-card-grid { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 1rem; padding: 1.5rem; }
 }
+
+/* TOC */
+.toc { margin-bottom: 2rem; }
+.toc-title { font-size: 0.72rem; color: var(--ink-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem; }
+.toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.toc-list a { font-size: 0.88rem; color: var(--ink-mid); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; transition: color 0.2s; }
+.toc-list a:hover { color: var(--ink); }
+.toc-list a span { font-size: 0.72rem; color: var(--ink-light); }
 </style>
 </head>
 <body>
@@ -159,8 +167,6 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     <div class="article-meta-hero">
       <span data-zh="澳洲打工度假" data-en="Working Holiday AU">澳洲打工度假</span>
       <span class="sep">·</span>
-      <span>2026.07.28</span>
-      <span class="sep">·</span>
       <span>Caboolture, QLD</span>
     </div>
     <h1 class="article-title-hero" data-zh="澳打第一份工作－草莓 Picker" data-en="My First Job in Australia — Strawberry Picker">澳打第一份工作－草莓 Picker</h1>
@@ -169,6 +175,18 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 </div>
 
 <div class="article-wrap">
+
+  <!-- TOC -->
+  <div class="toc">
+    <p class="toc-title" data-zh="文章目錄" data-en="Contents">文章目錄</p>
+    <ul class="toc-list">
+      <li><a href="#sec-01"><span>01</span><span data-zh="海投集簽工作" data-en="The Job Hunt">海投集簽工作</span></a></li>
+      <li><a href="#sec-02"><span>02</span><span>TSL Family Farms</span></a></li>
+      <li><a href="#sec-03"><span>03</span><span>Caboolture</span></a></li>
+      <li><a href="#sec-04"><span>04</span><span data-zh="二簽申請 & 季末 Party" data-en="Second Visa & End-of-Season Party">二簽申請 & 季末 Party</span></a></li>
+      <li><a href="#sec-05"><span>05</span><span data-zh="離別" data-en="Goodbye">離別</span></a></li>
+    </ul>
+  </div>
 
   <!-- 基本資訊 -->
   <div class="info-card">
@@ -201,18 +219,19 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     </div>
   </div>
 
+  <!-- TOC -->
   <hr class="sec-divider">
 
   <!-- 01 海投集簽工作 -->
   <div class="article-section">
     <p class="sec-num">01</p>
-    <h2 class="sec-title" data-zh="海投集簽工作" data-en="The Job Hunt">海投集簽工作</h2>
+    <h2 class="sec-title" id="sec-01" data-zh="海投集簽工作" data-en="The Job Hunt">海投集簽工作</h2>
 
     <p class="article-p" data-zh="我是 <strong>2025/5/18</strong> 入境布里斯本，但其實早在 <strong>4 月還在奧克蘭</strong> 時，我就開始瘋狂投履歷找集二簽的工作。" data-en="I entered Brisbane on <strong>2025/5/18</strong>, but I had already been furiously sending out applications for regional work back in <strong>April while still in Auckland</strong>.">我是 <strong>2025/5/18</strong> 入境布里斯本，但其實早在 <strong>4 月還在奧克蘭</strong> 時，我就開始瘋狂投履歷找集二簽的工作。</p>
 
-    <p class="article-p" data-zh="一開始，我希望能繼續做服務業，因此投了非常多偏遠地區或離島的工作，像是摩頓島、凱恩斯、達爾文等地，不過最後幾乎都石沉大海。" data-en="At first I hoped to stay in hospitality, so I applied to many remote areas and islands — Moreton Island, Cairns, Darwin — but almost everything went unanswered.">一開始，我希望能繼續做服務業，因此投了非常多偏遠地區或離島的工作，像是摩頓島、凱恩斯、達爾文等地，不過最後幾乎都石沉大海。</p>
+    <p class="article-p" data-zh="一開始，我希望能繼續做服務業，因此<strong>投了很多偏遠地區或離島的工作</strong>，像是摩頓島、凱恩斯、達爾文等地，不過最後幾乎都石沉大海。" data-en="At first I hoped to stay in hospitality, so I applied to <strong>many remote areas and islands</strong> — Moreton Island, Cairns, Darwin — but almost everything went unanswered.">一開始，我希望能繼續做服務業，因此<strong>投了很多偏遠地區或離島的工作</strong>，像是摩頓島、凱恩斯、達爾文等地，不過最後幾乎都石沉大海。</p>
 
-    <p class="article-p" data-zh="後來，透過一位在紐西蘭打工度假認識的朋友介紹，我得知卡布丘有一間五星評價的草莓農場，採時薪制、白人老闆、合法合規。當時查了不少資料，「澳打四大地獄」幾乎每篇文章都會提到卡布丘，讓我猶豫了很久，到底該不該冒這個險。" data-en="Then, through a friend I'd met during my New Zealand working holiday, I heard about a five-star strawberry farm in Caboolture — hourly pay, white owner, fully above board. But almost every article about the 'Four Hells of Australian Working Holiday' mentioned Caboolture, so I hesitated for a long time.">後來，透過一位在紐西蘭打工度假認識的朋友介紹，我得知卡布丘有一間五星評價的草莓農場，採時薪制、白人老闆、合法合規。當時查了不少資料，「澳打四大地獄」幾乎每篇文章都會提到卡布丘，讓我猶豫了很久，到底該不該冒這個險。</p>
+    <p class="article-p" data-zh="後來，透過一位在紐西蘭打工度假認識的朋友介紹，我得知卡布丘有一間五星評價的草莓農場，採時薪制、白人老闆、合法合規。當時查了不少資料，「<strong>澳打四大地獄</strong>」幾乎每篇文章都會提到卡布丘，讓我猶豫了很久，到底該不該冒這個險。" data-en="Then, through a friend I'd met during my New Zealand working holiday, I heard about a five-star strawberry farm in Caboolture — hourly pay, white owner, fully above board. But almost every article about the 'Four Hells of Australian Working Holiday' mentioned Caboolture, so I hesitated for a long time.">後來，透過一位在紐西蘭打工度假認識的朋友介紹，我得知卡布丘有一間五星評價的草莓農場，採時薪制、白人老闆、合法合規。當時查了不少資料，「<strong>澳打四大地獄</strong>」幾乎每篇文章都會提到卡布丘，讓我猶豫了很久，到底該不該冒這個險。</p>
 
     <div class="highlight-box yellow">
       <span data-zh="但眼看出發澳洲的日子越來越近，我最後還是決定先去看看，心想真的不行，大不了戰術性逃回布里斯本。😂" data-en="But with my departure date approaching fast, I decided to just go and see. Worst case, I could always make a tactical retreat back to Brisbane. 😂">但眼看出發澳洲的日子越來越近，我最後還是決定先去看看，心想真的不行，大不了戰術性逃回布里斯本。😂</span>
@@ -228,13 +247,13 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <!-- 02 TSL Family Farms -->
   <div class="article-section">
     <p class="sec-num">02</p>
-    <h2 class="sec-title">TSL Family Farms</h2>
+    <h2 class="sec-title" id="sec-02">TSL Family Farms</h2>
 
-    <p class="article-p" data-zh="<strong>TSL Family Farms</strong> 是由三姐妹 <strong>Tracey、Sam、Laura</strong> 共同經營的家庭式中型草莓農場。" data-en="<strong>TSL Family Farms</strong> is a mid-sized family strawberry farm run by three sisters — <strong>Tracey, Sam, and Laura</strong>."><strong>TSL Family Farms</strong> 是由三姐妹 <strong>Tracey、Sam、Laura</strong> 共同經營的家庭式中型草莓農場。</p>
+    <p class="article-p" data-zh="<strong>TSL Family Farms</strong> 是由三姐妹 <strong>Tracey</strong>、<strong>Sam</strong>、<strong>Laura</strong> 共同經營的家庭式中型草莓農場。" data-en="<strong>TSL Family Farms</strong> is a mid-sized family strawberry farm run by three sisters — <strong>Tracey, Sam, and Laura</strong>."><strong>TSL Family Farms</strong> 是由三姐妹 <strong>Tracey</strong>、<strong>Sam</strong>、<strong>Laura</strong> 共同經營的家庭式中型草莓農場。</p>
 
     <p class="article-p" data-zh="我在 2025 年完整待了一個草莓季，擔任 Picker（採果員）。農場共有兩塊草莓田與一間包裝廠。" data-en="I spent a full strawberry season there in 2025 as a Picker. The farm has two strawberry fields and one packing shed.">我在 2025 年完整待了一個草莓季，擔任 Picker（採果員）。農場共有兩塊草莓田與一間包裝廠。</p>
 
-    <p class="article-p" data-zh="最讓我喜歡的是，所有草莓都是高架栽培，不用一直彎腰，整體工作強度比想像中輕鬆許多。推車雖然偶爾會偏左或偏右，但並不難操作。" data-en="What I loved most was that all the strawberries were grown in elevated beds — no constant bending over. The work was much easier than I expected. The carts occasionally drifted left or right, but weren't hard to handle.">最讓我喜歡的是，所有草莓都是高架栽培，不用一直彎腰，整體工作強度比想像中輕鬆許多。推車雖然偶爾會偏左或偏右，但並不難操作。</p>
+    <p class="article-p" data-zh="最讓我喜歡的是，所有草莓都是<strong>高架栽培</strong>，不用一直彎腰，整體工作強度比想像中輕鬆許多。推車雖然偶爾會偏左或偏右，但並不難操作。" data-en="What I loved most was that all the strawberries were grown in elevated beds — no constant bending over. The work was much easier than I expected. The carts occasionally drifted left or right, but weren't hard to handle.">最讓我喜歡的是，所有草莓都是<strong>高架栽培</strong>，不用一直彎腰，整體工作強度比想像中輕鬆許多。推車雖然偶爾會偏左或偏右，但並不難操作。</p>
 
     <div class="photo-grid">
       <div class="photo-slot"><p class="photo-slot-label">📷</p></div>
@@ -243,7 +262,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <h3 class="subsec-title">🍓 <span data-zh="採摘草莓" data-en="Picking Strawberries">採摘草莓</span></h3>
     <p class="article-p" data-zh="大約成熟 90% 就可以採收，採的時候需要保留一小段果梗。" data-en="Strawberries are ready to pick at about 90% ripeness, and you need to leave a short stem attached.">大約成熟 90% 就可以採收，採的時候需要保留一小段果梗。</p>
-    <p class="article-p" data-zh="最容易被騙的是所謂的「陷阱草莓」—— 正面看起來全紅，翻過來背面卻還是綠色。我真的被騙過很多次。" data-en="The trickiest thing is what I call 'trap strawberries' — they look fully red from the front, but flip them over and the back is still green. I fell for it many, many times.">最容易被騙的是所謂的「陷阱草莓」—— 正面看起來全紅，翻過來背面卻還是綠色。我真的被騙過很多次。</p>
+    <p class="article-p" data-zh="最容易被騙的是所謂的「<strong>陷阱草莓</strong>」—— 正面看起來全紅，翻過來背面卻還是綠色。我真的被騙過很多次。" data-en="The trickiest thing is what I call 'trap strawberries' — they look fully red from the front, but flip them over and the back is still green. I fell for it many, many times.">最容易被騙的是所謂的「<strong>陷阱草莓</strong>」—— 正面看起來全紅，翻過來背面卻還是綠色。我真的被騙過很多次。</p>
 
     <h3 class="subsec-title">🌱 <span data-zh="除草、清除爛果與枯葉" data-en="Weeding & Removing Bad Fruit">除草、清除爛果與枯葉</span></h3>
     <p class="article-p" data-zh="固定每週三都會安排除草，同時也要把爛果摘除，不然很容易感染其他草莓，整排草莓就會開始生病。" data-en="Weeding was scheduled every Wednesday. Bad fruit also needed to be removed, otherwise the rot would spread and infect an entire row.">固定每週三都會安排除草，同時也要把爛果摘除，不然很容易感染其他草莓，整排草莓就會開始生病。</p>
@@ -255,7 +274,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     <p class="article-p" data-zh="季末時，部分草莓田會開始關閉，需要把所有植物及土包全部移除，等於把整塊田清空，準備迎接下一個草莓季。" data-en="At the end of the season, some fields would begin to close. We'd remove all the plants and soil bags — essentially clearing the entire field to prepare for the next season.">季末時，部分草莓田會開始關閉，需要把所有植物及土包全部移除，等於把整塊田清空，準備迎接下一個草莓季。</p>
 
     <h3 class="subsec-title">💰 <span data-zh="薪資制度" data-en="Pay Structure">薪資制度</span></h3>
-    <p class="article-p" data-zh="TSL 採用時薪＋獎金制度。我當時的基本時薪是 AU$31/hr。如果當天採收的草莓價值超過基本時薪（依每天果價而定），就可以拿到額外獎金。" data-en="TSL uses an hourly rate plus bonus system. My base rate was AU$31/hr. If the value of the strawberries you picked that day exceeded your base hourly earnings (depending on daily fruit prices), you'd receive a bonus.">TSL 採用時薪＋獎金制度。我當時的基本時薪是 AU$31/hr。如果當天採收的草莓價值超過基本時薪（依每天果價而定），就可以拿到額外獎金。</p>
+    <p class="article-p" data-zh="TSL <strong>採用時薪＋獎金制度</strong>。我當時的基本時薪是 AU$31/hr。如果當天採收的草莓價值超過基本時薪（依每天果價而定），就可以拿到額外獎金。" data-en="TSL uses an hourly rate plus bonus system. My base rate was AU$31/hr. If the value of the strawberries you picked that day exceeded your base hourly earnings (depending on daily fruit prices), you'd receive a bonus.">TSL <strong>採用時薪＋獎金制度</strong>。我當時的基本時薪是 AU$31/hr。如果當天採收的草莓價值超過基本時薪（依每天果價而定），就可以拿到額外獎金。</p>
 
     <div class="highlight-box">
       <span data-zh="很遺憾，我整個草莓季一次獎金都沒拿過。😂 不過我一直安慰自己，我採的草莓品質很好，很少有爛果或綠果……應該是品質太高，不是速度太慢（自己找藉口）。" data-en="Sadly, I didn't receive a single bonus the entire season. 😂 But I kept telling myself my strawberries were great quality, with very few bad or unripe ones… it must be the quality, not the speed. (Total excuse.)">很遺憾，我整個草莓季一次獎金都沒拿過。😂 不過我一直安慰自己，我採的草莓品質很好，很少有爛果或綠果……應該是品質太高，不是速度太慢（自己找藉口）。</span>
@@ -267,7 +286,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <!-- 03 Caboolture -->
   <div class="article-section">
     <p class="sec-num">03</p>
-    <h2 class="sec-title">Caboolture</h2>
+    <h2 class="sec-title" id="sec-03">Caboolture</h2>
 
     <p class="article-p" data-zh="後來去過更多真正偏遠的小鎮後，我才發現：Caboolture 其實一點都不偏僻。" data-en="After visiting truly remote towns, I realised: Caboolture is actually not remote at all.">後來去過更正真偏遠的小鎮後，我才發現：Caboolture 其實一點都不偏僻。</p>
 
@@ -277,7 +296,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="這裡有三大超市、亞洲超市、日式韓式泰式餐廳、大型購物中心。想逛 Costco 可以往 North Lakes，想去海邊可以往 Sunshine Coast，假日也能去布里斯本或黃金海岸走走。" data-en="There are three major supermarkets, Asian grocery stores, Japanese, Korean and Thai restaurants, and a large shopping centre. Costco is a short drive to North Lakes, the beach is easy to reach at Sunshine Coast, and on weekends you can head to Brisbane or the Gold Coast.">這裡有三大超市、亞洲超市、日式韓式泰式餐廳、大型購物中心。想逛 Costco 可以往 North Lakes，想去海邊可以往 Sunshine Coast，假日也能去布里斯本或黃金海岸走走。</p>
 
-    <p class="article-p" data-zh="如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。" data-en="If you can find stable work, I think Caboolture is a genuinely great place for a working holiday.">如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</p>
+    <p class="article-p" data-zh="<strong><strong>如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</strong></strong>" data-en="If you can find stable work, I think Caboolture is a genuinely great place for a working holiday."><strong>如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</strong></p>
 
     <div class="photo-slot"><p class="photo-slot-label" data-zh="📷 照片" data-en="📷 Photo">📷 照片</p></div>
   </div>
@@ -287,7 +306,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <!-- 04 二簽申請 & 季末 Party -->
   <div class="article-section">
     <p class="sec-num">04</p>
-    <h2 class="sec-title" data-zh="二簽申請 & 季末 Party" data-en="Second Visa Application & End-of-Season Party">二簽申請 & 季末 Party</h2>
+    <h2 class="sec-title" id="sec-04" data-zh="二簽申請 & 季末 Party" data-en="Second Visa Application & End-of-Season Party">二簽申請 & 季末 Party</h2>
 
     <p class="article-p" data-zh="我是在 6/2 開始工作。當累積到 13 張 Payslip 時，我就在 8/30 立刻送出了二簽申請。" data-en="I started work on 6/2. Once I had 13 payslips, I submitted my second visa application on 8/30 without hesitation.">我是在 6/2 開始工作。當累積到 13 張 Payslip 時，我就在 8/30 立刻送出了二簽申請。</p>
 
@@ -311,7 +330,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <!-- 05 離別 -->
   <div class="article-section">
     <p class="sec-num">05</p>
-    <h2 class="sec-title" data-zh="離別" data-en="Goodbye">離別</h2>
+    <h2 class="sec-title" id="sec-05" data-zh="離別" data-en="Goodbye">離別</h2>
 
     <p class="article-p" data-zh="當第二塊草莓田開始傳出即將關閉的消息時，大家也開始陸續尋找下一份工作。" data-en="When news spread that the second field was about to close, everyone started looking for their next job.">當第二塊草莓田開始傳出即將關閉的消息時，大家也開始陸續尋找下一份工作。</p>
 
