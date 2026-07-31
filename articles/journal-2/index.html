@@ -84,6 +84,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem;
 
 /* PHOTO PLACEHOLDER */
 .photo-slot { background: var(--bg-2); border-radius: 12px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; margin: 1.5rem 0; border: 1px dashed var(--line); }
+.article-img { width: 100%; border-radius: 12px; display: block; object-fit: cover; margin: 1.5rem 0; }
+.article-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.5rem 0; }
+.article-img-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 10px; display: block; }
 .photo-slot-label { font-size: 0.78rem; color: var(--ink-light); }
 .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.5rem 0; }
 .photo-grid .photo-slot { aspect-ratio: 4/3; margin: 0; }
@@ -130,6 +133,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   .hero-video-wrap { height: 320px; }
   .article-title-hero { font-size: 1.3rem; }
   .photo-grid { grid-template-columns: 1fr; }
+  .article-img-grid { grid-template-columns: 1fr; }
   .info-card-grid { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 1rem; padding: 1.5rem; }
 }
@@ -239,7 +243,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="最後，我與老闆透過簡訊確認了上工時間，也正式開始了我的澳洲草莓人生。" data-en="In the end, I confirmed my start date with the boss over text, and officially began my strawberry life in Australia.">最後，我與老闆透過簡訊確認了上工時間，也正式開始了我的澳洲草莓人生。</p>
 
-    <div class="photo-slot"><p class="photo-slot-label" data-zh="📷 照片" data-en="📷 Photo">📷 照片</p></div>
+    <img class="article-img" src="01.jpg" alt="海投集簽工作" loading="lazy">
   </div>
 
   <hr class="sec-divider">
@@ -255,9 +259,9 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="最讓我喜歡的是，所有草莓田都是<strong>高架栽培</strong>，所以不用一直彎腰，推車偶爾會有點偏左或偏右，但整體操作並不困難，而且<strong>可以戴耳機聽音樂</strong>，整體相比我後來去過的其他農場，我覺得 TSL 的工作環境算是舒服很多。" data-en="What I loved most was that all the strawberry fields used <strong>elevated cultivation</strong>, so no constant bending over. The carts occasionally drifted a little left or right, but they weren't hard to operate, and you could <strong>wear earphones and listen to music</strong>. Compared to other farms I worked at later, TSL's work environment was genuinely much more comfortable.">最讓我喜歡的是，所有草莓田都是<strong>高架栽培</strong>，所以不用一直彎腰，推車偶爾會有點偏左或偏右，但整體操作並不困難，而且<strong>可以戴耳機聽音樂</strong>，整體相比我後來去過的其他農場，我覺得 TSL 的工作環境算是舒服很多。</p>
 
-    <div class="photo-grid">
-      <div class="photo-slot"><p class="photo-slot-label">📷</p></div>
-      <div class="photo-slot"><p class="photo-slot-label">📷</p></div>
+    <div class="article-img-grid">
+      <img src="02.jpg" alt="TSL 草莓農場" loading="lazy">
+      <img src="03.jpg" alt="TSL 草莓農場" loading="lazy">
     </div>
 
     <h3 class="subsec-title">🍓 <span data-zh="採摘草莓" data-en="Picking Strawberries">採摘草莓</span></h3>
@@ -297,7 +301,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="<strong><strong>如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</strong></strong>" data-en="If you can find stable work, I think Caboolture is a genuinely great place for a working holiday."><strong>如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</strong></p>
 
-    <div class="photo-slot"><p class="photo-slot-label" data-zh="📷 照片" data-en="📷 Photo">📷 照片</p></div>
+    <img class="article-img" src="04.jpg" alt="Caboolture" loading="lazy">
   </div>
 
   <hr class="sec-divider">
@@ -321,7 +325,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       <span data-zh="結果最後……我居然抽中了 AU$1,000！後來請朋友們吃在布里斯本的「百家千味」，把獎金花得差不多了 XDDD" data-en="And then… I won AU$1,000! I ended up treating friends to dinner at a restaurant in Brisbane, spending most of the prize money XDDD">結果最後……我居然抽中了 AU$1,000！後來請朋友們吃在布里斯本的「百家千味」，把獎金花得差不多了 XDDD</span>
     </div>
 
-    <div class="photo-slot"><p class="photo-slot-label" data-zh="📷 照片" data-en="📷 Photo">📷 照片</p></div>
+    <img class="article-img" src="05.jpg" alt="Season End Party" loading="lazy">
   </div>
 
   <hr class="sec-divider">
@@ -347,7 +351,10 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="某些人可能只會出現在你人生中的某一個季節，而那個季節，剛好是在 Caboolture 的草莓田裡。" data-en="Some people may only appear in one season of your life. And that season, for me, happened to be in the strawberry fields of Caboolture.">某些人可能只會出現在你人生中的某一個季節，而那個季節，剛好是在 Caboolture 的草莓田裡。</p>
 
-    <div class="photo-slot"><p class="photo-slot-label" data-zh="📷 照片" data-en="📷 Photo">📷 照片</p></div>
+    <div style="display:flex; justify-content:center; margin: 1.5rem 0;">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DaQVLWpSynk/" data-instgrm-version="14" style="max-width:540px; width:100%; border-radius:12px;"></blockquote>
+    </div>
+    <script async src="//www.instagram.com/embed.js"></script>
   </div>
 
   <div class="article-footer" data-zh="寫於 2026.07.28 · Caboolture, QLD" data-en="Written on 2026.07.28 · Caboolture, QLD">寫於 2026.07.28 · Caboolture, QLD</div>
