@@ -522,6 +522,10 @@ document.addEventListener('click', e => {
   if (!img) return;
   // Skip nav logo, hero video poster, and small icons
   if (img.closest('nav') || img.closest('.hero-video-wrap') || img.closest('.toc')) return;
+  // Don't interfere with the Instagram link photo (it has an <a> wrapper with href)
+  const parentLink = img.closest('a[href]');
+  if (parentLink && parentLink.href.includes('instagram')) return;
+  e.preventDefault();
   openLightbox(img.src);
 });
 
