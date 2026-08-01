@@ -73,7 +73,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem;
 
 /* SECTION TITLES */
 .sec-num { font-size: 0.72rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
-.sec-title { font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line); }
+.sec-title { font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line); scroll-margin-top: 80px; }
 .subsec-title { font-size: 0.95rem; font-weight: 700; margin: 1.5rem 0 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
 
 /* ARTICLE BODY */
@@ -116,6 +116,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem;
 .article-quote { border-left: 3px solid var(--ink); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.2rem; }
 .article-quote p { font-size: 1rem; line-height: 1.8; color: var(--ink); font-weight: 500; font-style: italic; }
 .italic-p { font-style: italic; color: var(--ink-mid); }
+.highlight-marker { background: linear-gradient(transparent 60%, #fef08a 60%); }
 
 /* CLOSING PHOTO */
 .closing-photo-wrap { margin-top: 3rem; }
@@ -140,7 +141,15 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   footer { flex-direction: column; gap: 1rem; padding: 1.5rem; }
 }
 
-/* TOC */
+/* ACCORDION */
+.accordion { border: 1px solid var(--line); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+.accordion-btn { width: 100%; background: var(--bg-2); border: none; padding: 0.9rem 1.1rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 0.92rem; font-weight: 600; color: var(--ink); font-family: inherit; text-align: left; transition: background 0.2s; }
+.accordion-btn:hover { background: #ebebeb; }
+.accordion-btn.open { background: var(--bg-dark); color: #fff; }
+.accordion-icon { font-size: 1.1rem; transition: transform 0.2s; flex-shrink: 0; }
+.accordion-btn.open .accordion-icon { transform: rotate(45deg); }
+.accordion-body { display: none; padding: 1.2rem; border-top: 1px solid var(--line); }
+.accordion-body.open { display: block; }
 .toc { margin-bottom: 2rem; }
 .toc-title { font-size: 0.72rem; color: var(--ink-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem; }
 .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
@@ -212,7 +221,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
       <div class="info-card-item">
         <p class="info-card-item-label" data-zh="期間" data-en="Period">期間</p>
-        <p class="info-card-item-value">2025/06/02 – 10/12</p>
+        <p class="info-card-item-value" data-zh="2025/06/02 – 2025/10/12" data-en="2-June-2025 – 12-Oct-2025">2025/06/02 – 2025/10/12</p>
       </div>
       <div class="info-card-item">
         <p class="info-card-item-label" data-zh="時薪" data-en="Hourly Rate">時薪</p>
@@ -233,7 +242,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     <p class="sec-num">01</p>
     <h2 class="sec-title" id="sec-01" data-zh="海投集簽工作" data-en="The Job Hunt">海投集簽工作</h2>
 
-    <p class="article-p" data-zh="我是 2025/5/18 入境布里斯本，但其實早在一個月前，我還在奧克蘭的時候，就已經開始瘋狂投遞集簽工作。" data-en="I entered Brisbane on 2025/5/18, but I had already been furiously sending out applications for regional work a month earlier, while still in Auckland.">我是 2025/5/18 入境布里斯本，但其實早在一個月前，我還在奧克蘭的時候，就已經開始瘋狂投遞集簽工作。</p>
+    <p class="article-p" data-zh="我是 2025/5/18 入境布里斯本，但其實早在一個月前，我還在奧克蘭的時候，就已經開始瘋狂投遞集簽工作。" data-en="I entered Brisbane on 18-May-2025, but I had already been furiously sending out applications for regional work a month earlier, while still in Auckland.">我是 2025/5/18 入境布里斯本，但其實早在一個月前，我還在奧克蘭的時候，就已經開始瘋狂投遞集簽工作。</p>
 
     <p class="article-p" data-zh="一開始，我希望能繼續做服務業，因此<strong>投了很多偏遠地區或離島的工作</strong>，像是摩頓島、凱恩斯、達爾文等地，不過最後幾乎都石沉大海。" data-en="At first I hoped to stay in hospitality, so I applied to <strong>many remote areas and islands</strong> — Moreton Island, Cairns, Darwin — but almost everything went unanswered.">一開始，我希望能繼續做服務業，因此<strong>投了很多偏遠地區或離島的工作</strong>，像是摩頓島、凱恩斯、達爾文等地，不過最後幾乎都石沉大海。</p>
 
@@ -241,7 +250,6 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="但眼看著入境澳洲的日期越來越近，我最後還是決定先去看看。如果真的不適合，大不了戰術性逃回布里斯本哈哈哈哈。最後，我和老闆透過簡訊確認了上工日期。我的澳洲草莓人生，就這樣開始了。" data-en="But with my departure date approaching fast, I decided to just go and see. Worst case, I could always make a tactical retreat back to Brisbane hahaha. In the end, I confirmed my start date with the boss over text. And just like that, my Australian strawberry life began.">但眼看著入境澳洲的日期越來越近，我最後還是決定先去看看。如果真的不適合，大不了戰術性逃回布里斯本哈哈哈哈。最後，我和老闆透過簡訊確認了上工日期。我的澳洲草莓人生，就這樣開始了。</p>
 
-    <p class="article-p" data-zh="最後，我與老闆透過簡訊確認了上工時間，也正式開始了我的澳洲草莓人生。" data-en="In the end, I confirmed my start date with the boss over text, and officially began my strawberry life in Australia.">最後，我與老闆透過簡訊確認了上工時間，也正式開始了我的澳洲草莓人生。</p>
 
     <img class="article-img" src="01.jpg" alt="奧克蘭機場國際線飛往布里斯本" loading="lazy">
     <p class="photo-caption" data-zh="奧克蘭機場國際線飛往布里斯本" data-en="Auckland International Airport, departing for Brisbane">奧克蘭機場國際線飛往布里斯本</p>
@@ -271,30 +279,78 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
 
-    <h3 class="subsec-title">🍓 <span data-zh="採摘草莓" data-en="Picking Strawberries">採摘草莓</span></h3>
-    <p class="article-p" data-zh="90% 變紅即可採摘，採的時候需要保留一小梗。要特別小心我自稱為「<strong>陷阱草莓</strong>」的果，正面看起來全紅，但翻過來背面還是綠色，很常為了速度沒辦法每顆都確認到，然後就會被 supervisor 抓到哈哈。" data-en="Pick at about 90% ripeness, keeping a short stem. Watch out for what I call &lsquo;<strong>trap strawberries</strong>&rsquo; — fully red on the front but still green on the back. When you're going fast it's hard to check every single one, and then the supervisor catches you haha.">90% 變紅即可採摘，採的時候需要保留一小梗。要特別小心我自稱為「<strong>陷阱草莓</strong>」的果，正面看起來全紅，但翻過來背面還是綠色，很常為了速度沒辦法每顆都確認到，然後就會被 supervisor 抓到哈哈。</p>
+    <!-- Accordion 01: 工作介紹 -->
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span data-zh="🍓 工作介紹" data-en="🍓 Job Description">🍓 工作介紹</span>
+        <span class="accordion-icon">＋</span>
+      </button>
+      <div class="accordion-body">
+        <h3 class="subsec-title">🍓 <span data-zh="採摘草莓" data-en="Picking Strawberries">採摘草莓</span></h3>
+        <p class="article-p" data-zh="90% 變紅即可採摘，採的時候需要保留一小梗。要特別小心我自稱為「<strong>陷阱草莓</strong>」的果，正面看起來全紅，但翻過來背面還是綠色，很常為了速度沒辦法每顆都確認到，然後就會被 supervisor 抓到哈哈。" data-en="Pick at about 90% ripeness, keeping a short stem. Watch out for what I call &lsquo;<strong>trap strawberries</strong>&rsquo; — fully red on the front but still green on the back. When you're going fast it's hard to check every single one, and then the supervisor catches you haha.">90% 變紅即可採摘，採的時候需要保留一小梗。要特別小心我自稱為「<strong>陷阱草莓</strong>」的果，正面看起來全紅，但翻過來背面還是綠色，很常為了速度沒辦法每顆都確認到，然後就會被 supervisor 抓到哈哈。</p>
 
-    <h3 class="subsec-title">🌱 <span data-zh="除草、清除爛果與枯葉" data-en="Weeding & Removing Bad Fruit">除草、清除爛果與枯葉</span></h3>
-    <p class="article-p" data-zh="我覺得 TSL 使用的農藥可能沒有非常重，所以雜草長得滿快，固定每週三會安排除草。同時也要把爛果摘除，不然很容易感染其他草莓，整條草莓道就會開始生病。" data-en="I think TSL may not use very heavy pesticides, because weeds grew pretty fast. Weeding was scheduled every Wednesday. Bad fruit also had to be removed — otherwise it would easily spread to other strawberries and the whole row would get sick.">我覺得 TSL 使用的農藥可能沒有非常重，所以雜草長得滿快，固定每週三會安排除草。同時也要把爛果摘除，不然很容易感染其他草莓，整條草莓道就會開始生病。</p>
+        <h3 class="subsec-title">🌱 <span data-zh="除草、清除爛果與枯葉" data-en="Weeding & Removing Bad Fruit">除草、清除爛果與枯葉</span></h3>
+        <p class="article-p" data-zh="我覺得 TSL 使用的農藥可能沒有非常重，所以雜草長得滿快，固定每週三會安排除草。同時也要把爛果摘除，不然很容易感染其他草莓，整條草莓道就會開始生病。" data-en="I think TSL may not use very heavy pesticides, because weeds grew pretty fast. Weeding was scheduled every Wednesday. Bad fruit also had to be removed — otherwise it would easily spread to other strawberries and the whole row would get sick.">我覺得 TSL 使用的農藥可能沒有非常重，所以雜草長得滿快，固定每週三會安排除草。同時也要把爛果摘除，不然很容易感染其他草莓，整條草莓道就會開始生病。</p>
 
-    <h3 class="subsec-title">🪴 <span data-zh="施肥" data-en="Fertilising">施肥</span></h3>
-    <p class="article-p" data-zh="當果量不好、工作比較少時，老闆會安排施肥。這算是整個農場裡最輕鬆的工作，只需要把肥料倒進土裡即可。" data-en="When fruit volume was low and there was less picking to do, the boss would arrange fertilising — probably the easiest job on the farm, just pouring fertiliser into the soil.">當果量不好、工作比較少時，老闆會安排施肥。這算是整個農場裡最輕鬆的工作，只需要把肥料倒進土裡即可。</p>
+        <h3 class="subsec-title">🪴 <span data-zh="施肥" data-en="Fertilising">施肥</span></h3>
+        <p class="article-p" data-zh="當果量不好、工作比較少時，老闆會安排施肥。這算是整個農場裡最輕鬆的工作，只需要把肥料倒進土裡即可。" data-en="When fruit volume was low and there was less picking to do, the boss would arrange fertilising — probably the easiest job on the farm, just pouring fertiliser into the soil.">當果量不好、工作比較少時，老闆會安排施肥。這算是整個農場裡最輕鬆的工作，只需要把肥料倒進土裡即可。</p>
 
-    <h3 class="subsec-title">🚜 <span data-zh="清除土包" data-en="Removing Soil Bags">清除土包</span></h3>
-    <p class="article-p" data-zh="草莓季結束後，大量田區會關閉。工作內容就是：拔掉水管 → 清除土包 → 等待下一季重新開始。" data-en="Once the strawberry season ended, large sections of the fields would close. The job was: remove the pipes → clear the soil bags → wait for next season to begin.">草莓季結束後，大量田區會關閉。工作內容就是：拔掉水管 → 清除土包 → 等待下一季重新開始。</p>
-
-    <h3 class="subsec-title">💰 <span data-zh="薪資制度" data-en="Pay Structure">薪資制度</span></h3>
-    <p class="article-p" data-zh="TSL <strong>採用時薪＋獎金制度</strong>。我當時的基本時薪是 AU$31/hr。如果當天採收的草莓價值超過基本時薪（依每天果價而定），就可以拿到額外獎金。" data-en="TSL uses an hourly rate plus bonus system. My base rate was AU$31/hr. If the value of the strawberries you picked that day exceeded your base hourly earnings (depending on daily fruit prices), you'd receive a bonus.">TSL <strong>採用時薪＋獎金制度</strong>。我當時的基本時薪是 AU$31/hr。如果當天採收的草莓價值超過基本時薪（依每天果價而定），就可以拿到額外獎金。</p>
-
-    <div class="highlight-box">
-      <span data-zh="很遺憾，我整個草莓季一次獎金都沒拿過。不過我一直安慰自己，我採的草莓品質很好，很少有爛果或綠果……應該是品質太高，不是速度太慢（自己找藉口）。" data-en="Sadly, I didn't receive a single bonus the entire season. But I kept telling myself my strawberries were great quality, with very few bad or unripe ones... it must be the quality, not the speed. (Total excuse.)">很遺憾，我整個草莓季一次獎金都沒拿過。不過我一直安慰自己，我採的草莓品質很好，很少有爛果或綠果……應該是品質太高，不是速度太慢（自己找藉口）。</span>
+        <h3 class="subsec-title">🚜 <span data-zh="季末清田" data-en="End-of-Season Field Clearing">季末清田</span></h3>
+        <p class="article-p" data-zh="草莓季結束後，大量田區會關閉。工作內容就是：拔掉水管 → 清除土包 → 等待下一季重新開始。" data-en="Once the strawberry season ended, large sections of the fields would close. The job was: remove the pipes → clear the soil bags → wait for next season to begin.">草莓季結束後，大量田區會關閉。工作內容就是：拔掉水管 → 清除土包 → 等待下一季重新開始。</p>
+      </div>
     </div>
 
-    <div style="border:1px solid var(--line); border-radius:10px; padding:1rem 1.2rem; margin:1.5rem 0; display:flex; align-items:center; gap:1rem;">
-      <span style="font-size:1.2rem;">📖</span>
-      <div>
-        <p style="font-size:0.72rem; color:var(--ink-light); margin-bottom:0.2rem;" data-zh="延伸閱讀" data-en="Further Reading">延伸閱讀</p>
-        <a href="../../articles/journal-1/index.html" style="font-size:0.9rem; font-weight:600; color:var(--ink); text-decoration:none;" data-zh="澳洲打工度假一年的收入與開銷 →" data-en="One Year Working Holiday in Australia — Income & Expenses →">澳洲打工度假一年的收入與開銷 →</a>
+    <!-- Accordion 02: 薪資制度 -->
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span data-zh="💰 薪資制度" data-en="💰 Pay Structure">💰 薪資制度</span>
+        <span class="accordion-icon">＋</span>
+      </button>
+      <div class="accordion-body">
+        <p class="article-p" data-zh="TSL <strong>採用時薪＋獎金制度</strong>。我當時的基本時薪是 AU$31/hr。如果當天採收的草莓價值超過基本時薪（依每天果價而定），就可以拿到額外獎金。" data-en="TSL uses an hourly rate plus bonus system. My base rate was AU$31/hr. If the value of the strawberries you picked that day exceeded your base hourly earnings (depending on daily fruit prices), you'd receive a bonus.">TSL <strong>採用時薪＋獎金制度</strong>。我當時的基本時薪是 AU$31/hr。如果當天採收的草莓價值超過基本時薪（依每天果價而定），就可以拿到額外獎金。</p>
+
+        <div class="highlight-box">
+          <span data-zh="很遺憾，我整個草莓季一次獎金都沒拿過。不過我一直安慰自己，我採的草莓品質很好，很少有爛果或綠果……應該是品質太高，不是速度太慢（自己找藉口）。" data-en="Sadly, I didn't receive a single bonus the entire season. But I kept telling myself my strawberries were great quality, with very few bad or unripe ones... it must be the quality, not the speed. (Total excuse.)">很遺憾，我整個草莓季一次獎金都沒拿過。不過我一直安慰自己，我採的草莓品質很好，很少有爛果或綠果……應該是品質太高，不是速度太慢（自己找藉口）。</span>
+        </div>
+
+        <div style="border:1px solid var(--line); border-radius:10px; padding:1rem 1.2rem; margin:1.5rem 0; display:flex; align-items:center; gap:1rem;">
+          <span style="font-size:1.2rem;">📖</span>
+          <div>
+            <p style="font-size:0.72rem; color:var(--ink-light); margin-bottom:0.2rem;" data-zh="延伸閱讀" data-en="Further Reading">延伸閱讀</p>
+            <a href="../../articles/journal-1/index.html" style="font-size:0.9rem; font-weight:600; color:var(--ink); text-decoration:none;" data-zh="澳洲打工度假一年的收入與開銷 →" data-en="One Year Working Holiday in Australia — Income & Expenses →">澳洲打工度假一年的收入與開銷 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion 03: Boss & Supervisor -->
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span data-zh="👤 Boss & Supervisor" data-en="👤 Boss & Supervisor">👤 Boss & Supervisor</span>
+        <span class="accordion-icon">＋</span>
+      </button>
+      <div class="accordion-body">
+        <h3 class="subsec-title">👩‍💼 <span data-zh="Boss" data-en="Boss">Boss</span></h3>
+        <p class="article-p" data-zh="雖然農場是由三姊妹共同經營，但基本上與我們聯繫的主要都是 <strong>Sam</strong>。老闆人很好，會替員工著想。有時候因為果季不好，當週工時不長的時候，老闆還會替我們感到抱歉，然後盡可能幫我們加長工時。" data-en="Although the farm is run by three sisters, the main one we communicated with was <strong>Sam</strong>. She's a wonderful boss who genuinely cares about her workers. Sometimes when the season was poor and hours were short, she would even apologise to us and try her best to extend our working hours.">雖然農場是由三姊妹共同經營，但基本上與我們聯繫的主要都是 <strong>Sam</strong>。老闆人很好，會替員工著想。有時候因為果季不好，當週工時不長的時候，老闆還會替我們感到抱歉，然後盡可能幫我們加長工時。</p>
+
+        <div style="margin: 1.2rem 0;">
+          <img src="boss-1.jpg" alt="季末 Party 與 Sam 的合照" loading="lazy" style="width:100%;border-radius:10px;display:block;object-fit:cover;">
+          <p class="photo-caption" data-zh="季末 Party 與 Sam 的合照" data-en="End-of-season party with Sam">季末 Party 與 Sam 的合照</p>
+        </div>
+
+        <h3 class="subsec-title">👵 <span data-zh="Supervisor" data-en="Supervisor">Supervisor</span></h3>
+        <p class="article-p" data-zh="農場有兩位 Supervisor：<strong>Sonya</strong> 和 <strong>Judy</strong>。她們就像奶奶一樣，講話很快，一開始有點溝通障礙，但後來就習慣了，而且會發現她們特別搞笑。她們會提醒我們背包客速度不能太慢，不然老闆會不開心，但其實也沒有真的把誰開除啦哈哈。我覺得整個農場的氛圍都非常好。" data-en="The farm had two supervisors: <strong>Sonya</strong> and <strong>Judy</strong>. They were like grandmas — fast talkers, a bit hard to understand at first, but you get used to it, and then you realise they're actually hilarious. They'd warn us backpackers not to go too slow or the boss would be unhappy, but nobody actually ever got fired haha. I thought the whole farm had a really great atmosphere.">農場有兩位 Supervisor：<strong>Sonya</strong> 和 <strong>Judy</strong>。她們就像奶奶一樣，講話很快，一開始有點溝通障礙，但後來就習慣了，而且會發現她們特別搞笑。她們會提醒我們背包客速度不能太慢，不然老闆會不開心，但其實也沒有真的把誰開除啦哈哈。我覺得整個農場的氛圍都非常好。</p>
+
+        <div class="article-img-grid">
+          <div>
+            <img src="boss-2.jpg" alt="在 Sonya 家 Party 的合照" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;">
+            <p class="photo-caption" data-zh="在 Sonya 家 Party 的合照" data-en="Group photo at Sonya's place">在 Sonya 家 Party 的合照</p>
+          </div>
+          <div>
+            <img src="boss-3.jpg" alt="離職當天與 Judy 的合照" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;">
+            <p class="photo-caption" data-zh="離職當天與 Judy 的合照" data-en="With Judy on my last day">離職當天與 Judy 的合照</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -306,7 +362,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     <p class="sec-num">03</p>
     <h2 class="sec-title" id="sec-03">Caboolture</h2>
 
-    <p class="article-p italic-p" data-zh="後來去過更多真正偏遠的小鎮後，我才發現：Caboolture 其實一點都不偏僻。" data-en="After visiting truly remote towns later, I realised: Caboolture is actually not remote at all."><em>後來去過更多真正偏遠的小鎮後，我才發現：Caboolture 其實一點都不偏僻。</em></p>
+    <p class="article-p italic-p" data-zh="<em><span class='highlight-marker'>後來去過更多真正偏遠的小鎮後，我才發現：Caboolture 其實一點都不偏僻。</span></em>" data-en="<em><span class='highlight-marker'>After visiting truly remote towns later, I realised: Caboolture is actually not remote at all.</span></em>"><em><span class="highlight-marker">後來去過更多真正偏遠的小鎮後，我才發現：Caboolture 其實一點都不偏僻。</span></em></p>
 
 
 
@@ -325,9 +381,9 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     <p class="sec-num">04</p>
     <h2 class="sec-title" id="sec-04" data-zh="二簽申請 & 季末 Party" data-en="Second Visa Application & End-of-Season Party">二簽申請 & 季末 Party</h2>
 
-    <p class="article-p" data-zh="我是在 6/2 開始工作。當累積到 13 張 Payslip 時，我就在 8/30 立刻送出了二簽申請。" data-en="I started work on 6/2. Once I had 13 payslips, I submitted my second visa application on 8/30 without hesitation.">我是在 6/2 開始工作。當累積到 13 張 Payslip 時，我就在 8/30 立刻送出了二簽申請。</p>
+    <p class="article-p" data-zh="我是在 6/2 開始工作。當累積到 13 張 Payslip 時，我就在 8/30 立刻送出了二簽申請。" data-en="I started work on 2-June. Once I had 13 payslips, I submitted my second visa application on 30-August without hesitation.">我是在 6/2 開始工作。當累積到 13 張 Payslip 時，我就在 8/30 立刻送出了二簽申請。</p>
 
-    <p class="article-p" data-zh="不過我的二簽直到 11/14 才核准，所以後來又多累積了 7 張 Payslip。" data-en="My second visa wasn't approved until 11/14, so I ended up accumulating another 7 payslips in the meantime.">不過我的二簽直到 11/14 才核准，所以後來又多累積了 7 張 Payslip。</p>
+    <p class="article-p" data-zh="不過我的二簽直到 11/14 才核准，所以後來又多累積了 7 張 Payslip。" data-en="My second visa wasn't approved until 14-November, so I ended up accumulating another 7 payslips in the meantime.">不過我的二簽直到 11/14 才核准，所以後來又多累積了 7 張 Payslip。</p>
 
     <h3 class="subsec-title">🎉 <span data-zh="季末 Party" data-en="End-of-Season Party">季末 Party</span></h3>
 
@@ -335,7 +391,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="每年最令人期待的，就是抽獎活動。獎品大小會依照當年的收成決定。我們那一年因為冬天不夠冷，又一直下雨，草莓產量並不好，所以原本沒有抱太大的期待。" data-en="The highlight every year is the lucky draw. Prize values depend on that year's harvest. Our year had a bad season — not cold enough in winter and too much rain — so I wasn't expecting much.">每年最令人期待的，就是抽獎活動。獎品大小會依照當年的收成決定。我們那一年因為冬天不夠冷，又一直下雨，草莓產量並不好，所以原本沒有抱太大的期待。</p>
 
-    <p class="article-p italic-p" data-zh="結果最後……我居然抽中了 AU$1,000！後來請朋友們吃在布里斯本的「百家千味」，把獎金花得差不多了 XDDD" data-en="And then… I won AU$1,000! I ended up treating friends to dinner at a restaurant in Brisbane, spending most of the prize money XDDD"><em>結果最後……我居然抽中了 AU$1,000！後來請朋友們吃在布里斯本的「百家千味」，把獎金花得差不多了 XDDD</em></p>
+    <p class="article-p italic-p" data-zh="<em><span class='highlight-marker'>結果最後……我居然抽中了 AU$1,000！後來請朋友們吃在布里斯本的「百家千味」，把獎金花得差不多了 XDDD</span></em>" data-en="<em><span class='highlight-marker'>And then… I won AU$1,000! I ended up treating friends to dinner at a restaurant in Brisbane, spending most of the prize money XDDD</span></em>"><em><span class="highlight-marker">結果最後……我居然抽中了 AU$1,000！後來請朋友們吃在布里斯本的「百家千味」，把獎金花得差不多了 XDDD</span></em></p>
 
     <img class="article-img" src="05.jpg" alt="抽到獎的我與朋友們" loading="lazy">
     <p class="photo-caption" data-zh="抽到獎的我與朋友們" data-en="Me and friends after winning the prize">抽到獎的我與朋友們</p>
@@ -350,7 +406,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="當第二草莓場開始傳出即將關閉的消息時，大家也開始陸續尋找下一份工作。每個人都知道，<strong>這段生活快要結束了</strong>。" data-en="When news spread that the second field was about to close, everyone started looking for their next job. Everyone knew — <strong>this chapter of life was coming to an end</strong>.">當第二草莓場開始傳出即將關閉的消息時，大家也開始陸續尋找下一份工作。每個人都知道，<strong>這段生活快要結束了</strong>。</p>
 
-    <p class="article-p" data-zh="我和另一位同事決定一起前往墨爾本，工作都找好了，也計畫一路 Road Trip，從 Caboolture 開車到墨爾本。" data-en="A colleague and I decided to head to Melbourne together. We'd both lined up jobs and planned a road trip all the way from Caboolture to Melbourne.">我和另一位同事決定一起前往墨爾本，工作都找好了，也計畫一路 Road Trip，從 Caboolture 開車到墨爾本。</p>
+    <p class="article-p" data-zh="我和另外幾位同事決定一起前往墨爾本，工作都找好了，也計畫一路 Road Trip，從 Caboolture 開車到墨爾本。" data-en="A colleague and I decided to head to Melbourne together. We'd both lined up jobs and planned a road trip all the way from Caboolture to Melbourne.">我和另外幾位同事決定一起前往墨爾本，工作都找好了，也計畫一路 Road Trip，從 Caboolture 開車到墨爾本。</p>
 
     <p class="article-p" data-zh="一方面很期待新的生活。另一方面，也很捨不得那些一起生活了將近半年的朋友與同事。" data-en="I was excited about the new chapter ahead, but also reluctant to leave the friends and colleagues I'd spent nearly half a year with.">一方面很期待新的生活。另一方面，也很捨不得那些一起生活了將近半年的朋友與同事。</p>
 
@@ -362,7 +418,7 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       <p data-zh="每見一次面，就少一次的感覺，我想或許這就是打工度假迷人的地方之一。" data-en="Every time you meet, it feels like one less time you'll get to. I think that's perhaps one of the most magical things about a working holiday.">每見一次面，就少一次的感覺，我想或許這就是打工度假迷人的地方之一。</p>
     </div>
 
-    <p class="article-p italic-p" data-zh="某些人可能只會出現在你人生中的某一個季節，而那個季節，剛好是在 Caboolture 的草莓田裡。" data-en="Some people may only appear in one season of your life. And that season, for me, happened to be in the strawberry fields of Caboolture."><em>某些人可能只會出現在你人生中的某一個季節，而那個季節，剛好是在 Caboolture 的草莓田裡。</em></p>
+    <p class="article-p italic-p" data-zh="<em><span class='highlight-marker'>某些人可能只會出現在你人生中的某一個季節，而那個季節，剛好是在 Caboolture 的草莓田裡。</span></em>" data-en="<em><span class='highlight-marker'>Some people may only appear in one season of your life. And that season, for me, happened to be in the strawberry fields of Caboolture.</span></em>"><em><span class="highlight-marker">某些人可能只會出現在你人生中的某一個季節，而那個季節，剛好是在 Caboolture 的草莓田裡。</span></em></p>
 
     <a href="https://www.instagram.com/reel/DaQVLWpSynk/" target="_blank" style="display:block; margin: 1.5rem 0; position: relative; border-radius:12px; overflow:hidden;">
       <img src="06.jpg" alt="離別" loading="lazy" style="width:100%; display:block; border-radius:12px;">
@@ -388,6 +444,13 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 </footer>
 
 <script>
+function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  btn.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+
 function setLang(lang, save = true) {
   document.querySelectorAll('[data-zh]').forEach(el => {
     el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
