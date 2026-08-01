@@ -516,9 +516,13 @@ document.getElementById('photoLightbox').addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-// Add click to all article images
-document.querySelectorAll('.article-img, .article-img-grid img, img[src^="boss-"], img[src^="0"]').forEach(img => {
-  img.addEventListener('click', () => openLightbox(img.src));
+// Add click to all article images - use event delegation to catch dynamically shown images
+document.addEventListener('click', e => {
+  const img = e.target.closest('img');
+  if (!img) return;
+  // Skip nav logo, hero video poster, and small icons
+  if (img.closest('nav') || img.closest('.hero-video-wrap') || img.closest('.toc')) return;
+  openLightbox(img.src);
 });
 
 const initLang = localStorage.getItem('jmd-lang') || 'zh';
