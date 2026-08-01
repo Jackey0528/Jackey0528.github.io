@@ -156,6 +156,23 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 .toc-list a { font-size: 0.88rem; color: var(--ink-mid); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; transition: color 0.2s; }
 .toc-list a:hover { color: var(--ink); }
 .toc-list a span { font-size: 0.72rem; color: var(--ink-light); }
+
+/* PROGRESS BAR */
+.progress-bar { position: fixed; top: 60px; left: 0; right: 0; height: 3px; background: var(--line); z-index: 99; }
+.progress-fill { height: 100%; background: var(--ink); width: 0%; transition: width 0.1s; }
+
+/* BACK TO TOP */
+.back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: var(--ink); color: #fff; border: none; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 99; transition: opacity 0.2s; }
+.back-to-top.visible { display: flex; }
+.back-to-top:hover { opacity: 0.8; }
+
+/* PHOTO LIGHTBOX */
+.photo-lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
+.photo-lightbox.open { display: flex; }
+.photo-lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 8px; }
+.photo-lb-close { position: absolute; top: 1.2rem; right: 1.5rem; font-size: 1.8rem; color: #fff; background: none; border: none; cursor: pointer; opacity: 0.7; }
+.photo-lb-close:hover { opacity: 1; }
+.article-img, .article-img-grid img, [src^="boss-"] { cursor: zoom-in; }
 </style>
 </head>
 <body>
@@ -171,6 +188,9 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
     <a href="../../journal.html" class="nav-back" data-zh="← 返回日誌" data-en="← Back">← 返回日誌</a>
   </div>
 </nav>
+
+<!-- Progress Bar -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
 <!-- Hero -->
 <div class="hero-video-wrap">
@@ -368,7 +388,17 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
 
     <p class="article-p" data-zh="這裡有三大超市、亞洲超市、日式韓式泰式餐廳、大型購物中心。想逛 Costco 可以往 North Lakes，想去海邊可以往 Sunshine Coast，假日也能去布里斯本或黃金海岸走走。" data-en="There are three major supermarkets, Asian grocery stores, Japanese, Korean and Thai restaurants, and a large shopping centre. Costco is a short drive to North Lakes, the beach is easy to reach at Sunshine Coast, and on weekends you can head to Brisbane or the Gold Coast.">這裡有三大超市、亞洲超市、日式韓式泰式餐廳、大型購物中心。想逛 Costco 可以往 North Lakes，想去海邊可以往 Sunshine Coast，假日也能去布里斯本或黃金海岸走走。</p>
 
-    <p class="article-p" data-zh="<strong><strong>如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</strong></strong>" data-en="If you can find stable work, I think Caboolture is a genuinely great place for a working holiday."><strong>如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</strong></p>
+    <p class="article-p" data-zh="<strong>如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</strong>" data-en="If you can find stable work, I think Caboolture is a genuinely great place for a working holiday."><strong>如果能找到一份穩定工作，我覺得 Caboolture 是個很適合打工度假生活的地方。</strong></p>
+
+    <h3 class="subsec-title">🏠 <span data-zh="租屋與生活" data-en="Housing & Living">租屋與生活</span></h3>
+
+    <p class="article-p" data-zh="我當時有租車，所以找房時選在離農場開車約 15 分鐘的地方，靠近 Shopping Centre，出門購物非常方便。房租是 $180/週含 bills。基本上只要有車，在 Caboolture 生活相當方便，整個小鎮不大，幾乎 15–20 分鐘車程內就能到任何地方。" data-en="I had a rental car, so I looked for housing about a 15-minute drive from the farm, close to the shopping centre — very convenient for errands. Rent was $180/week including bills. As long as you have a car, life in Caboolture is pretty easy. The town isn't big, and almost everywhere is within a 15–20 minute drive.">我當時有租車，所以找房時選在離農場開車約 15 分鐘的地方，靠近 Shopping Centre，出門購物非常方便。房租是 $180/週含 bills。基本上只要有車，在 Caboolture 生活相當方便，整個小鎮不大，幾乎 15–20 分鐘車程內就能到任何地方。</p>
+
+    <p class="article-p" data-zh="找房我是用 <strong>Facebook、Flatmates、Realestate</strong> 去找的。其中要特別小心 Facebook，詐騙非常多，我自己就遇到好幾個。" data-en="I searched for accommodation on <strong>Facebook, Flatmates, and Realestate</strong>. Be especially careful with Facebook — there are a lot of scams. I personally ran into several.">找房我是用 <strong>Facebook、Flatmates、Realestate</strong> 去找的。其中要特別小心 Facebook，詐騙非常多，我自己就遇到好幾個。</p>
+
+    <div class="highlight-box" style="border-left-color: #dc2626;">
+      <span data-zh="⚠️ 常見詐騙手法：他們會要你先付訂金，說會把房子留給你、不讓其他人來看房，並強調「房子非常搶手」，還說如果你來看完不喜歡會退款。這些幾乎都是詐騙！找房一定要特別小心。" data-en="⚠️ Common scam tactics: They'll ask you to pay a deposit upfront, saying they'll hold the place just for you and won't show it to others. They'll stress that the place is 'in very high demand' and promise a refund if you view it and don't like it. These are almost always scams. Be very careful when house hunting!">⚠️ 常見詐騙手法：他們會要你先付訂金，說會把房子留給你、不讓其他人來看房，並強調「房子非常搶手」，還說如果你來看完不喜歡會退款。這些幾乎都是詐騙！找房一定要特別小心。</span>
+    </div>
 
     <img class="article-img" src="04.jpg" alt="Morayfield shopping centre" loading="lazy">
     <p class="photo-caption" data-zh="Morayfield Shopping Centre" data-en="Morayfield Shopping Centre">Morayfield Shopping Centre</p>
@@ -459,8 +489,49 @@ function setLang(lang, save = true) {
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
   if (save) localStorage.setItem('jmd-lang', lang);
 }
+
+// Progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop;
+  const total = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('progressFill').style.width = (scrolled / total * 100) + '%';
+  // Back to top
+  const btn = document.getElementById('backToTop');
+  btn.classList.toggle('visible', scrolled > 400);
+});
+
+// Photo lightbox
+function openLightbox(src) {
+  document.getElementById('lbImg').src = src;
+  document.getElementById('photoLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('photoLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('photoLightbox').addEventListener('click', e => {
+  if (e.target === document.getElementById('photoLightbox')) closeLightbox();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Add click to all article images
+document.querySelectorAll('.article-img, .article-img-grid img, img[src^="boss-"], img[src^="0"]').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img.src));
+});
+
 const initLang = localStorage.getItem('jmd-lang') || 'zh';
 setLang(initLang, false);
 </script>
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Photo Lightbox -->
+<div class="photo-lightbox" id="photoLightbox">
+  <button class="photo-lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
 </body>
 </html>
