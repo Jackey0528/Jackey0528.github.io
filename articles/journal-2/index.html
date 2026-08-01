@@ -508,12 +508,10 @@ function openLightbox(src) {
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
-  document.getElementById('photoLightbox').classList.remove('open');
+  const lb = document.getElementById('photoLightbox');
+  if (lb) lb.classList.remove('open');
   document.body.style.overflow = '';
 }
-document.getElementById('photoLightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('photoLightbox')) closeLightbox();
-});
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 // Add click to all article images - use event delegation to catch dynamically shown images
@@ -536,7 +534,7 @@ setLang(initLang, false);
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <!-- Photo Lightbox -->
-<div class="photo-lightbox" id="photoLightbox">
+<div class="photo-lightbox" id="photoLightbox" onclick="if(event.target===this)closeLightbox()">
   <button class="photo-lb-close" onclick="closeLightbox()">✕</button>
   <img id="lbImg" src="" alt="">
 </div>
