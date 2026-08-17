@@ -88,6 +88,29 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem;
 .sec-divider { border: none; border-top: 1px solid var(--line); margin: 3rem 0; }
 
 /* BODY TEXT */
+
+/* EMBEDDED MAP */
+.map-section { margin: 0 0 0; }
+.map-filter-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.map-filter-btn { font-size: 0.72rem; padding: 0.3rem 0.7rem; border-radius: 100px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; color: var(--ink-mid); transition: all 0.15s; white-space: nowrap; }
+.map-filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.map-embed-wrap { display: grid; grid-template-columns: 200px 1fr; gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; height: 480px; margin-bottom: 0.5rem; }
+.map-embed-list { overflow-y: auto; border-right: 1px solid var(--line); background: var(--bg); }
+.map-embed-item { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--line); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem; transition: background 0.15s; }
+.map-embed-item:hover { background: var(--bg-2); }
+.map-embed-item.active { background: #f0f0f0; border-left: 3px solid var(--ink); }
+.map-embed-item-icon { font-size: 0.95rem; flex-shrink: 0; }
+.map-embed-item-name { font-size: 0.78rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.map-embed-item-cat { font-size: 0.68rem; color: var(--ink-light); }
+#embedMap { flex: 1; }
+.map-popup-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.2rem; }
+.map-popup-desc { font-size: 0.75rem; color: #555; line-height: 1.5; }
+.map-popup-link { display: inline-block; margin-top: 0.4rem; font-size: 0.72rem; font-weight: 600; color: #1A1A1A; text-decoration: none; }
+@media (max-width: 600px) {
+  .map-embed-wrap { grid-template-columns: 1fr; grid-template-rows: 240px 1fr; height: auto; }
+  .map-embed-list { max-height: 200px; border-right: none; border-bottom: 1px solid var(--line); order: 2; }
+  #embedMap { order: 1; height: 240px; }
+}
 .article-p { font-size: 0.92rem; line-height: 1.95; color: var(--ink-mid); margin-bottom: 1rem; }
 .article-p strong { color: var(--ink); font-weight: 700; }
 .article-p.intro { font-size: 1rem; color: var(--ink-mid); line-height: 2; }
@@ -135,6 +158,8 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   footer { flex-direction: column; gap: 1rem; padding: 1.5rem; }
 }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -174,6 +199,11 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
   <!-- TOC -->
   <div class="toc">
     <p class="toc-title" data-zh="文章目錄" data-en="Contents">文章目錄</p>
+    <a href="map.html" style="display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:#fff;border-radius:8px;padding:0.7rem 1rem;text-decoration:none;margin-bottom:0.8rem;font-size:0.88rem;font-weight:600;">
+      <span>🗺</span>
+      <span data-zh="查看互動地圖 — 所有推薦地點" data-en="View Interactive Map — All Recommended Places">查看互動地圖 — 所有推薦地點</span>
+      <span style="margin-left:auto;">→</span>
+    </a>
     <ul class="toc-list">
       <li><a href="#sec-00"><span class="toc-num">01</span><span data-zh="前言" data-en="Intro">前言</span></a></li>
       <li><a href="#sec-01"><span class="toc-num">02</span><span data-zh="附近能吃什麼？" data-en="Where to Eat?">附近能吃什麼？</span></a></li>
@@ -182,6 +212,22 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       <li><a href="#sec-04"><span class="toc-num">05</span><span data-zh="Brisbane 有什麼可以玩？" data-en="What to Do in Brisbane?">Brisbane 有什麼可以玩？</span></a></li>
       <li><a href="#sec-05"><span class="toc-num">06</span><span data-zh="Brisbane 餐廳推薦" data-en="Brisbane Restaurant Picks">Brisbane 餐廳推薦</span></a></li>
     </ul>
+  </div>
+
+  <!-- 地圖 -->
+  <div class="map-section">
+    <div class="map-filter-row" id="mapFilters">
+      <button class="map-filter-btn active" onclick="mapFilter('all',this)" data-zh="全部" data-en="All">全部</button>
+      <button class="map-filter-btn" onclick="mapFilter('food',this)" data-zh="🍜 餐廳" data-en="🍜 Food">🍜 餐廳</button>
+      <button class="map-filter-btn" onclick="mapFilter('market',this)" data-zh="🛍 市集" data-en="🛍 Markets">🛍 市集</button>
+      <button class="map-filter-btn" onclick="mapFilter('beach',this)" data-zh="🏖 自然" data-en="🏖 Nature">🏖 自然</button>
+      <button class="map-filter-btn" onclick="mapFilter('activity',this)" data-zh="🎡 活動" data-en="🎡 Events">🎡 活動</button>
+      <button class="map-filter-btn" onclick="mapFilter('brisbane-food',this)" data-zh="🍚 Brisbane" data-en="🍚 Brisbane">🍚 Brisbane</button>
+    </div>
+    <div class="map-embed-wrap">
+      <div class="map-embed-list" id="mapList"></div>
+      <div id="embedMap"></div>
+    </div>
   </div>
 
   <hr class="sec-divider">
@@ -243,8 +289,6 @@ footer p { font-size: 0.72rem; color: var(--ink-light); }
       </div>
     </div>
   </div>
-
-  <hr class="sec-divider">
 
   <!-- 02 市集 -->
   <div class="article-section">
@@ -446,6 +490,106 @@ document.addEventListener('click', e => {
   e.preventDefault();
   openLightbox(img.src);
 });
+
+
+// ===== EMBEDDED MAP =====
+const mapPlaces = [
+  { id:1, cat:'food', icon:'🍜', name_zh:'Bamboo Street Thai Food', name_en:'Bamboo Street Thai Food', desc_zh:'泰式餐廳，份量足實惠', desc_en:'Thai restaurant, generous portions', lat:-27.0595, lng:152.9518, section:'sec-01' },
+  { id:2, cat:'food', icon:'🥩', name_zh:'Meekak Korean BBQ', name_en:'Meekak Korean BBQ', desc_zh:'韓式 BBQ 餐廳', desc_en:'Korean BBQ restaurant', lat:-27.0582, lng:152.9513, section:'sec-01' },
+  { id:3, cat:'food', icon:'🍗', name_zh:'Shinpocha', name_en:'Shinpocha', desc_zh:'韓式料理，炸雞不錯', desc_en:'Korean cuisine, great fried chicken', lat:-27.0662, lng:152.9531, section:'sec-01' },
+  { id:4, cat:'food', icon:'🍰', name_zh:'Kreative Desserts', name_en:'Kreative Desserts', desc_zh:'甜點店', desc_en:'Dessert shop', lat:-27.0590, lng:152.9505, section:'sec-01' },
+  { id:5, cat:'food', icon:'🍣', name_zh:'Sushi Bar Caboolture', name_en:'Sushi Bar Caboolture', desc_zh:'壽司日式料理', desc_en:'Japanese sushi restaurant', lat:-27.0668, lng:152.9527, section:'sec-01' },
+  { id:6, cat:'food', icon:'🍱', name_zh:'KatsuCo North Lakes', name_en:'KatsuCo North Lakes', desc_zh:'日式炸豬排、丼飯', desc_en:'Japanese katsu & donburi', lat:-27.2422, lng:153.0136, section:'sec-01' },
+  { id:7, cat:'food', icon:'🍗', name_zh:'Chicken Park', name_en:'Chicken Park', desc_zh:'韓式炸雞', desc_en:'Korean fried chicken', lat:-27.2425, lng:153.0158, section:'sec-01' },
+  { id:8, cat:'food', icon:'🍜', name_zh:'Kinn Thai North Lakes', name_en:'Kinn Thai North Lakes', desc_zh:'泰式料理', desc_en:'Thai restaurant', lat:-27.2430, lng:153.0162, section:'sec-01' },
+  { id:9, cat:'food', icon:'🥩', name_zh:'YAKINIKU HIBIKI', name_en:'YAKINIKU HIBIKI', desc_zh:'日式吃到飽燒肉', desc_en:'All-you-can-eat Japanese BBQ', lat:-27.2395, lng:153.0122, section:'sec-01' },
+  { id:10, cat:'market', icon:'🛍', name_zh:'Caboolture Markets', name_en:'Caboolture Markets', desc_zh:'最近的市集', desc_en:'Closest market', lat:-27.0654, lng:152.9519, section:'sec-02' },
+  { id:11, cat:'market', icon:'🏝', name_zh:'Bribie Island Markets', name_en:'Bribie Island Markets', desc_zh:'可搭配 Bribie 海邊', desc_en:'Pair with Bribie Island beach', lat:-27.0490, lng:152.9986, section:'sec-02' },
+  { id:12, cat:'market', icon:'🌊', name_zh:'Redcliffe Markets', name_en:'Redcliffe Markets', desc_zh:'布里斯本北邊', desc_en:'North of Brisbane', lat:-27.2302, lng:153.1017, section:'sec-02' },
+  { id:13, cat:'market', icon:'🌿', name_zh:'Eumundi Markets', name_en:'Eumundi Markets', desc_zh:'規模大氛圍特色', desc_en:'Large scale, great atmosphere', lat:-26.4810, lng:152.9573, section:'sec-02' },
+  { id:14, cat:'market', icon:'☀️', name_zh:'Mooloolaba Sunday Market', name_en:'Mooloolaba Sunday Market', desc_zh:'可搭配 Sunshine Coast', desc_en:'Pair with Sunshine Coast', lat:-26.6830, lng:153.1213, section:'sec-02' },
+  { id:15, cat:'beach', icon:'🏖', name_zh:'Bribie Island', name_en:'Bribie Island', desc_zh:'最近的海邊', desc_en:'Closest beach', lat:-27.0280, lng:153.1632, section:'sec-03' },
+  { id:16, cat:'beach', icon:'🌊', name_zh:'Redcliffe Beach', name_en:'Redcliffe Beach', desc_zh:'可搭配 Redcliffe Markets', desc_en:'Combine with Redcliffe Markets', lat:-27.2289, lng:153.1036, section:'sec-03' },
+  { id:17, cat:'beach', icon:'☀️', name_zh:'Sunshine Coast', name_en:'Sunshine Coast', desc_zh:'度假感海邊', desc_en:'Holiday-vibe beach', lat:-26.6500, lng:153.0667, section:'sec-03' },
+  { id:18, cat:'beach', icon:'🏄', name_zh:'Mooloolaba', name_en:'Mooloolaba', desc_zh:'熱門海濱區', desc_en:'Popular coastal area', lat:-26.6833, lng:153.1167, section:'sec-03' },
+  { id:19, cat:'beach', icon:'🌴', name_zh:'Noosa', name_en:'Noosa', desc_zh:'適合完整一天', desc_en:'Worth a full day trip', lat:-26.3978, lng:153.0815, section:'sec-03' },
+  { id:20, cat:'beach', icon:'🌅', name_zh:'Gold Coast', name_en:'Gold Coast', desc_zh:'熱鬧觀光海灘城市', desc_en:'Lively touristy beach city', lat:-28.0167, lng:153.4000, section:'sec-03' },
+  { id:21, cat:'beach', icon:'🏞', name_zh:'Lake Moogerah', name_en:'Lake Moogerah', desc_zh:'內陸湖景', desc_en:'Inland lake scenery', lat:-28.0478, lng:152.5403, section:'sec-03' },
+  { id:22, cat:'beach', icon:'🌊', name_zh:'Byron Bay', name_en:'Byron Bay', desc_zh:'週末 Road Trip', desc_en:'Weekend road trip', lat:-28.6474, lng:153.6020, section:'sec-03' },
+  { id:23, cat:'activity', icon:'🎡', name_zh:'Ekka', name_en:'Ekka', desc_zh:'澳洲農業嘉年華', desc_en:'Australian agricultural fair', lat:-27.4571, lng:153.0157, section:'sec-04' },
+  { id:24, cat:'activity', icon:'🎆', name_zh:'Riverfire', name_en:'Riverfire', desc_zh:'Brisbane Festival 煙火', desc_en:'Brisbane Festival fireworks', lat:-27.4698, lng:153.0243, section:'sec-04' },
+  { id:25, cat:'activity', icon:'💜', name_zh:'Jacaranda Season', name_en:'Jacaranda Season', desc_zh:'9–10 月藍花楹', desc_en:'Jacaranda blooms Sep–Oct', lat:-27.4650, lng:153.0440, section:'sec-04' },
+  { id:26, cat:'brisbane-food', icon:'🍚', name_zh:'百家千味', name_en:'Glamorous Wok', desc_zh:'台灣熱炒', desc_en:'Taiwanese stir-fry', lat:-27.5781, lng:153.0522, section:'sec-05' },
+  { id:27, cat:'brisbane-food', icon:'🥟', name_zh:'元寶', name_en:'YuanBao', desc_zh:'台灣料理餃子', desc_en:'Taiwanese food & dumplings', lat:-27.5791, lng:153.0578, section:'sec-05' },
+  { id:28, cat:'brisbane-food', icon:'🍜', name_zh:'楊國胡麻辣燙', name_en:'Malatang', desc_zh:'麻辣燙', desc_en:'Malatang', lat:-27.5768, lng:153.0540, section:'sec-05' },
+  { id:29, cat:'brisbane-food', icon:'🍜', name_zh:'One Plus One', name_en:'One Plus One', desc_zh:'亞洲料理', desc_en:'Asian cuisine', lat:-27.5783, lng:153.0512, section:'sec-05' },
+  { id:30, cat:'brisbane-food', icon:'🍚', name_zh:'成就亞洲超市', name_en:'Asian Supermarket', desc_zh:'Sunnybank 超市', desc_en:'Sunnybank supermarket', lat:-27.5776, lng:153.0531, section:'sec-05' },
+  { id:31, cat:'brisbane-food', icon:'🍜', name_zh:'Half Time Food', name_en:'Half Time Food', desc_zh:'台灣口味早餐', desc_en:'Taiwanese-style breakfast', lat:-27.5795, lng:153.0548, section:'sec-05' },
+];
+const catColors = { food:'#ef4444', market:'#f59e0b', beach:'#3b82f6', activity:'#8b5cf6', 'brisbane-food':'#10b981' };
+let embedMap, embedMarkers = {}, embedActiveId = null, embedCat = 'all';
+
+function initEmbedMap() {
+  embedMap = L.map('embedMap', { center: [-27.06, 152.95], zoom: 10 });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap © CARTO', maxZoom: 19
+  }).addTo(embedMap);
+  mapPlaces.forEach(p => {
+    const marker = L.marker([p.lat, p.lng], { icon: makeEmbedIcon(p, false) }).addTo(embedMap);
+    marker.on('click', () => selectEmbedPlace(p.id));
+    embedMarkers[p.id] = marker;
+  });
+  renderEmbedList();
+}
+
+function makeEmbedIcon(place, active) {
+  const size = active ? 36 : 28;
+  return L.divIcon({
+    html: `<div style="width:${size}px;height:${size}px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${catColors[place.cat]};border:2.5px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;"><div style="transform:rotate(45deg);font-size:${active?'1':'0.8'}rem;">${place.icon}</div></div>`,
+    className:'', iconSize:[size,size], iconAnchor:[size/2,size], popupAnchor:[0,-(size+4)]
+  });
+}
+
+function selectEmbedPlace(id, fromList) {
+  const l = localStorage.getItem('jmd-lang') || 'zh';
+  if (embedActiveId !== null) {
+    embedMarkers[embedActiveId]?.setIcon(makeEmbedIcon(mapPlaces.find(p=>p.id===embedActiveId), false));
+    document.querySelectorAll('.map-embed-item').forEach(el => el.classList.remove('active'));
+  }
+  embedActiveId = id;
+  const place = mapPlaces.find(p=>p.id===id);
+  embedMarkers[id].setIcon(makeEmbedIcon(place, true));
+  embedMap.setView([place.lat, place.lng], Math.max(embedMap.getZoom(), 13), { animate: true });
+  embedMarkers[id].bindPopup(`<div class="map-popup-name">${l==='zh'?place.name_zh:place.name_en}</div><div class="map-popup-desc">${l==='zh'?place.desc_zh:place.desc_en}</div><a class="map-popup-link" href="#${place.section}">${l==='zh'?'跳到文章段落 ↓':'Jump to section ↓'}</a>`).openPopup();
+  const item = document.querySelector(`.map-embed-item[data-id="${id}"]`);
+  if (item) { item.classList.add('active'); if (!fromList) item.scrollIntoView({block:'nearest',behavior:'smooth'}); }
+}
+
+function mapFilter(cat, btn) {
+  embedCat = cat;
+  document.querySelectorAll('.map-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  mapPlaces.forEach(p => {
+    if (cat==='all' || p.cat===cat) { if (!embedMap.hasLayer(embedMarkers[p.id])) embedMarkers[p.id].addTo(embedMap); }
+    else { if (embedMap.hasLayer(embedMarkers[p.id])) embedMap.removeLayer(embedMarkers[p.id]); }
+  });
+  renderEmbedList();
+  const vis = mapPlaces.filter(p => cat==='all' || p.cat===cat);
+  if (vis.length) embedMap.fitBounds(L.latLngBounds(vis.map(p=>[p.lat,p.lng])), {padding:[30,30]});
+}
+
+function renderEmbedList() {
+  const l = localStorage.getItem('jmd-lang') || 'zh';
+  const filtered = embedCat==='all' ? mapPlaces : mapPlaces.filter(p=>p.cat===embedCat);
+  document.getElementById('mapList').innerHTML = filtered.map(p => `
+    <div class="map-embed-item${embedActiveId===p.id?' active':''}" data-id="${p.id}" onclick="selectEmbedPlace(${p.id},true)">
+      <span class="map-embed-item-icon">${p.icon}</span>
+      <div><div class="map-embed-item-name">${l==='zh'?p.name_zh:p.name_en}</div></div>
+    </div>`).join('');
+}
+
+// Init map after page load
+window.addEventListener('load', initEmbedMap);
 
 // Language
 function setLang(lang, save = true) {
