@@ -46,8 +46,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
 .hero-title{font-family:'Noto Serif TC',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:0.4rem;}
 .hero-subtitle{font-size:0.9rem;color:rgba(255,255,255,0.75);}
 
+/* TOC */
+.toc-wrapper{max-width:1280px;margin:0 auto;padding:2rem 2rem 0;}
+.toc-block{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.2rem 0;}
+.toc-label{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-light);margin-bottom:0.8rem;}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.toc-list li a{display:block;font-size:0.88rem;color:var(--ink-mid);text-decoration:none;padding:0.35rem 0;transition:color 0.2s;}
+.toc-list li a:hover{color:var(--ink);}
+
 /* MAIN LAYOUT: left article + right sticky map */
-.main-layout{display:flex;align-items:flex-start;max-width:1280px;margin:0 auto;padding:3rem 2rem 4rem;gap:2.5rem;}
+.main-layout{display:flex;align-items:flex-start;max-width:1280px;margin:0 auto;padding:2.5rem 2rem 4rem;gap:2.5rem;}
 
 /* LEFT ARTICLE */
 .article-col{flex:1;min-width:0;}
@@ -105,6 +113,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
   .hero{height:320px;}
   .hero-content{padding:1.5rem;}
   .hero-title{font-size:1.4rem;}
+  .toc-wrapper{padding:1.5rem 1rem 0;}
 }
 </style>
 </head>
@@ -136,6 +145,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
     </div>
     <h1 class="hero-title" data-zh="Caboolture 生活指南" data-en="Caboolture Living Guide">Caboolture 生活指南</h1>
     <p class="hero-subtitle" data-zh="一個不太像旅遊景點，卻很適合生活一段時間的澳洲小鎮" data-en="A town that doesn't look like a tourist destination, but is a great place to live for a while">一個不太像旅遊景點，卻很適合生活一段時間的澳洲小鎮</p>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc-wrapper">
+  <div class="toc-block">
+    <p class="toc-label" data-zh="目錄" data-en="Contents">目錄</p>
+    <ol class="toc-list">
+      <li><a href="#sec-food" data-zh="01｜Caboolture 附近能吃什麼？" data-en="01｜Where to Eat Near Caboolture?">01｜Caboolture 附近能吃什麼？</a></li>
+      <li><a href="#sec-market" data-zh="02｜Caboolture 周邊市集" data-en="02｜Markets Near Caboolture">02｜Caboolture 周邊市集</a></li>
+      <li><a href="#sec-beach" data-zh="03｜海灘與自然景色" data-en="03｜Beaches & Nature">03｜海灘與自然景色</a></li>
+      <li><a href="#sec-activity" data-zh="04｜Brisbane 有什麼可以玩？" data-en="04｜What to Do in Brisbane?">04｜Brisbane 有什麼可以玩？</a></li>
+      <li><a href="#sec-brisbane-food" data-zh="05｜Brisbane 餐廳推薦" data-en="05｜Brisbane Restaurant Picks">05｜Brisbane 餐廳推薦</a></li>
+      <li><a href="#sec-closing" data-zh="最後｜Caboolture 適合什麼樣的人？" data-en="Finally｜Who Is Caboolture For?">最後｜Caboolture 適合什麼樣的人？</a></li>
+    </ol>
   </div>
 </div>
 
@@ -223,7 +247,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
     </div>
 
     <!-- Closing -->
-    <div class="closing-section">
+    <div class="closing-section" id="sec-closing">
       <h2 class="sec-title" data-zh="Caboolture 適合什麼樣的人？" data-en="Who Is Caboolture For?">Caboolture 適合什麼樣的人？</h2>
       <p class="closing-text" data-zh="如果你是來澳洲旅行，Caboolture 可能不會是你第一個想到的目的地。但如果你是 Working Holiday，想在澳洲某個地方生活幾個月，我反而覺得 Caboolture 是一個滿有意思的選擇。" data-en="If you're here as a tourist, Caboolture probably won't be your first thought. But if you're on a Working Holiday and want to live somewhere for a few months, I actually think Caboolture is a pretty interesting choice.">如果你是來澳洲旅行，Caboolture 可能不會是你第一個想到的目的地。但如果你是 Working Holiday，想在澳洲某個地方生活幾個月，我反而覺得 Caboolture 是一個滿有意思的選擇。</p>
       <div class="closing-quote">
@@ -312,7 +336,6 @@ window.addEventListener('load',()=>{
 
 function makeIcon(p,active){
   const size=active?38:28;
-  // Dim logic: if a specific marker is selected, dim all others; else dim by category
   let op='1';
   if(activeId && !active) op='0.2';
   else if(!activeId && currentCat && p.cat!==currentCat) op='0.2';
@@ -331,12 +354,9 @@ function focusMarker(id){
   if(activeId){markers[activeId].setIcon(makeIcon(places.find(p=>p.id===activeId),false));markers[activeId].closePopup();}
   activeId=id;
   const p=places.find(x=>x.id===id);
-  // Update all marker icons (active one bright, others dimmed by cat)
   places.forEach(x=>markers[x.id].setIcon(makeIcon(x,x.id===id)));
   markers[id].setPopupContent(makePopup(p));
-  // Always zoom to level 14 to ensure marker is visible in viewport
   map.setView([p.lat,p.lng],14,{animate:true});
-  // Open popup after map finishes moving
   setTimeout(()=>markers[id].openPopup(),400);
 }
 
@@ -349,7 +369,6 @@ function highlightRow(id){
 function updateSection(cat){
   if(cat===currentCat)return;
   currentCat=cat;
-  // Reset active marker when switching sections
   if(activeId){
     markers[activeId].closePopup();
     activeId=null;
@@ -360,14 +379,12 @@ function updateSection(cat){
   if(vis.length)map.flyToBounds(L.latLngBounds(vis.map(p=>[p.lat,p.lng])),{padding:[40,40],duration:0.8});
 }
 
-// Scroll-driven
 const sections=document.querySelectorAll('.article-section[data-section]');
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)updateSection(e.target.getAttribute('data-section'));});
 },{threshold:0.25,rootMargin:'-10% 0px -60% 0px'});
 sections.forEach(s=>observer.observe(s));
 
-// Progress + back to top
 window.addEventListener('scroll',()=>{
   const d=document.documentElement;
   document.getElementById('progressFill').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';
