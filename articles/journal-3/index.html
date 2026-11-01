@@ -36,7 +36,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
 .progress-bar{position:fixed;top:var(--nav-h);left:0;right:0;height:3px;background:var(--line);z-index:199;}
 .progress-fill{height:100%;background:var(--ink);width:0%;transition:width 0.1s;}
 
-/* HERO - full width */
+/* HERO */
 .hero{position:relative;width:100%;height:480px;overflow:hidden;margin-top:var(--nav-h);}
 .hero img{width:100%;height:100%;object-fit:cover;display:block;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.65) 100%);}
@@ -54,7 +54,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
 .toc-list li a{display:block;font-size:0.88rem;color:var(--ink-mid);text-decoration:none;padding:0.35rem 0;transition:color 0.2s;}
 .toc-list li a:hover{color:var(--ink);}
 
-/* MAIN LAYOUT: left article + right sticky map */
+/* MAIN LAYOUT */
 .main-layout{display:flex;align-items:flex-start;max-width:1280px;margin:0 auto;padding:2.5rem 2rem 4rem;gap:2.5rem;}
 
 /* LEFT ARTICLE */
@@ -67,14 +67,51 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
 .sec-title{font-family:'Noto Serif TC',serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--line);}
 .sec-intro{font-size:0.85rem;color:var(--ink-mid);line-height:1.8;margin-bottom:1rem;}
 
-/* PLACE ROWS */
+/* PLACE ROWS — Accordion */
 .place-list{display:flex;flex-direction:column;}
-.place-row{display:flex;align-items:flex-start;gap:0.8rem;padding:0.8rem 0.6rem;border-bottom:1px solid var(--line);cursor:pointer;transition:background 0.15s;border-radius:8px;}
-.place-row:hover{background:var(--bg-2);}
-.place-row.active{background:#fef9c3;border-left:3px solid #ca8a04;padding-left:0.8rem;}
+
+.place-row{
+  border-bottom:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+  transition:background 0.15s;
+}
+.place-row-header{
+  display:flex;align-items:flex-start;gap:0.8rem;
+  padding:0.8rem 0.6rem;
+  cursor:pointer;
+  user-select:none;
+}
+.place-row-header:hover{background:var(--bg-2);}
+.place-row.open .place-row-header{background:var(--bg-2);}
+
 .place-icon-wrap{width:34px;height:34px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.place-row.open .place-icon-wrap{background:#e8e8e5;}
+
 .place-name{font-size:0.88rem;font-weight:700;color:var(--ink);margin-bottom:0.1rem;}
 .place-desc{font-size:0.78rem;color:var(--ink-light);line-height:1.5;}
+
+.place-chevron{
+  margin-left:auto;font-size:0.75rem;color:var(--ink-light);
+  transition:transform 0.25s;flex-shrink:0;padding-top:2px;
+}
+.place-row.open .place-chevron{transform:rotate(180deg);}
+
+/* Accordion body */
+.place-detail{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.35s ease, padding 0.25s ease;
+  padding:0 0.8rem;
+}
+.place-row.open .place-detail{
+  max-height:700px;
+  padding:0 0.8rem 1.2rem;
+}
+.place-detail-inner{
+  padding-top:0.6rem;
+  border-top:1px solid var(--line);
+}
+.place-detail-text p{font-size:0.82rem;line-height:1.75;color:var(--ink-mid);}
 
 /* CLOSING */
 .closing-section{background:var(--bg-2);border-radius:14px;padding:2rem;margin-bottom:3rem;}
@@ -82,7 +119,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
 .closing-quote p{font-size:0.92rem;line-height:1.85;color:var(--ink);font-weight:500;font-style:italic;}
 .closing-text{font-size:0.88rem;line-height:1.9;color:var(--ink-mid);margin-bottom:0.8rem;}
 
-/* RIGHT MAP - sticky */
+/* RIGHT MAP */
 .map-col{width:380px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 1.5rem);}
 #map{width:100%;height:500px;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
 .map-legend{margin-top:0.8rem;display:flex;flex-wrap:wrap;gap:0.5rem 1rem;}
@@ -90,20 +127,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
 .legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 
 /* POPUP */
-.leaflet-popup-content-wrapper{border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.15);}
-.map-popup-name{font-size:0.88rem;font-weight:700;margin-bottom:0.2rem;font-family:'Noto Sans TC',sans-serif;}
-.map-popup-desc{font-size:0.75rem;color:#555;line-height:1.5;font-family:'Noto Sans TC',sans-serif;}
+.leaflet-popup-content-wrapper{border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);overflow:hidden;padding:0;}
+.leaflet-popup-content{margin:0!important;width:220px!important;}
+.map-popup-img{width:100%;height:130px;object-fit:cover;background:linear-gradient(135deg,#d4cfc8 0%,#b8c4bf 100%);display:flex;align-items:center;justify-content:center;font-size:0.6rem;letter-spacing:0.1em;color:rgba(255,255,255,0.5);text-transform:uppercase;}
+.map-popup-img img{width:100%;height:130px;object-fit:cover;display:block;}
+.map-popup-body{padding:0.7rem 0.9rem 0.8rem;}
+.map-popup-name{font-size:0.88rem;font-weight:700;margin-bottom:0.25rem;font-family:'Noto Sans TC',sans-serif;color:#1a1a1a;}
+.map-popup-desc{font-size:0.73rem;color:#666;line-height:1.5;font-family:'Noto Sans TC',sans-serif;}
 
 /* BACK TO TOP */
 .back-to-top{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;background:var(--ink);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:1rem;display:none;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,0.2);z-index:150;}
 .back-to-top.visible{display:flex;}
-
-/* FOOTER */
-.site-footer{padding:1.5rem 2rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;}
-.site-footer p{font-size:0.72rem;color:var(--ink-light);}
-.footer-links{display:flex;gap:1.5rem;}
-.footer-links a{font-size:0.72rem;color:var(--ink-light);text-decoration:none;}
-.footer-links a:hover{color:var(--ink);}
 
 /* MOBILE */
 @media(max-width:900px){
@@ -165,8 +199,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
 
 <!-- MAIN -->
 <div class="main-layout">
-
-  <!-- LEFT: Article -->
   <div class="article-col">
 
     <p class="intro-text" data-zh="Caboolture 並不是一個充滿觀光景點的城市。它更像是一個很普通、很生活化的澳洲小鎮。沒有 Brisbane 那麼繁華，也沒有 Gold Coast 那麼觀光化。但也正因為如此，生活在這裡的日子反而會慢下來。白天工作，下班去超市買菜，週末開車去附近的海邊、市集或 Brisbane 走走。而且 Caboolture 的位置其實相當方便，往南可以到 Brisbane、Redcliffe，往北則可以前往 Sunshine Coast、Mooloolaba、Noosa。" data-en="Caboolture isn't a city packed with tourist attractions. It's more like an ordinary, everyday Australian town. Not as lively as Brisbane, not as touristy as the Gold Coast. But it's precisely because of this that life here tends to slow down. Work during the day, grocery shop after work, drive to the beach, markets, or Brisbane on weekends. And Caboolture's location is quite convenient — south to Brisbane and Redcliffe, north to Sunshine Coast, Mooloolaba, and Noosa.">Caboolture 並不是一個充滿觀光景點的城市。它更像是一個很普通、很生活化的澳洲小鎮。沒有 Brisbane 那麼繁華，也沒有 Gold Coast 那麼觀光化。但也正因為如此，生活在這裡的日子反而會慢下來。白天工作，下班去超市買菜，週末開車去附近的海邊、市集或 Brisbane 走走。而且 Caboolture 的位置其實相當方便，往南可以到 Brisbane、Redcliffe，往北則可以前往 Sunshine Coast、Mooloolaba、Noosa。</p>
@@ -177,15 +209,151 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
       <h2 class="sec-title" data-zh="Caboolture 附近能吃什麼？" data-en="Where to Eat Near Caboolture?">Caboolture 附近能吃什麼？</h2>
       <p class="sec-intro" data-zh="Caboolture 本身雖然不大，但附近有不少亞洲餐廳。以下是我個人推薦的幾間。" data-en="Caboolture itself isn't large, but there are quite a few Asian restaurants nearby. Here are some personal picks.">Caboolture 本身雖然不大，但附近有不少亞洲餐廳。以下是我個人推薦的幾間。</p>
       <div class="place-list">
-        <div class="place-row" onclick="focusMarker(1)" data-id="1"><div class="place-icon-wrap">🍜</div><div><div class="place-name">Bamboo Street Thai Food</div><div class="place-desc" data-zh="泰式餐廳，份量很足，很實在。" data-en="Thai restaurant, generous portions, great value.">泰式餐廳，份量很足，很實在。</div></div></div>
-        <div class="place-row" onclick="focusMarker(2)" data-id="2"><div class="place-icon-wrap">🥩</div><div><div class="place-name">Meekak Korean BBQ</div><div class="place-desc" data-zh="韓式 BBQ，想吃烤肉可以選這間。" data-en="Korean BBQ, a good pick for grilled meat.">韓式 BBQ，想吃烤肉可以選這間。</div></div></div>
-        <div class="place-row" onclick="focusMarker(3)" data-id="3"><div class="place-icon-wrap">🍗</div><div><div class="place-name">Shinpocha</div><div class="place-desc" data-zh="韓式料理，炸雞不錯，偶爾有折扣。" data-en="Korean cuisine, great fried chicken, occasional discounts.">韓式料理，炸雞不錯，偶爾有折扣。</div></div></div>
-        <div class="place-row" onclick="focusMarker(4)" data-id="4"><div class="place-icon-wrap">🍰</div><div><div class="place-name">Kreative Desserts Caboolture</div><div class="place-desc" data-zh="吃完正餐想找甜點可以來這裡。" data-en="Good spot for dessert after a meal.">吃完正餐想找甜點可以來這裡。</div></div></div>
-        <div class="place-row" onclick="focusMarker(5)" data-id="5"><div class="place-icon-wrap">🍣</div><div><div class="place-name">Sushi Bar Caboolture</div><div class="place-desc" data-zh="想簡單吃壽司時可以考慮。" data-en="A good option when you want something light.">想簡單吃壽司時可以考慮。</div></div></div>
-        <div class="place-row" onclick="focusMarker(6)" data-id="6"><div class="place-icon-wrap">🍱</div><div><div class="place-name">KatsuCo North Lakes</div><div class="place-desc" data-zh="日式炸豬排、丼飯，North Lakes 很近。" data-en="Japanese katsu & donburi, North Lakes is close.">日式炸豬排、丼飯，North Lakes 很近。</div></div></div>
-        <div class="place-row" onclick="focusMarker(7)" data-id="7"><div class="place-icon-wrap">🍗</div><div><div class="place-name">Chicken Park</div><div class="place-desc" data-zh="北湖的好吃韓式炸雞。" data-en="Great Korean fried chicken in North Lakes.">北湖的好吃韓式炸雞。</div></div></div>
-        <div class="place-row" onclick="focusMarker(8)" data-id="8"><div class="place-icon-wrap">🍜</div><div><div class="place-name">Kinn Thai North Lakes</div><div class="place-desc" data-zh="喜歡泰式料理的可以加入清單。" data-en="Worth adding if you're a Thai food fan.">喜歡泰式料理的可以加入清單。</div></div></div>
-        <div class="place-row" onclick="focusMarker(9)" data-id="9"><div class="place-icon-wrap">🥩</div><div><div class="place-name">YAKINIKU HIBIKI</div><div class="place-desc" data-zh="Mango Hill 日式吃到飽燒肉，三種價位。" data-en="All-you-can-eat Japanese BBQ in Mango Hill.">Mango Hill 日式吃到飽燒肉，三種價位。</div></div></div>
+
+        <div class="place-row" data-id="1">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🍜</div>
+            <div><div class="place-name">Bamboo Street Thai Food</div><div class="place-desc" data-zh="泰式餐廳，份量很足，很實在。" data-en="Thai restaurant, generous portions, great value.">泰式餐廳，份量很足，很實在。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="這是 Caboolture 附近我最常回訪的泰式餐廳。份量非常扎實，一個人點一道主菜通常就很夠了。推薦打拋豬飯和泰式炒河粉，價格在澳洲算合理，平均一餐 AU$15–18 左右。環境不大但很乾淨，用餐體驗也很舒服。" data-en="The Thai restaurant I revisited most often near Caboolture. Portions are very generous — one main dish is usually enough for one person. Recommended: basil pork rice and pad thai. Prices are reasonable for Australia, around AU$15–18 per meal. Small but clean and comfortable.">這是 Caboolture 附近我最常回訪的泰式餐廳。份量非常扎實，一個人點一道主菜通常就很夠了。推薦打拋豬飯和泰式炒河粉，價格在澳洲算合理，平均一餐 AU$15–18 左右。環境不大但很乾淨，用餐體驗也很舒服。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="2">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🥩</div>
+            <div><div class="place-name">Meekak Korean BBQ</div><div class="place-desc" data-zh="韓式 BBQ，想吃烤肉可以選這間。" data-en="Korean BBQ, a good pick for grilled meat.">韓式 BBQ，想吃烤肉可以選這間。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="想吃韓式烤肉的時候會來這裡。肉質還不錯，小菜種類也算豐富。如果幾個人一起去吃，性價比更高。建議提前預約，因為假日座位很搶手。" data-en="This is where I'd go for Korean BBQ. The meat quality is decent and there are plenty of side dishes. Better value when going with a group. Recommend booking ahead on weekends as it fills up fast.">想吃韓式烤肉的時候會來這裡。肉質還不錯，小菜種類也算豐富。如果幾個人一起去吃，性價比更高。建議提前預約，因為假日座位很搶手。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="3">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🍗</div>
+            <div><div class="place-name">Shinpocha</div><div class="place-desc" data-zh="韓式料理，炸雞不錯，偶爾有折扣。" data-en="Korean cuisine, great fried chicken, occasional discounts.">韓式料理，炸雞不錯，偶爾有折扣。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="韓式炸雞是這裡的招牌。幾個人一起點一份炸雞加一些小菜，是很適合下班後輕鬆聚餐的選擇。有時候 App 上會有折扣碼，記得先查一下。" data-en="Korean fried chicken is the standout here. Order a plate of chicken with a few sides after work — great for a casual group dinner. They occasionally have discount codes on food apps, worth checking first.">韓式炸雞是這裡的招牌。幾個人一起點一份炸雞加一些小菜，是很適合下班後輕鬆聚餐的選擇。有時候 App 上會有折扣碼，記得先查一下。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="4">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🍰</div>
+            <div><div class="place-name">Kreative Desserts Caboolture</div><div class="place-desc" data-zh="吃完正餐想找甜點可以來這裡。" data-en="Good spot for dessert after a meal.">吃完正餐想找甜點可以來這裡。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="Caboolture 不多的甜點店之一。有鬆餅、雪糕、蛋糕等選擇，適合吃完正餐後散步過來解解饞。份量算中等，價格和澳洲一般甜點店差不多。" data-en="One of the few dessert shops in Caboolture. They have waffles, ice cream, and cakes — a nice walk after dinner. Portions are decent and prices are on par with other Australian dessert places.">Caboolture 不多的甜點店之一。有鬆餅、雪糕、蛋糕等選擇，適合吃完正餐後散步過來解解饞。份量算中等，價格和澳洲一般甜點店差不多。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="5">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🍣</div>
+            <div><div class="place-name">Sushi Bar Caboolture</div><div class="place-desc" data-zh="想簡單吃壽司時可以考慮。" data-en="A good option when you want something light.">想簡單吃壽司時可以考慮。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="下班後不想花太多時間等餐，來這裡點幾份壽司捲或丼飯是很快的選擇。不是頂級日式料理，但日常想吃點日本口味的話很夠用。" data-en="A quick option after work when you don't want to wait long. Order a few sushi rolls or a rice bowl and you're done. Not high-end Japanese food, but perfectly fine for a casual Japanese fix.">下班後不想花太多時間等餐，來這裡點幾份壽司捲或丼飯是很快的選擇。不是頂級日式料理，但日常想吃點日本口味的話很夠用。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="6">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🍱</div>
+            <div><div class="place-name">KatsuCo North Lakes</div><div class="place-desc" data-zh="日式炸豬排、丼飯，North Lakes 很近。" data-en="Japanese katsu & donburi, North Lakes is close.">日式炸豬排、丼飯，North Lakes 很近。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="在 North Lakes 購物中心內，如果開車去 Costco 或逛街，可以順便來吃。炸豬排的外皮酥脆，搭配白飯和味噌湯，是很有飽足感的一餐。價格在 AU$18–22 左右。" data-en="Located inside the North Lakes shopping centre — great to combine with a Costco run or shopping trip. The katsu pork cutlet is crispy, served with rice and miso soup for a filling meal. Prices around AU$18–22.">在 North Lakes 購物中心內，如果開車去 Costco 或逛街，可以順便來吃。炸豬排的外皮酥脆，搭配白飯和味噌湯，是很有飽足感的一餐。價格在 AU$18–22 左右。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="7">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🍗</div>
+            <div><div class="place-name">Chicken Park</div><div class="place-desc" data-zh="北湖的好吃韓式炸雞。" data-en="Great Korean fried chicken in North Lakes.">北湖的好吃韓式炸雞。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="North Lakes 的韓式炸雞店，炸雞口感很好，有多種口味可以選擇，包括原味、辣味和醬料口味。和朋友一起分著吃最過癮，記得配一瓶可樂。" data-en="Korean fried chicken in North Lakes with great texture and multiple flavour options — original, spicy, and sauced. Best shared with friends. Don't forget to grab a Coke.">North Lakes 的韓式炸雞店，炸雞口感很好，有多種口味可以選擇，包括原味、辣味和醬料口味。和朋友一起分著吃最過癮，記得配一瓶可樂。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="8">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🍜</div>
+            <div><div class="place-name">Kinn Thai North Lakes</div><div class="place-desc" data-zh="喜歡泰式料理的可以加入清單。" data-en="Worth adding if you're a Thai food fan.">喜歡泰式料理的可以加入清單。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="North Lakes 的泰式餐廳，菜色種類比 Caboolture 的泰式餐廳更多。環境比較寬敞，適合多人聚餐。推薦綠咖哩和打拋飯，口味偏道地。" data-en="A Thai restaurant in North Lakes with a wider menu than the Caboolture options. More spacious, good for group meals. Recommend the green curry and basil rice — flavours lean toward authentic Thai.">North Lakes 的泰式餐廳，菜色種類比 Caboolture 的泰式餐廳更多。環境比較寬敞，適合多人聚餐。推薦綠咖哩和打拋飯，口味偏道地。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="9">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🥩</div>
+            <div><div class="place-name">YAKINIKU HIBIKI</div><div class="place-desc" data-zh="Mango Hill 日式吃到飽燒肉，三種價位。" data-en="All-you-can-eat Japanese BBQ in Mango Hill.">Mango Hill 日式吃到飽燒肉，三種價位。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="位於 Mango Hill，是附近品質最好的日式燒肉。有三種價位的吃到飽方案，我覺得中間那個 CP 值最高。肉的品質比一般燒肉店好很多，服務也不錯。適合想要好好慶祝一頓的時候來。" data-en="Located in Mango Hill, this is the best quality Japanese BBQ in the area. Three all-you-can-eat tiers — the middle one offers the best value in my opinion. Meat quality is noticeably better than most BBQ places. Good for a proper celebration dinner.">位於 Mango Hill，是附近品質最好的日式燒肉。有三種價位的吃到飽方案，我覺得中間那個 CP 值最高。肉的品質比一般燒肉店好很多，服務也不錯。適合想要好好慶祝一頓的時候來。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -194,11 +362,87 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
       <p class="sec-label">02</p>
       <h2 class="sec-title" data-zh="Caboolture 周邊市集" data-en="Markets Near Caboolture">Caboolture 周邊市集</h2>
       <div class="place-list">
-        <div class="place-row" onclick="focusMarker(10)" data-id="10"><div class="place-icon-wrap">🛍</div><div><div class="place-name">Caboolture Markets</div><div class="place-desc" data-zh="最靠近的市集，蔬果、二手用品和餐車。" data-en="Closest market — produce, second-hand, food trucks.">最靠近的市集，蔬果、二手用品和餐車。</div></div></div>
-        <div class="place-row" onclick="focusMarker(11)" data-id="11"><div class="place-icon-wrap">🏝</div><div><div class="place-name">Bribie Island Community Markets</div><div class="place-desc" data-zh="可搭配 Bribie Island 海邊一起安排。" data-en="Pair with a visit to Bribie Island beach.">可搭配 Bribie Island 海邊一起安排。</div></div></div>
-        <div class="place-row" onclick="focusMarker(12)" data-id="12"><div class="place-icon-wrap">🌊</div><div><div class="place-name">Redcliffe Markets</div><div class="place-desc" data-zh="Brisbane 北邊，逛完可順便去海邊。" data-en="North of Brisbane, combine with a beach walk.">Brisbane 北邊，逛完可順便去海邊。</div></div></div>
-        <div class="place-row" onclick="focusMarker(13)" data-id="13"><div class="place-icon-wrap">🌿</div><div><div class="place-name">Eumundi Markets</div><div class="place-desc" data-zh="位置較遠但規模大，氛圍很有特色。" data-en="A bit far, but much larger with great atmosphere.">位置較遠但規模大，氛圍很有特色。</div></div></div>
-        <div class="place-row" onclick="focusMarker(14)" data-id="14"><div class="place-icon-wrap">☀️</div><div><div class="place-name">Mooloolaba Sunday Market</div><div class="place-desc" data-zh="可搭配 Sunshine Coast 行程，週日早上很舒服。" data-en="Pair with Sunshine Coast — a very relaxed Sunday.">可搭配 Sunshine Coast 行程，週日早上很舒服。</div></div></div>
+
+        <div class="place-row" data-id="10">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🛍</div>
+            <div><div class="place-name">Caboolture Markets</div><div class="place-desc" data-zh="最靠近的市集，蔬果、二手用品和餐車。" data-en="Closest market — produce, second-hand, food trucks.">最靠近的市集，蔬果、二手用品和餐車。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="每週末都有開，是 Caboolture 最近的市集選擇。規模不大，主要有新鮮蔬果、二手衣物和一些小吃餐車。如果想在週末早上隨意逛逛、買點便宜蔬菜，這裡是最方便的。" data-en="Open every weekend, this is the most convenient market option in Caboolture. Not large — mainly fresh produce, second-hand clothes, and a few food trucks. Good for a relaxed Saturday morning browse and picking up cheap vegetables.">每週末都有開，是 Caboolture 最近的市集選擇。規模不大，主要有新鮮蔬果、二手衣物和一些小吃餐車。如果想在週末早上隨意逛逛、買點便宜蔬菜，這裡是最方便的。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="11">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🏝</div>
+            <div><div class="place-name">Bribie Island Community Markets</div><div class="place-desc" data-zh="可搭配 Bribie Island 海邊一起安排。" data-en="Pair with a visit to Bribie Island beach.">可搭配 Bribie Island 海邊一起安排。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="每個月固定幾個週日會有市集，可以先查一下日期再安排。我建議把市集和 Bribie Island 的海灘行程放在同一天，早上逛市集、下午去海邊，是很完美的週末行程。" data-en="Held on select Sundays each month — worth checking the schedule before planning. I recommend combining it with Bribie Island beach on the same day: browse the markets in the morning, hit the beach in the afternoon for a perfect weekend.">每個月固定幾個週日會有市集，可以先查一下日期再安排。我建議把市集和 Bribie Island 的海灘行程放在同一天，早上逛市集、下午去海邊，是很完美的週末行程。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="12">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🌊</div>
+            <div><div class="place-name">Redcliffe Markets</div><div class="place-desc" data-zh="Brisbane 北邊，逛完可順便去海邊。" data-en="North of Brisbane, combine with a beach walk.">Brisbane 北邊，逛完可順便去海邊。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="位於 Redcliffe 海濱旁，每個月定期舉辦。市集規模中等，有手工藝品、食物和一些在地農產品。逛完可以直接走去海邊散步，整個早上都可以安排在這一帶。" data-en="Located along the Redcliffe waterfront and held monthly. Medium-sized market with crafts, food, and local produce. After browsing, you can walk straight to the beach — a whole morning well spent in the area.">位於 Redcliffe 海濱旁，每個月定期舉辦。市集規模中等，有手工藝品、食物和一些在地農產品。逛完可以直接走去海邊散步，整個早上都可以安排在這一帶。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="13">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">🌿</div>
+            <div><div class="place-name">Eumundi Markets</div><div class="place-desc" data-zh="位置較遠但規模大，氛圍很有特色。" data-en="A bit far, but much larger with great atmosphere.">位置較遠但規模大，氛圍很有特色。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="距離 Caboolture 大約 1 小時車程，但非常值得一去。這裡是昆士蘭數一數二有名的市集，每週三和週六開放。市集規模很大，有超過 600 個攤位，從手工藝品、食物到服飾都有。氛圍很悠閒，可以搭配 Noosa 行程一起安排。" data-en="About an hour from Caboolture, but very much worth the trip. One of Queensland's most well-known markets, open Wednesdays and Saturdays with over 600 stalls — crafts, food, and fashion. Very relaxed atmosphere. Pair it with a Noosa trip on the same day.">距離 Caboolture 大約 1 小時車程，但非常值得一去。這裡是昆士蘭數一數二有名的市集，每週三和週六開放。市集規模很大，有超過 600 個攤位，從手工藝品、食物到服飾都有。氛圍很悠閒，可以搭配 Noosa 行程一起安排。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-row" data-id="14">
+          <div class="place-row-header" onclick="toggleRow(this)">
+            <div class="place-icon-wrap">☀️</div>
+            <div><div class="place-name">Mooloolaba Sunday Market</div><div class="place-desc" data-zh="可搭配 Sunshine Coast 行程，週日早上很舒服。" data-en="Pair with Sunshine Coast — a very relaxed Sunday.">可搭配 Sunshine Coast 行程，週日早上很舒服。</div></div>
+            <span class="place-chevron">▼</span>
+          </div>
+          <div class="place-detail">
+            <div class="place-detail-inner">
+              
+              <div class="place-detail-text">
+                <p data-zh="每週日早上在 Mooloolaba 海濱舉辦，規模不算大但氣氛很好。就在海邊旁邊，逛完市集之後可以直接下去游泳或在沙灘上坐著曬太陽。海風、市集和海鮮早午餐，是個很放鬆的週日安排。" data-en="Held every Sunday morning along the Mooloolaba waterfront. Not the biggest market but the atmosphere is lovely. Right next to the beach — browse the stalls then head straight to the water. Sea breeze, markets, and a seafood brunch: a very relaxing Sunday.">每週日早上在 Mooloolaba 海濱舉辦，規模不算大但氣氛很好。就在海邊旁邊，逛完市集之後可以直接下去游泳或在沙灘上坐著曬太陽。海風、市集和海鮮早午餐，是個很放鬆的週日安排。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -207,14 +451,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
       <p class="sec-label">03</p>
       <h2 class="sec-title" data-zh="Caboolture 周邊的海灘與自然景色" data-en="Beaches & Nature Near Caboolture">Caboolture 周邊的海灘與自然景色</h2>
       <div class="place-list">
-        <div class="place-row" onclick="focusMarker(15)" data-id="15"><div class="place-icon-wrap">🏖</div><div><div class="place-name">Bribie Island</div><div class="place-desc" data-zh="距離最近的海邊，週末好去處。" data-en="Closest beach, great for weekends.">距離最近的海邊，週末好去處。</div></div></div>
-        <div class="place-row" onclick="focusMarker(16)" data-id="16"><div class="place-icon-wrap">🌊</div><div><div class="place-name">Redcliffe Beach</div><div class="place-desc" data-zh="往南，可搭配 Redcliffe Markets。" data-en="South option, combine with Redcliffe Markets.">往南，可搭配 Redcliffe Markets。</div></div></div>
-        <div class="place-row" onclick="focusMarker(17)" data-id="17"><div class="place-icon-wrap">☀️</div><div><div class="place-name">Sunshine Coast</div><div class="place-desc" data-zh="想要度假感的海邊往這裡去。" data-en="For a more holiday-vibe beach experience.">想要度假感的海邊往這裡去。</div></div></div>
-        <div class="place-row" onclick="focusMarker(18)" data-id="18"><div class="place-icon-wrap">🏄</div><div><div class="place-name">Mooloolaba</div><div class="place-desc" data-zh="Sunshine Coast 熱門海濱區，多餐廳咖啡廳。" data-en="Popular coastal area, lots of cafés and restaurants.">Sunshine Coast 熱門海濱區，多餐廳咖啡廳。</div></div></div>
-        <div class="place-row" onclick="focusMarker(19)" data-id="19"><div class="place-icon-wrap">🌴</div><div><div class="place-name">Noosa</div><div class="place-desc" data-zh="有完整一天的話很推薦往北到 Noosa。" data-en="Highly recommended if you have a full day.">有完整一天的話很推薦往北到 Noosa。</div></div></div>
-        <div class="place-row" onclick="focusMarker(20)" data-id="20"><div class="place-icon-wrap">🌅</div><div><div class="place-name">Gold Coast</div><div class="place-desc" data-zh="往南，熱鬧觀光化的海灘城市。" data-en="South, lively and touristy beach city.">往南，熱鬧觀光化的海灘城市。</div></div></div>
-        <div class="place-row" onclick="focusMarker(21)" data-id="21"><div class="place-icon-wrap">🏞</div><div><div class="place-name">Lake Moogerah</div><div class="place-desc" data-zh="往內陸走，不同的自然景色。" data-en="Head inland for a completely different scenery.">往內陸走，不同的自然景色。</div></div></div>
-        <div class="place-row" onclick="focusMarker(22)" data-id="22"><div class="place-icon-wrap">🌊</div><div><div class="place-name">Byron Bay</div><div class="place-desc" data-zh="距離較遠，適合週末 Road Trip。" data-en="Longer drive, best as a weekend road trip.">距離較遠，適合週末 Road Trip。</div></div></div>
+        <div class="place-row" data-id="15"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🏖</div><div><div class="place-name">Bribie Island</div><div class="place-desc" data-zh="距離最近的海邊，週末好去處。" data-en="Closest beach, great for weekends.">距離最近的海邊，週末好去處。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="距離 Caboolture 最近的海邊，開車大約 30 分鐘。海水很平靜，適合家庭或想放鬆的人。沒有什麼商業設施，就是純粹的海邊，很適合帶著食物去野餐。" data-en="The closest beach to Caboolture, about 30 minutes by car. The water is calm — great for families or anyone who wants to unwind. Not much commercial development, just a pure beach experience. Perfect for a picnic.">距離 Caboolture 最近的海邊，開車大約 30 分鐘。海水很平靜，適合家庭或想放鬆的人。沒有什麼商業設施，就是純粹的海邊，很適合帶著食物去野餐。</p></div></div></div></div>
+        <div class="place-row" data-id="16"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🌊</div><div><div class="place-name">Redcliffe Beach</div><div class="place-desc" data-zh="往南，可搭配 Redcliffe Markets。" data-en="South option, combine with Redcliffe Markets.">往南，可搭配 Redcliffe Markets。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="Redcliffe 是 Brisbane 北邊的海濱小鎮，氛圍很舒適。海灘沿著海濱步道延伸，有很多可以坐下來的地方。搭配 Redcliffe Markets 一起安排，是很完整的半日行程。" data-en="Redcliffe is a relaxed coastal town north of Brisbane with a lovely atmosphere. The beach stretches along a waterfront promenade with plenty of spots to sit. Combine with Redcliffe Markets for a great half-day out.">Redcliffe 是 Brisbane 北邊的海濱小鎮，氛圍很舒適。海灘沿著海濱步道延伸，有很多可以坐下來的地方。搭配 Redcliffe Markets 一起安排，是很完整的半日行程。</p></div></div></div></div>
+        <div class="place-row" data-id="17"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">☀️</div><div><div class="place-name">Sunshine Coast</div><div class="place-desc" data-zh="想要度假感的海邊往這裡去。" data-en="For a more holiday-vibe beach experience.">想要度假感的海邊往這裡去。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="如果想要有真正「度假」感覺的海邊，Sunshine Coast 是最好的選擇。這裡有很多不同的海灘可以選，從 Mooloolaba 到 Noosa 都屬於這一帶。海水顏色非常漂亮，是那種會讓你覺得值得住在澳洲的風景。" data-en="If you want a real holiday feeling, Sunshine Coast is the best choice. There are many beaches to choose from — Mooloolaba to Noosa are all part of this stretch. The water colour is stunning — the kind of scenery that makes you glad you came to Australia.">如果想要有真正「度假」感覺的海邊，Sunshine Coast 是最好的選擇。這裡有很多不同的海灘可以選，從 Mooloolaba 到 Noosa 都屬於這一帶。海水顏色非常漂亮，是那種會讓你覺得值得住在澳洲的風景。</p></div></div></div></div>
+        <div class="place-row" data-id="18"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🏄</div><div><div class="place-name">Mooloolaba</div><div class="place-desc" data-zh="Sunshine Coast 熱門海濱區，多餐廳咖啡廳。" data-en="Popular coastal area, lots of cafés and restaurants.">Sunshine Coast 熱門海濱區，多餐廳咖啡廳。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="Mooloolaba 是 Sunshine Coast 我最喜歡的地方之一。海灘很好游泳，附近的 Esplanade 有很多餐廳和咖啡廳。可以在海邊游泳後，找一間咖啡廳坐下來吃頓好的，是很完美的一天。" data-en="Mooloolaba is one of my favourite spots on the Sunshine Coast. Great for swimming, and the Esplanade nearby has plenty of restaurants and cafés. Swim at the beach then sit down for a nice meal — a perfect day out.">Mooloolaba 是 Sunshine Coast 我最喜歡的地方之一。海灘很好游泳，附近的 Esplanade 有很多餐廳和咖啡廳。可以在海邊游泳後，找一間咖啡廳坐下來吃頓好的，是很完美的一天。</p></div></div></div></div>
+        <div class="place-row" data-id="19"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🌴</div><div><div class="place-name">Noosa</div><div class="place-desc" data-zh="有完整一天的話很推薦往北到 Noosa。" data-en="Highly recommended if you have a full day.">有完整一天的話很推薦往北到 Noosa。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="Noosa 是我最喜歡的昆士蘭海邊目的地之一。Hastings Street 有很多很好的餐廳和精品小店，Noosa 國家公園的步道也很值得走。海灘本身也非常漂亮，建議預留一整天的時間。" data-en="Noosa is one of my favourite Queensland beach destinations. Hastings Street has excellent restaurants and boutique shops, and the Noosa National Park walking tracks are well worth it. The beach itself is stunning — set aside a full day.">Noosa 是我最喜歡的昆士蘭海邊目的地之一。Hastings Street 有很多很好的餐廳和精品小店，Noosa 國家公園的步道也很值得走。海灘本身也非常漂亮，建議預留一整天的時間。</p></div></div></div></div>
+        <div class="place-row" data-id="20"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🌅</div><div><div class="place-name">Gold Coast</div><div class="place-desc" data-zh="往南，熱鬧觀光化的海灘城市。" data-en="South, lively and touristy beach city.">往南，熱鬧觀光化的海灘城市。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="Gold Coast 和 Caboolture 是截然不同的兩種感覺。這裡很熱鬧、很觀光，Surfers Paradise 一帶高樓林立，海邊永遠都有人。如果偶爾想感受一下大城市的海邊氛圍，可以安排一天去 Gold Coast。" data-en="Gold Coast is a completely different vibe from Caboolture — busy, touristy, with skyscrapers lining Surfers Paradise and always a crowd at the beach. Good for a day trip if you want that big-city beach energy for a change.">Gold Coast 和 Caboolture 是截然不同的兩種感覺。這裡很熱鬧、很觀光，Surfers Paradise 一帶高樓林立，海邊永遠都有人。如果偶爾想感受一下大城市的海邊氛圍，可以安排一天去 Gold Coast。</p></div></div></div></div>
+        <div class="place-row" data-id="21"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🏞</div><div><div class="place-name">Lake Moogerah</div><div class="place-desc" data-zh="往內陸走，不同的自然景色。" data-en="Head inland for a completely different scenery.">往內陸走，不同的自然景色。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="如果不想一直去海邊，可以往內陸方向走走。Lake Moogerah 是一個很安靜的水庫湖泊，四周環繞著山丘，風景和海邊完全不同。很適合帶食物去野餐，或是早起去湖邊看日出。" data-en="If you want a break from the beach, head inland. Lake Moogerah is a quiet reservoir lake surrounded by hills — completely different scenery from the coast. Great for a picnic or an early morning drive to catch the sunrise over the water.">如果不想一直去海邊，可以往內陸方向走走。Lake Moogerah 是一個很安靜的水庫湖泊，四周環繞著山丘，風景和海邊完全不同。很適合帶食物去野餐，或是早起去湖邊看日出。</p></div></div></div></div>
+        <div class="place-row" data-id="22"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🌊</div><div><div class="place-name">Byron Bay</div><div class="place-desc" data-zh="距離較遠，適合週末 Road Trip。" data-en="Longer drive, best as a weekend road trip.">距離較遠，適合週末 Road Trip。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="從 Caboolture 開車去 Byron Bay 大約 2.5 小時，不適合當成下午隨便去的行程，但非常值得安排一個完整的週末。Byron Bay 的氛圍非常特別，有點嬉皮風又有點時髦，海灘也很美。最有名的是燈塔日出，如果有機會一定要去看。" data-en="About 2.5 hours from Caboolture — not a casual afternoon trip, but very much worth planning as a full weekend. Byron Bay has a unique vibe: part hippie, part cool. The beach is beautiful. The lighthouse sunrise is the highlight — don't miss it if you get the chance.">從 Caboolture 開車去 Byron Bay 大約 2.5 小時，不適合當成下午隨便去的行程，但非常值得安排一個完整的週末。Byron Bay 的氛圍非常特別，有點嬉皮風又有點時髦，海灘也很美。最有名的是燈塔日出，如果有機會一定要去看。</p></div></div></div></div>
       </div>
     </div>
 
@@ -224,10 +468,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
       <h2 class="sec-title" data-zh="Brisbane 有什麼可以玩？" data-en="What to Do in Brisbane?">Brisbane 有什麼可以玩？</h2>
       <p class="sec-intro" data-zh="Caboolture 距離 Brisbane 不算太遠，以下只列舉我個人參加過的活動。" data-en="Brisbane isn't too far from Caboolture. The following are only activities I personally attended.">Caboolture 距離 Brisbane 不算太遠，以下只列舉我個人參加過的活動。</p>
       <div class="place-list">
-        <div class="place-row" onclick="focusMarker(23)" data-id="23"><div class="place-icon-wrap">🎡</div><div><div class="place-name">Ekka</div><div class="place-desc" data-zh="澳洲很有地方特色的農業嘉年華。" data-en="A very locally distinctive Australian agricultural fair.">澳洲很有地方特色的農業嘉年華。</div></div></div>
-        <div class="place-row" onclick="focusMarker(24)" data-id="24"><div class="place-icon-wrap">🎆</div><div><div class="place-name">Brisbane Festival & Riverfire</div><div class="place-desc" data-zh="Brisbane 重要年度活動，Riverfire 煙火非常有代表性。" data-en="Key annual Brisbane event — Riverfire fireworks are iconic.">Brisbane 重要年度活動，Riverfire 煙火非常有代表性。</div></div></div>
-        <div class="place-row" onclick="focusMarker(25)" data-id="25"><div class="place-icon-wrap">💜</div><div><div class="place-name">Jacaranda Season</div><div class="place-desc" data-zh="9–10 月春天，Brisbane 滿城紫色藍花楹。" data-en="Sep–Oct, Brisbane fills with purple Jacaranda blooms.">9–10 月春天，Brisbane 滿城紫色藍花楹。</div></div></div>
-        <div class="place-row" onclick="focusMarker(26)" data-id="26"><div class="place-icon-wrap">🛍</div><div><div class="place-name">Taiwanese Market</div><div class="place-desc" data-zh="不定期台灣市集，對台灣人有種奇妙的親切感。" data-en="Occasional Taiwanese markets — a warm familiar feeling.">不定期台灣市集，對台灣人有種奇妙的親切感。</div></div></div>
+        <div class="place-row" data-id="23"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🎡</div><div><div class="place-name">Ekka</div><div class="place-desc" data-zh="澳洲很有地方特色的農業嘉年華。" data-en="A very locally distinctive Australian agricultural fair.">澳洲很有地方特色的農業嘉年華。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="每年八月在 Brisbane 的 RNA Showgrounds 舉辦，是昆士蘭最大的農業嘉年華。有農場動物、遊樂設施、各種食物攤位。最有名的是 Ekka 草莓聖代，是每年必吃的指定項目。如果在 8 月左右住在 Caboolture，強烈建議安排一天去參加。" data-en="Held every August at the RNA Showgrounds in Brisbane — Queensland's biggest agricultural fair. Farm animals, rides, and food stalls galore. The famous Ekka strawberry sundae is a must-eat every year. If you're in Caboolture in August, strongly recommend setting aside a day for this.">每年八月在 Brisbane 的 RNA Showgrounds 舉辦，是昆士蘭最大的農業嘉年華。有農場動物、遊樂設施、各種食物攤位。最有名的是 Ekka 草莓聖代，是每年必吃的指定項目。如果在 8 月左右住在 Caboolture，強烈建議安排一天去參加。</p></div></div></div></div>
+        <div class="place-row" data-id="24"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🎆</div><div><div class="place-name">Brisbane Festival & Riverfire</div><div class="place-desc" data-zh="Brisbane 重要年度活動，Riverfire 煙火非常有代表性。" data-en="Key annual Brisbane event — Riverfire fireworks are iconic.">Brisbane 重要年度活動，Riverfire 煙火非常有代表性。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="Brisbane Festival 是每年九月的大型藝術節，而 Riverfire 是其中最有代表性的活動——在 Brisbane River 上放煙火。我去看的那次煙火非常壯觀，沿著河邊都是人，氣氛很好。建議早點去佔位子，河邊的好位子很快就會被佔滿。" data-en="Brisbane Festival is a major arts festival held every September, and Riverfire — fireworks over the Brisbane River — is its iconic highlight. The fireworks are spectacular; the whole riverbank fills up with people and the atmosphere is electric. Get there early to claim a good spot along the river.">Brisbane Festival 是每年九月的大型藝術節，而 Riverfire 是其中最有代表性的活動——在 Brisbane River 上放煙火。我去看的那次煙火非常壯觀，沿著河邊都是人，氣氛很好。建議早點去佔位子，河邊的好位子很快就會被佔滿。</p></div></div></div></div>
+        <div class="place-row" data-id="25"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">💜</div><div><div class="place-name">Jacaranda Season</div><div class="place-desc" data-zh="9–10 月春天，Brisbane 滿城紫色藍花楹。" data-en="Sep–Oct, Brisbane fills with purple Jacaranda blooms.">9–10 月春天，Brisbane 滿城紫色藍花楹。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="每年 9 到 10 月，Brisbane 的街道上會開滿藍花楹（Jacaranda），整座城市會出現大片紫色的景色，非常漂亮。New Farm Park 和 Brisbane Grammar School 附近是特別有名的賞花地點，如果剛好在這段時間住在 Caboolture，一定要特別進 Brisbane 去看看。" data-en="Every September to October, the streets of Brisbane are lined with blooming Jacaranda trees, turning the city purple — absolutely stunning. New Farm Park and around Brisbane Grammar School are particularly well-known spots. If you're in Caboolture during this period, it's absolutely worth a trip into the city.">每年 9 到 10 月，Brisbane 的街道上會開滿藍花楹（Jacaranda），整座城市會出現大片紫色的景色，非常漂亮。New Farm Park 和 Brisbane Grammar School 附近是特別有名的賞花地點，如果剛好在這段時間住在 Caboolture，一定要特別進 Brisbane 去看看。</p></div></div></div></div>
+        <div class="place-row" data-id="26"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🛍</div><div><div class="place-name">Taiwanese Market</div><div class="place-desc" data-zh="不定期台灣市集，對台灣人有種奇妙的親切感。" data-en="Occasional Taiwanese markets — a warm familiar feeling.">不定期台灣市集，對台灣人有種奇妙的親切感。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="Brisbane 不定期會有台灣相關的市集或文化活動，通常可以在台灣同學會或 Facebook 社團看到消息。對台灣人來說，在異鄉突然看到台灣小吃和文化活動，有種說不清楚的親切感。如果剛好遇到，很推薦去走走。" data-en="Brisbane occasionally hosts Taiwanese markets and cultural events — usually announced through Taiwanese student associations or Facebook groups. For Taiwanese people, stumbling across familiar food and culture in a foreign country brings a hard-to-describe warmth. Definitely worth going if you happen to catch one.">Brisbane 不定期會有台灣相關的市集或文化活動，通常可以在台灣同學會或 Facebook 社團看到消息。對台灣人來說，在異鄉突然看到台灣小吃和文化活動，有種說不清楚的親切感。如果剛好遇到，很推薦去走走。</p></div></div></div></div>
       </div>
     </div>
 
@@ -237,12 +481,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
       <h2 class="sec-title" data-zh="Brisbane 一些餐廳推薦" data-en="Some Brisbane Restaurant Picks">Brisbane 一些餐廳推薦</h2>
       <p class="sec-intro" data-zh="我沒有很常去 Brisbane，只推薦我跟朋友吃過、覺得不錯的幾間。" data-en="I didn't go to Brisbane very often — only recommending places I've personally tried.">我沒有很常去 Brisbane，只推薦我跟朋友吃過、覺得不錯的幾間。</p>
       <div class="place-list">
-        <div class="place-row" onclick="focusMarker(27)" data-id="27"><div class="place-icon-wrap">🍚</div><div><div class="place-name">百家千味</div><div class="place-desc" data-zh="台灣熱炒，圓桌聚餐，很適合帶外國朋友體驗。" data-en="Taiwanese stir-fry, round tables, great for groups.">台灣熱炒，圓桌聚餐，很適合帶外國朋友體驗。</div></div></div>
-        <div class="place-row" onclick="focusMarker(28)" data-id="28"><div class="place-icon-wrap">🥟</div><div><div class="place-name">元寶</div><div class="place-desc" data-zh="台灣料理、餃子，想吃中式料理可以考慮。" data-en="Taiwanese food & dumplings, good for Chinese cravings.">台灣料理、餃子，想吃中式料理可以考慮。</div></div></div>
-        <div class="place-row" onclick="focusMarker(29)" data-id="29"><div class="place-icon-wrap">🍜</div><div><div class="place-name">楊國胡麻辣燙</div><div class="place-desc" data-zh="我最喜歡的麻辣燙，只有 Brisbane 才有。" data-en="My favourite malatang, only available in Brisbane.">我最喜歡的麻辣燙，只有 Brisbane 才有。</div></div></div>
-        <div class="place-row" onclick="focusMarker(30)" data-id="30"><div class="place-icon-wrap">🍜</div><div><div class="place-name">One Plus One</div><div class="place-desc" data-zh="非常好吃的亞洲料理，出餐速度很慢。" data-en="Very good Asian food, but slow service.">非常好吃的亞洲料理，出餐速度很慢。</div></div></div>
-        <div class="place-row" onclick="focusMarker(31)" data-id="31"><div class="place-icon-wrap">🍚</div><div><div class="place-name">成就亞洲超市</div><div class="place-desc" data-zh="Sunnybank 大型亞洲超市，商品很齊全。" data-en="Large Asian supermarket in Sunnybank, great variety.">Sunnybank 大型亞洲超市，商品很齊全。</div></div></div>
-        <div class="place-row" onclick="focusMarker(32)" data-id="32"><div class="place-icon-wrap">🍜</div><div><div class="place-name">Half Time Food</div><div class="place-desc" data-zh="台灣口味早餐店，懷念台灣早餐必去。" data-en="Taiwanese-style breakfast — a must if you miss home.">台灣口味早餐店，懷念台灣早餐必去。</div></div></div>
+        <div class="place-row" data-id="27"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🍚</div><div><div class="place-name">百家千味</div><div class="place-desc" data-zh="台灣熱炒，圓桌聚餐，很適合帶外國朋友體驗。" data-en="Taiwanese stir-fry, round tables, great for groups.">台灣熱炒，圓桌聚餐，很適合帶外國朋友體驗。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="位於 Sunnybank，是 Brisbane 台灣人非常熟悉的台菜餐廳。圓桌大桌，很適合多人聚餐。菜色是台灣熱炒類型，份量很大，幾個人一起去可以點很多菜來分。我後來把 Ekka 抽到的 AU$1,000 獎金帶朋友來這裡花掉的哈哈。" data-en="Located in Sunnybank and very well known among Brisbane's Taiwanese community. Round tables, great for big group dinners. Taiwanese stir-fry style — large portions, perfect for sharing many dishes. I took friends here after winning the AU$1,000 prize at the Ekka party — spent it all here haha.">位於 Sunnybank，是 Brisbane 台灣人非常熟悉的台菜餐廳。圓桌大桌，很適合多人聚餐。菜色是台灣熱炒類型，份量很大，幾個人一起去可以點很多菜來分。我後來把 Ekka 抽到的 AU$1,000 獎金帶朋友來這裡花掉的哈哈。</p></div></div></div></div>
+        <div class="place-row" data-id="28"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🥟</div><div><div class="place-name">元寶</div><div class="place-desc" data-zh="台灣料理、餃子，想吃中式料理可以考慮。" data-en="Taiwanese food & dumplings, good for Chinese cravings.">台灣料理、餃子，想吃中式料理可以考慮。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="也在 Sunnybank 附近，主打餃子和台式料理。如果想吃水餃、鍋貼或一些比較家常的台灣口味，這裡是很好的選擇。價格比百家千味便宜一些，適合兩三個人輕鬆吃一頓。" data-en="Also near Sunnybank, specialising in dumplings and Taiwanese home-style cooking. Great for dumplings, pan-fried potstickers, or a casual Taiwanese meal. A bit cheaper than Glamorous Wok — good for a relaxed meal with two or three people.">也在 Sunnybank 附近，主打餃子和台式料理。如果想吃水餃、鍋貼或一些比較家常的台灣口味，這裡是很好的選擇。價格比百家千味便宜一些，適合兩三個人輕鬆吃一頓。</p></div></div></div></div>
+        <div class="place-row" data-id="29"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🍜</div><div><div class="place-name">楊國胡麻辣燙</div><div class="place-desc" data-zh="我最喜歡的麻辣燙，只有 Brisbane 才有。" data-en="My favourite malatang, only available in Brisbane.">我最喜歡的麻辣燙，只有 Brisbane 才有。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="這是我在 Brisbane 最喜歡的餐廳之一。麻辣燙是自己選食材，然後按重量計費的吃法，可以完全依照自己口味搭配。湯底非常夠味，每次去 Brisbane 我都一定會來吃一碗。可惜 Caboolture 附近沒有，只能偶爾進城解饞。" data-en="One of my favourite restaurants in Brisbane. Malatang is a self-serve style — pick your own ingredients then pay by weight, so you can customise completely. The broth is incredibly flavourful. Every time I went to Brisbane I had to get a bowl. A shame there's nothing like it near Caboolture.">這是我在 Brisbane 最喜歡的餐廳之一。麻辣燙是自己選食材，然後按重量計費的吃法，可以完全依照自己口味搭配。湯底非常夠味，每次去 Brisbane 我都一定會來吃一碗。可惜 Caboolture 附近沒有，只能偶爾進城解饞。</p></div></div></div></div>
+        <div class="place-row" data-id="30"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🍜</div><div><div class="place-name">One Plus One</div><div class="place-desc" data-zh="非常好吃的亞洲料理，出餐速度很慢。" data-en="Very good Asian food, but slow service.">非常好吃的亞洲料理，出餐速度很慢。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="非常好吃，但出餐真的很慢，請務必有心理準備。建議不要在趕時間的時候去，把它當成一個可以慢慢等、慢慢吃的體驗。食物本身的品質很高，等待是值得的。" data-en="Genuinely delicious, but the wait for food is really long — go in with that expectation. Don't visit when you're in a rush; treat it as a slow, relaxed dining experience. The food quality is high enough that the wait is worth it.">非常好吃，但出餐真的很慢，請務必有心理準備。建議不要在趕時間的時候去，把它當成一個可以慢慢等、慢慢吃的體驗。食物本身的品質很高，等待是值得的。</p></div></div></div></div>
+        <div class="place-row" data-id="31"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🍚</div><div><div class="place-name">成就亞洲超市</div><div class="place-desc" data-zh="Sunnybank 大型亞洲超市，商品很齊全。" data-en="Large Asian supermarket in Sunnybank, great variety.">Sunnybank 大型亞洲超市，商品很齊全。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="嚴格來說這是超市不是餐廳，但對在澳洲生活的台灣人來說非常重要。可以買到各種台灣和亞洲的食材、泡麵、醬料，甚至有一些台灣零食。每次去 Brisbane 我都會順便來買一些存貨帶回 Caboolture。" data-en="Strictly speaking it's a supermarket, not a restaurant — but it's essential for Taiwanese people living in Australia. You can find all kinds of Taiwanese and Asian ingredients, instant noodles, sauces, and even some Taiwanese snacks. Every Brisbane trip I'd stock up to bring back to Caboolture.">嚴格來說這是超市不是餐廳，但對在澳洲生活的台灣人來說非常重要。可以買到各種台灣和亞洲的食材、泡麵、醬料，甚至有一些台灣零食。每次去 Brisbane 我都會順便來買一些存貨帶回 Caboolture。</p></div></div></div></div>
+        <div class="place-row" data-id="32"><div class="place-row-header" onclick="toggleRow(this)"><div class="place-icon-wrap">🍜</div><div><div class="place-name">Half Time Food</div><div class="place-desc" data-zh="台灣口味早餐店，懷念台灣早餐必去。" data-en="Taiwanese-style breakfast — a must if you miss home.">台灣口味早餐店，懷念台灣早餐必去。</div></div><span class="place-chevron">▼</span></div><div class="place-detail"><div class="place-detail-inner"><div class="place-detail-text"><p data-zh="如果在澳洲住久了，開始懷念台灣的蛋餅、飯糰或豆漿，這裡是你的救星。菜單非常台灣早餐店風格，看到的時候會有一種很奇妙的感動。建議週末早上安排去 Brisbane 的時候順便過來吃早餐。" data-en="If you've been in Australia long enough to start craving Taiwanese breakfast — egg crepe rolls, rice balls, soy milk — this place is the answer. The menu is proper Taiwanese breakfast style; seeing it feels strangely emotional. Recommend visiting on a weekend Brisbane morning trip.">如果在澳洲住久了，開始懷念台灣的蛋餅、飯糰或豆漿，這裡是你的救星。菜單非常台灣早餐店風格，看到的時候會有一種很奇妙的感動。建議週末早上安排去 Brisbane 的時候順便過來吃早餐。</p></div></div></div></div>
       </div>
     </div>
 
@@ -283,39 +527,54 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);padding:
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
+// Accordion
+function toggleRow(header){
+  const row=header.parentElement;
+  const isOpen=row.classList.contains('open');
+  // close all in same section
+  row.closest('.place-list').querySelectorAll('.place-row.open').forEach(r=>{
+    r.classList.remove('open');
+  });
+  if(!isOpen) row.classList.add('open');
+  // also trigger map focus
+  const id=parseInt(row.getAttribute('data-id'));
+  if(!isOpen && id) focusMarker(id);
+}
+
+// Map
 const places=[
-  {id:1,cat:'food',icon:'🍜',name_zh:'Bamboo Street Thai Food',name_en:'Bamboo Street Thai Food',desc_zh:'泰式餐廳，份量足',desc_en:'Thai restaurant, generous portions',lat:-27.0595,lng:152.9518},
-  {id:2,cat:'food',icon:'🥩',name_zh:'Meekak Korean BBQ',name_en:'Meekak Korean BBQ',desc_zh:'韓式 BBQ',desc_en:'Korean BBQ',lat:-27.0582,lng:152.9513},
-  {id:3,cat:'food',icon:'🍗',name_zh:'Shinpocha',name_en:'Shinpocha',desc_zh:'韓式料理',desc_en:'Korean cuisine',lat:-27.0662,lng:152.9531},
-  {id:4,cat:'food',icon:'🍰',name_zh:'Kreative Desserts',name_en:'Kreative Desserts',desc_zh:'甜點店',desc_en:'Dessert shop',lat:-27.0590,lng:152.9505},
-  {id:5,cat:'food',icon:'🍣',name_zh:'Sushi Bar Caboolture',name_en:'Sushi Bar Caboolture',desc_zh:'壽司日式料理',desc_en:'Japanese sushi',lat:-27.0668,lng:152.9527},
-  {id:6,cat:'food',icon:'🍱',name_zh:'KatsuCo North Lakes',name_en:'KatsuCo North Lakes',desc_zh:'日式炸豬排',desc_en:'Japanese katsu',lat:-27.2422,lng:153.0136},
-  {id:7,cat:'food',icon:'🍗',name_zh:'Chicken Park',name_en:'Chicken Park',desc_zh:'韓式炸雞',desc_en:'Korean fried chicken',lat:-27.2425,lng:153.0158},
-  {id:8,cat:'food',icon:'🍜',name_zh:'Kinn Thai North Lakes',name_en:'Kinn Thai North Lakes',desc_zh:'泰式料理',desc_en:'Thai restaurant',lat:-27.2430,lng:153.0162},
-  {id:9,cat:'food',icon:'🥩',name_zh:'YAKINIKU HIBIKI',name_en:'YAKINIKU HIBIKI',desc_zh:'日式燒肉',desc_en:'Japanese BBQ',lat:-27.2395,lng:153.0122},
-  {id:10,cat:'market',icon:'🛍',name_zh:'Caboolture Markets',name_en:'Caboolture Markets',desc_zh:'最近的市集',desc_en:'Closest market',lat:-27.0654,lng:152.9519},
-  {id:11,cat:'market',icon:'🏝',name_zh:'Bribie Island Markets',name_en:'Bribie Island Markets',desc_zh:'搭配 Bribie 海邊',desc_en:'Pair with Bribie Island',lat:-27.0490,lng:152.9986},
-  {id:12,cat:'market',icon:'🌊',name_zh:'Redcliffe Markets',name_en:'Redcliffe Markets',desc_zh:'Brisbane 北邊',desc_en:'North of Brisbane',lat:-27.2302,lng:153.1017},
-  {id:13,cat:'market',icon:'🌿',name_zh:'Eumundi Markets',name_en:'Eumundi Markets',desc_zh:'規模大氛圍佳',desc_en:'Large, great atmosphere',lat:-26.4810,lng:152.9573},
-  {id:14,cat:'market',icon:'☀️',name_zh:'Mooloolaba Sunday Market',name_en:'Mooloolaba Sunday Market',desc_zh:'搭配 Sunshine Coast',desc_en:'Pair with Sunshine Coast',lat:-26.6830,lng:153.1213},
-  {id:15,cat:'beach',icon:'🏖',name_zh:'Bribie Island',name_en:'Bribie Island',desc_zh:'最近的海邊',desc_en:'Closest beach',lat:-27.0280,lng:153.1632},
-  {id:16,cat:'beach',icon:'🌊',name_zh:'Redcliffe Beach',name_en:'Redcliffe Beach',desc_zh:'搭配市集',desc_en:'Combine with markets',lat:-27.2289,lng:153.1036},
-  {id:17,cat:'beach',icon:'☀️',name_zh:'Sunshine Coast',name_en:'Sunshine Coast',desc_zh:'度假感海邊',desc_en:'Holiday-vibe beach',lat:-26.6500,lng:153.0667},
-  {id:18,cat:'beach',icon:'🏄',name_zh:'Mooloolaba',name_en:'Mooloolaba',desc_zh:'熱門海濱區',desc_en:'Popular coastal area',lat:-26.6833,lng:153.1167},
-  {id:19,cat:'beach',icon:'🌴',name_zh:'Noosa',name_en:'Noosa',desc_zh:'完整一天行程',desc_en:'Worth a full day',lat:-26.3978,lng:153.0815},
-  {id:20,cat:'beach',icon:'🌅',name_zh:'Gold Coast',name_en:'Gold Coast',desc_zh:'觀光海灘城市',desc_en:'Lively beach city',lat:-28.0167,lng:153.4000},
-  {id:21,cat:'beach',icon:'🏞',name_zh:'Lake Moogerah',name_en:'Lake Moogerah',desc_zh:'內陸湖景',desc_en:'Inland lake',lat:-28.0478,lng:152.5403},
-  {id:22,cat:'beach',icon:'🌊',name_zh:'Byron Bay',name_en:'Byron Bay',desc_zh:'週末 Road Trip',desc_en:'Weekend road trip',lat:-28.6474,lng:153.6020},
-  {id:23,cat:'activity',icon:'🎡',name_zh:'Ekka',name_en:'Ekka',desc_zh:'農業嘉年華',desc_en:'Agricultural fair',lat:-27.4571,lng:153.0157},
-  {id:24,cat:'activity',icon:'🎆',name_zh:'Riverfire',name_en:'Riverfire',desc_zh:'Brisbane 煙火節',desc_en:'Brisbane fireworks',lat:-27.4698,lng:153.0243},
-  {id:25,cat:'activity',icon:'💜',name_zh:'Jacaranda Season',name_en:'Jacaranda Season',desc_zh:'9–10 月藍花楹',desc_en:'Jacaranda Sep–Oct',lat:-27.4650,lng:153.0440},
-  {id:26,cat:'activity',icon:'🛍',name_zh:'Taiwanese Market',name_en:'Taiwanese Market',desc_zh:'台灣市集',desc_en:'Taiwanese market',lat:-27.4700,lng:153.0200},
-  {id:27,cat:'brisbane-food',icon:'🍚',name_zh:'百家千味',name_en:'Glamorous Wok',desc_zh:'台灣熱炒',desc_en:'Taiwanese stir-fry',lat:-27.5781,lng:153.0522},
-  {id:28,cat:'brisbane-food',icon:'🥟',name_zh:'元寶',name_en:'YuanBao',desc_zh:'台灣餃子',desc_en:'Taiwanese dumplings',lat:-27.5791,lng:153.0578},
-  {id:29,cat:'brisbane-food',icon:'🍜',name_zh:'楊國胡麻辣燙',name_en:'Malatang',desc_zh:'麻辣燙',desc_en:'Malatang',lat:-27.5768,lng:153.0540},
-  {id:30,cat:'brisbane-food',icon:'🍜',name_zh:'One Plus One',name_en:'One Plus One',desc_zh:'亞洲料理',desc_en:'Asian cuisine',lat:-27.5783,lng:153.0512},
-  {id:31,cat:'brisbane-food',icon:'🍚',name_zh:'成就亞洲超市',name_en:'Asian Supermarket',desc_zh:'Sunnybank 超市',desc_en:'Sunnybank supermarket',lat:-27.5776,lng:153.0531},
-  {id:32,cat:'brisbane-food',icon:'🍜',name_zh:'Half Time Food',name_en:'Half Time Food',desc_zh:'台灣口味早餐',desc_en:'Taiwanese breakfast',lat:-27.5795,lng:153.0548},
+  {id:1,cat:'food',icon:'🍜',img:'photos/p1.jpg',name_zh:'Bamboo Street Thai Food',name_en:'Bamboo Street Thai Food',desc_zh:'泰式餐廳，份量足',desc_en:'Thai restaurant, generous portions',lat:-27.0595,lng:152.9518},
+  {id:2,cat:'food',icon:'🥩',img:'photos/p2.jpg',name_zh:'Meekak Korean BBQ',name_en:'Meekak Korean BBQ',desc_zh:'韓式 BBQ',desc_en:'Korean BBQ',lat:-27.0582,lng:152.9513},
+  {id:3,cat:'food',icon:'🍗',img:'photos/p3.jpg',name_zh:'Shinpocha',name_en:'Shinpocha',desc_zh:'韓式料理',desc_en:'Korean cuisine',lat:-27.0662,lng:152.9531},
+  {id:4,cat:'food',icon:'🍰',img:'photos/p4.jpg',name_zh:'Kreative Desserts',name_en:'Kreative Desserts',desc_zh:'甜點店',desc_en:'Dessert shop',lat:-27.0590,lng:152.9505},
+  {id:5,cat:'food',icon:'🍣',img:'photos/p5.jpg',name_zh:'Sushi Bar Caboolture',name_en:'Sushi Bar Caboolture',desc_zh:'壽司日式料理',desc_en:'Japanese sushi',lat:-27.0668,lng:152.9527},
+  {id:6,cat:'food',icon:'🍱',img:'photos/p6.jpg',name_zh:'KatsuCo North Lakes',name_en:'KatsuCo North Lakes',desc_zh:'日式炸豬排',desc_en:'Japanese katsu',lat:-27.2422,lng:153.0136},
+  {id:7,cat:'food',icon:'🍗',img:'photos/p7.jpg',name_zh:'Chicken Park',name_en:'Chicken Park',desc_zh:'韓式炸雞',desc_en:'Korean fried chicken',lat:-27.2425,lng:153.0158},
+  {id:8,cat:'food',icon:'🍜',img:'photos/p8.jpg',name_zh:'Kinn Thai North Lakes',name_en:'Kinn Thai North Lakes',desc_zh:'泰式料理',desc_en:'Thai restaurant',lat:-27.2430,lng:153.0162},
+  {id:9,cat:'food',icon:'🥩',img:'photos/p9.jpg',name_zh:'YAKINIKU HIBIKI',name_en:'YAKINIKU HIBIKI',desc_zh:'日式燒肉',desc_en:'Japanese BBQ',lat:-27.2395,lng:153.0122},
+  {id:10,cat:'market',icon:'🛍',img:'photos/p10.jpg',name_zh:'Caboolture Markets',name_en:'Caboolture Markets',desc_zh:'最近的市集',desc_en:'Closest market',lat:-27.0654,lng:152.9519},
+  {id:11,cat:'market',icon:'🏝',img:'photos/p11.jpg',name_zh:'Bribie Island Markets',name_en:'Bribie Island Markets',desc_zh:'搭配 Bribie 海邊',desc_en:'Pair with Bribie Island',lat:-27.0490,lng:152.9986},
+  {id:12,cat:'market',icon:'🌊',img:'photos/p12.jpg',name_zh:'Redcliffe Markets',name_en:'Redcliffe Markets',desc_zh:'Brisbane 北邊',desc_en:'North of Brisbane',lat:-27.2302,lng:153.1017},
+  {id:13,cat:'market',icon:'🌿',img:'photos/p13.jpg',name_zh:'Eumundi Markets',name_en:'Eumundi Markets',desc_zh:'規模大氛圍佳',desc_en:'Large, great atmosphere',lat:-26.4810,lng:152.9573},
+  {id:14,cat:'market',icon:'☀️',img:'photos/p14.jpg',name_zh:'Mooloolaba Sunday Market',name_en:'Mooloolaba Sunday Market',desc_zh:'搭配 Sunshine Coast',desc_en:'Pair with Sunshine Coast',lat:-26.6830,lng:153.1213},
+  {id:15,cat:'beach',icon:'🏖',img:'photos/p15.jpg',name_zh:'Bribie Island',name_en:'Bribie Island',desc_zh:'最近的海邊',desc_en:'Closest beach',lat:-27.0280,lng:153.1632},
+  {id:16,cat:'beach',icon:'🌊',img:'photos/p16.jpg',name_zh:'Redcliffe Beach',name_en:'Redcliffe Beach',desc_zh:'搭配市集',desc_en:'Combine with markets',lat:-27.2289,lng:153.1036},
+  {id:17,cat:'beach',icon:'☀️',img:'photos/p17.jpg',name_zh:'Sunshine Coast',name_en:'Sunshine Coast',desc_zh:'度假感海邊',desc_en:'Holiday-vibe beach',lat:-26.6500,lng:153.0667},
+  {id:18,cat:'beach',icon:'🏄',img:'photos/p18.jpg',name_zh:'Mooloolaba',name_en:'Mooloolaba',desc_zh:'熱門海濱區',desc_en:'Popular coastal area',lat:-26.6833,lng:153.1167},
+  {id:19,cat:'beach',icon:'🌴',img:'photos/p19.jpg',name_zh:'Noosa',name_en:'Noosa',desc_zh:'完整一天行程',desc_en:'Worth a full day',lat:-26.3978,lng:153.0815},
+  {id:20,cat:'beach',icon:'🌅',img:'photos/p20.jpg',name_zh:'Gold Coast',name_en:'Gold Coast',desc_zh:'觀光海灘城市',desc_en:'Lively beach city',lat:-28.0167,lng:153.4000},
+  {id:21,cat:'beach',icon:'🏞',img:'photos/p21.jpg',name_zh:'Lake Moogerah',name_en:'Lake Moogerah',desc_zh:'內陸湖景',desc_en:'Inland lake',lat:-28.0478,lng:152.5403},
+  {id:22,cat:'beach',icon:'🌊',img:'photos/p22.jpg',name_zh:'Byron Bay',name_en:'Byron Bay',desc_zh:'週末 Road Trip',desc_en:'Weekend road trip',lat:-28.6474,lng:153.6020},
+  {id:23,cat:'activity',icon:'🎡',img:'photos/p23.jpg',name_zh:'Ekka',name_en:'Ekka',desc_zh:'農業嘉年華',desc_en:'Agricultural fair',lat:-27.4571,lng:153.0157},
+  {id:24,cat:'activity',icon:'🎆',img:'photos/p24.jpg',name_zh:'Riverfire',name_en:'Riverfire',desc_zh:'Brisbane 煙火節',desc_en:'Brisbane fireworks',lat:-27.4698,lng:153.0243},
+  {id:25,cat:'activity',icon:'💜',img:'photos/p25.jpg',name_zh:'Jacaranda Season',name_en:'Jacaranda Season',desc_zh:'9–10 月藍花楹',desc_en:'Jacaranda Sep–Oct',lat:-27.4650,lng:153.0440},
+  {id:26,cat:'activity',icon:'🛍',img:'photos/p26.jpg',name_zh:'Taiwanese Market',name_en:'Taiwanese Market',desc_zh:'台灣市集',desc_en:'Taiwanese market',lat:-27.4700,lng:153.0200},
+  {id:27,cat:'brisbane-food',icon:'🍚',img:'photos/p27.jpg',name_zh:'百家千味',name_en:'Glamorous Wok',desc_zh:'台灣熱炒',desc_en:'Taiwanese stir-fry',lat:-27.5781,lng:153.0522},
+  {id:28,cat:'brisbane-food',icon:'🥟',img:'photos/p28.jpg',name_zh:'元寶',name_en:'YuanBao',desc_zh:'台灣餃子',desc_en:'Taiwanese dumplings',lat:-27.5791,lng:153.0578},
+  {id:29,cat:'brisbane-food',icon:'🍜',img:'photos/p29.jpg',name_zh:'楊國胡麻辣燙',name_en:'Malatang',desc_zh:'麻辣燙',desc_en:'Malatang',lat:-27.5768,lng:153.0540},
+  {id:30,cat:'brisbane-food',icon:'🍜',img:'photos/p30.jpg',name_zh:'One Plus One',name_en:'One Plus One',desc_zh:'亞洲料理',desc_en:'Asian cuisine',lat:-27.5783,lng:153.0512},
+  {id:31,cat:'brisbane-food',icon:'🍚',img:'photos/p31.jpg',name_zh:'成就亞洲超市',name_en:'Asian Supermarket',desc_zh:'Sunnybank 超市',desc_en:'Sunnybank supermarket',lat:-27.5776,lng:153.0531},
+  {id:32,cat:'brisbane-food',icon:'🍜',img:'photos/p32.jpg',name_zh:'Half Time Food',name_en:'Half Time Food',desc_zh:'台灣口味早餐',desc_en:'Taiwanese breakfast',lat:-27.5795,lng:153.0548},
 ];
 
 const catColors={food:'#ef4444',market:'#f59e0b',beach:'#3b82f6',activity:'#8b5cf6','brisbane-food':'#10b981'};
@@ -347,7 +606,10 @@ function makeIcon(p,active){
 
 function makePopup(p){
   const l=localStorage.getItem('jmd-lang')||'zh';
-  return `<div class="map-popup-name">${l==='zh'?p.name_zh:p.name_en}</div><div class="map-popup-desc">${l==='zh'?p.desc_zh:p.desc_en}</div>`;
+  const imgHtml=p.img
+    ?`<div class="map-popup-img"><img src="${p.img}" alt="${p.name_zh}" loading="lazy"></div>`
+    :`<div class="map-popup-img">Photo</div>`;
+  return `${imgHtml}<div class="map-popup-body"><div class="map-popup-name">${l==='zh'?p.name_zh:p.name_en}</div><div class="map-popup-desc">${l==='zh'?p.desc_zh:p.desc_en}</div></div>`;
 }
 
 function focusMarker(id){
@@ -361,19 +623,22 @@ function focusMarker(id){
 }
 
 function highlightRow(id){
-  document.querySelectorAll('.place-row').forEach(r=>r.classList.remove('active'));
   const row=document.querySelector(`.place-row[data-id="${id}"]`);
-  if(row){row.classList.add('active');row.scrollIntoView({block:'nearest',behavior:'smooth'});}
+  if(row){
+    // close others, open this
+    if(row.closest('.place-list')){
+      row.closest('.place-list').querySelectorAll('.place-row.open').forEach(r=>r.classList.remove('open'));
+    }
+    row.classList.add('open');
+    row.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
 }
 
 function updateSection(cat){
   if(cat===currentCat)return;
   currentCat=cat;
-  if(activeId){
-    markers[activeId].closePopup();
-    activeId=null;
-  }
-  document.querySelectorAll('.place-row').forEach(r=>r.classList.remove('active'));
+  if(activeId){markers[activeId].closePopup();activeId=null;}
+  document.querySelectorAll('.place-row').forEach(r=>r.classList.remove('open'));
   places.forEach(p=>markers[p.id].setIcon(makeIcon(p,false)));
   const vis=places.filter(p=>p.cat===cat);
   if(vis.length)map.flyToBounds(L.latLngBounds(vis.map(p=>[p.lat,p.lng])),{padding:[40,40],duration:0.8});
